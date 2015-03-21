@@ -1,0 +1,324 @@
+/* Following CSS are only in the demo and are of no use in a Production */
+.show-grid, .show-grid .row .row {padding: 0 10px;}
+
+.show-grid [class*="col-"] {
+    background: @border-lighter; text-align: center; margin-bottom: 10px; line-height: 2em; border:10px solid @body-bg; padding: 0;
+    .content {background: @border-lighter; border: 1px solid @border-darker}
+}
+.show-grid [class*="col-"]:hover {background: @border-darker; }
+.show-grid .row.no-gutter [class*="col-"] {border-left: 0;border-right: 0;}
+
+
+.demo-example .breadcrumb {margin-bottom: 20px;}
+
+#demo-type-table {
+	width:100%;
+	margin: -20px 0 -20px 0;
+	td {vertical-align: middle;}
+	h1,h2,h3,h4,h5,h6 {margin: 15px 0;}
+	td:last-child {text-align: right;}
+}
+
+/* Grid demo styles */
+.grid-demo {
+    padding: 10px 30px;
+    [class*="col-"] {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 1em;
+        text-align: center;
+        line-height: 2;
+        background-color: #e5e1ea;
+        border: 1px solid #d1d1d1;
+    }
+}
+
+/* Button demo styles */
+
+ul.demo-btns {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    > li {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+/* Homepage Portfolio Items */
+
+// .frontend-block .blog .portfolio {
+//     .item-wrapper {
+//         padding: 0;
+//         .item {
+//             margin: 0;
+//             border-radius: 0;
+//             overflow: auto;
+
+//             img, .caption-wrapper {
+//                 .transition(~"all 0ms");
+//             }
+
+//             &:hover {
+//                 img {
+//                     .scale(1);
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+
+// SLIDER
+
+.slider-1-heading {
+    font-size: 50px;
+    font-weight: 300;
+    color: black;
+
+}
+
+
+
+
+// blog columns bg 
+
+.blog-col-bg {
+    background: @tone-bright !important;
+}
+
+
+// home feature list 
+
+ul.featureful {
+    margin-bottom: 0;
+    li i {margin-right: 10px;}
+    li + li {margin-top: 10px;}
+}
+
+
+
+
+
+// slider revo 
+
+
+
+.slider-1-heading {
+    //text-transform: uppercase;
+    font-family: @font-family-base !important;
+}
+
+
+.tp-caption.avalon-demo-md {
+    font-family: @font-family-base !important;
+    color: #fff;
+    font-size: @font-size-large;
+    padding: 5px 10px;
+    //text-transform: uppercase;
+    &.primary {background: @brand-primary}
+    &.alizarin {background: @brand-alizarin}
+    &.warning {background: @brand-warning}
+    &.midnightblue {background: @brand-midnightblue}
+    &.inverse {background: @brand-inverse}
+    &.gray-darker {background: @gray-darker}
+}
+
+.tp-caption.avalon-demo-btn-alt {
+    padding: 6px 15px;
+    border-width: 0px;
+    border-style: solid;
+    border-radius: @border-radius-base;
+    font-size: @font-size-base;
+    //text-transform: uppercase;
+    //letter-spacing: 0.1em;
+    background: rgba(0, 0, 0, 1);
+    &:hover {cursor: pointer;}
+    &.primary {border-color: @brand-primary; color: #fff; &:hover{background: @brand-primary; color: #fff;}}
+    &.alizarin {border-color: @brand-alizarin; color: #fff; &:hover{background: @brand-alizarin; color: #fff;}}
+    &.inverse {border-color: @brand-inverse; color: #fff; &:hover{background: @brand-inverse; color: #fff;}}
+    &.success {border-color: @brand-success; color: #fff; &:hover{background: @brand-success; color: #fff;}}
+    &.warning {border-color: @brand-warning; color: #fff; &:hover{background: @brand-warning; color: #fff;}}
+}
+
+
+
+
+.tp-bullets.simplebullets.navbar {
+
+    height: 35px;
+    padding: 0px 0px;
+
+}
+.tp-bullets.simplebullets .bullet {
+    cursor: pointer;
+    position: relative !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-radius: 10px;
+    width: 10px !important;
+    height: 10px !important;
+    border: 1px solid transparent !important;
+    display: inline-block;
+    margin-right: 5px !important;
+    margin-bottom: 15px !important;
+    -webkit-transition: background-color 0.2s, border-color 0.2s;
+    -moz-transition: background-color 0.2s, border-color 0.2s;
+    -o-transition: background-color 0.2s, border-color 0.2s;
+    -ms-transition: background-color 0.2s, border-color 0.2s;
+    transition: background-color 0.2s, border-color 0.2s;
+    float:none !important;
+}
+.tp-bullets.simplebullets .bullet.last {
+    margin-right: 0px
+}
+.tp-bullets.simplebullets .bullet:hover,
+.tp-bullets.simplebullets .bullet.selected {
+    border: 1px solid transparent !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    width: 10px !important;
+    height: 10px !important;
+}
+
+.tparrows {
+    opacity: 0.25 !important;
+}
+
+
+
+
+
+
+
+
+// Switcher
+
+.demo-options {
+    z-index: 900; 
+    position: fixed;
+    top: 144px;
+    width: 260px;
+    border: 1px solid @border-darker;
+    border-right: 0 !important;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.07);
+    padding: 0;
+    border-bottom-left-radius: @border-radius-base;
+    right: -260px;
+    z-index: @zindex-navbar - 4;
+    
+    background: #fff;
+
+    .transition(~"transform 0.15s ease");
+
+    &.active{
+        transform: translateX(-260px);
+        -ms-transform: translateX(-260px);
+        -o-transform: translateX(-260px);
+        -webkit-transform: translateX(-260px);
+
+    }
+
+    .demo-heading {
+        padding: 11px 0px;
+        font-size: @font-size-small;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: @gray;
+        background: @panel-default-heading-bg;
+        border-bottom: 1px solid @border-lighter;
+    }
+
+    .demo-options-icon {
+        display: inline-block;
+        position: absolute;
+        left: -43px;
+        padding: 10px 12px;
+        font-size: @font-size-base;
+        border: 1px solid @border-darker;
+        border-right: 0 !important;
+        letter-spacing: normal;
+        text-transform: none;
+        background: @panel-default-heading-bg;
+        border-top-left-radius: @border-radius-base;
+        border-bottom-left-radius: @border-radius-base;
+        top: -1px;
+        cursor: pointer;
+        
+        box-shadow: -1px 2px 1px rgba(0, 0, 0, 0.07);
+    }
+
+    .demo-body {
+        padding: 15px 20px;
+        border-bottom: 1px solid @border-lighter;
+        &:last-child {border-bottom: 0;}
+        .tabular {
+            margin-bottom: 0;
+            .tabular-cell {
+                height: 30px;
+                font-size: @font-size-small;
+                // .bootstrap-switch {
+                //     margin-top: -1px;
+                // }
+                &.demo-switches {text-align: right;}
+            }
+        }
+        .option-title {
+            font-size: @font-size-small;
+            margin-bottom: 10px;
+        }
+    }
+
+    .demo-color-list {
+        padding: 0;
+        text-align: left;
+        margin: 0;
+        li {
+            padding-left: 0;
+            padding-right: 0;
+            span {
+                border-radius: 10px; 
+                display: inline-block;
+            }
+        }
+        li, li span {
+            height: 20px;
+            width: 20px;
+            //margin-bottom: -5px;
+            display: inline-block;
+            &:hover {cursor: pointer;}
+        }
+
+        .demo-white {background-color: @brand-default; border: 1px solid darken(@brand-default,2%);}
+        .demo-black {background-color: @gray-darker; border: 1px solid darken(@gray-darker,2%);}
+        .demo-grape {background-color: @brand-grape; border: 1px solid darken(@brand-grape,2%);}
+        .demo-violet {background-color: @brand-violet; border: 1px solid darken(@brand-violet,2%);}
+        .demo-primary {background-color: @brand-primary; border: 1px solid darken(@brand-primary,2%);}
+        .demo-green {background-color: @brand-green; border: 1px solid darken(@brand-green,2%);}
+        .demo-orange {background-color: @brand-orange; border: 1px solid darken(@brand-orange,2%);}
+        .demo-alizarin {background-color: @brand-alizarin; border: 1px solid darken(@brand-alizarin,2%);}
+        .demo-danger {background-color: @brand-danger; border: 1px solid darken(@brand-danger,2%);}
+        .demo-midnightblue {background-color: @brand-midnightblue; border: 1px solid darken(@brand-midnightblue,2%);}
+        .demo-indigo {background-color: @brand-indigo; border: 1px solid darken(@brand-indigo,2%);}
+        .demo-info {background-color: @brand-info; border: 1px solid darken(@brand-info,2%);}
+
+
+        .pattern-brickwall         {background: url(../img/patterns/brickwall.png)}
+        .pattern-dark-stripes      {background: url(../img/patterns/dark_stripes.png)}
+        .pattern-rockywall         {background: url(../img/patterns/rockywall.png)}
+        .pattern-subtle-carbon     {background: url(../img/patterns/subtle_carbon.png)}
+        .pattern-tweed             {background: url(../img/patterns/tweed.png)}
+        .pattern-vertical-cloth    {background: url(../img/patterns/vertical_cloth.png)}
+        .pattern-grey_wash_wall    {background: url(../img/patterns/grey_wash_wall.png)}
+        .pattern-pw_maze_black     {background: url(../img/patterns/pw_maze_black.png)}
+        .pattern-wild_oliva        {background: url(../img/patterns/wild_oliva.png)}
+        .pattern-stressed_linen    {background: url(../img/patterns/stressed_linen.png)}
+        .pattern-sos               {background: url(../img/patterns/sos.png)}
+
+        [class*="pattern-"] {
+            border: 1px solid @border-darker;
+        }
+
+    }
+}

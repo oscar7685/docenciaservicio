@@ -1,0 +1,124 @@
+/*
+ * ************************************************************* *
+ * Name        : Power Widgets PANEL                             *
+ * Description : CSS for the power widgets panel.                *
+ * Version     : Version 1                                       *
+ * Author      : CreativeMilk                                    *
+ * Author URI  : www.creativemilk.net                            *
+ * Updated     : --/--/----                                      *
+ * Copyright   : (c) 2012 CreativeMilk                           *
+ * Licence     : http://codecanyon.net/item/power-widgets-manage-and-display-your-content/2901689
+ * ************************************************************* *
+
+   Table of Contents
+   ---------------------------------------------------------------
+   
+   - Main
+   - Styling
+   - Trigger
+   - RTL support
+   - Clearfix 
+     
+*/
+ 
+/* Main ----------- */
+
+.powerwidgetspanel{
+	padding : 10px;
+	display : none;
+	margin  : 0 0 20px 0;
+}
+.powerwidgetspanel header{
+	width       : 100%;
+	height      : 30px;
+	float       : left;
+	line-height : 30px;
+	margin      : 0 0 20px 0;
+}
+.powerwidgetspanel header h2{
+	font-size   : 13px;
+	margin      : 0;
+	line-height : 20px;
+}
+.powerwidgetspanel-widget{
+	width       : 20%;
+	height      : 30px;
+	float       : left;
+	line-height : 30px;
+}
+.powerwidgetspanel-widget input{
+	float  : left;
+	margin : 8px 10px 0 0;
+}
+.ie9 body{
+	display:none!important
+}
+.ie9 .powerwidgetspanel-widget input{
+	margin : 5px 10px 0 0;
+}
+
+/* Styling ----------- */
+
+.powerwidgetspanel{
+	border           : 1px solid #222;
+	background-color : #fff;
+}
+.powerwidgetspanel header{
+	border-bottom : 1px solid #222;
+}
+
+/* Trigger ----------- */
+
+#panel-trigger{
+	padding : 0 15px;
+}
+#panel-trigger span{ 
+	width             : 10px;
+	height            : 10px;
+	position          : absolute;
+	left              : 50%;
+	top               : 50%;
+	margin            : -5px 0 0 -5px;
+	background-repeat : no-repeat;
+}
+#panel-trigger span.min-10{
+	background-image:url('../images/icons/plix-10/white/min-10.png');
+}
+#panel-trigger span.plus-10{
+	background-image:url('../images/icons/plix-10/white/plus-10.png');
+} 
+
+/* RTL support ----------- */
+
+.rtl .powerwidgetspanel-widget,
+.rtl .powerwidgetspanel-widget label,
+.rtl .powerwidgetspanel-widget input{
+	float : right;
+}
+.rtl .powerwidgetspanel-widget input{
+	margin : 8px 0 0 10px;
+}
+
+/* Clearfix ----------- */
+
+.powerwidgetspanel:before, 
+.powerwidgetspanel:after,
+.clearfix:before,
+.clearfix:after{
+	content     : "\0020";
+	display     : block;
+	height      : 0;
+	overflow    : hidden; 
+	font-size   : 0;
+	line-height : 0;
+	visibility  : hidden;
+}
+.powerwidgetspanel:after,
+.clearfix:after{
+	clear : both; 
+}
+.powerwidgetspanel,
+.clearfix{
+	zoom : 1;/*IE*/
+}
+

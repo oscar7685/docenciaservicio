@@ -1,0 +1,52 @@
+//Testimonials
+#quote-carousel {
+	blockquote {
+		margin: 0;
+		&.testimonial {
+			.avatar {
+				left: 50%;
+				margin-left: -25px;
+			}
+			.comment {
+				text-align: center;
+				margin-left: 0;
+				margin-top: 70px;
+			}
+		}
+	}
+	.carousel-control { // Control buttons
+		background: none;
+		color: @gray;
+		font-size: 2.25em;
+		text-shadow: none;
+		margin-top: -25px;
+		top: 50%;
+		width: 50px;
+	}
+
+	.carousel-control.left  { //Prev Button
+	  left: 0 !important;
+	}
+	.carousel-control.right  { // Next
+	  right: 0 !important;
+	}
+
+	.carousel-indicators  { //Indicator
+	  right: 50%;
+	  top: auto;
+	  bottom: -40px;
+	  margin-bottom: 0;
+	  li { //Indicator Color
+		border: 0;
+		margin: 3px;
+		background: @border-darker;
+		&.active {
+		  margin: 3px;
+		  height: 10px;
+		  width: 10px; 
+		  background: @gray;
+		}
+	  }
+	}
+
+}

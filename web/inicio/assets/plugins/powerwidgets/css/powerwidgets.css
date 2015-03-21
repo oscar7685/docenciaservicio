@@ -1,0 +1,383 @@
+/*
+ * ************************************************************* *
+ * Name        : Power Widgets                                   *
+ * Description : CSS for the power widgets.                      *
+ * Version     : Version 1                                       *
+ * Author      : CreativeMilk                                    *
+ * Author URI  : www.creativemilk.net                            *
+ * Updated     : --/--/----                                      *
+ * Copyright   : (c) 2012 CreativeMilk                           *
+ * Licence     : http://codecanyon.net/item/power-widgets-manage-and-display-your-content/2901689
+ * ************************************************************* *
+
+   Table of Contents
+   ---------------------------------------------------------------
+   
+   - Main
+   - Header
+   - Content
+   - Edit box
+   - Timestamp
+   - Helpers
+   - Fullscreen
+   - Styling
+   - Custom styles
+   - Icons - A few used examples
+   - RTL support 
+   - Clearfix  
+   - Examples (minimalistic in grid)
+   - Examples (lists)
+   
+*/
+ 
+/* Main ----------- */
+
+.powerwidget, .powerwidget > div {
+	border-radius: 2px;
+}
+
+.powerwidget header {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+
+.powerwidget-collapsed header {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+.powerwidget header + div {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.powerwidget{
+	margin                : 0 0 20px 0;
+	position              : relative;
+	padding               : 0 1px;
+}
+
+/* Header ----------- */
+
+.powerwidget > header{
+	height      : 50px;
+	padding     : 0 0 0 20px;	
+	line-height : 50px;
+}
+.ui-sortable .powerwidget-sortable > header{
+	cursor: default;
+
+} 
+.powerwidget > header h2{
+	height      : 100%;
+	width       : auto;
+	float       : left;
+	font-size   : 14px;
+	font-weight: bold;
+	position    : relative;
+	margin      : 0;
+}
+.powerwidget > header .powerwidget-icon{
+	width       : 16px;
+	height      : 16px;
+	float       : left;
+	margin      : 12px 10px 0 0;
+	display     : block;
+	zoom        : 1;
+	z-index     : 4000;
+	text-align  : center;
+	line-height : 16px;
+	font-size   : 14px;
+}  
+.powerwidget-ctrls{
+	width   : auto;
+	float   : right;
+	padding : 17px 20px 0 0;
+	margin  : 0;
+}
+.powerwidget-ctrls .button-icon{
+	width                 : 14px;
+	height                : 14px;
+	float                 : left;
+	position              : relative;
+	margin                : 0px 0px 0px 15px;
+	font-size             : 14px;
+	line-height           : 14px;
+	text-align            : center;
+}	
+.powerwidget-ctrls .button-icon:hover{
+	text-decoration : none;
+}
+.powerwidget-loader{
+	width               : 14px;
+	height              : 14px;
+	margin              : 17px 0px 0px 0px;
+	float               : right;
+	background-repeat   : no-repeat;
+	background-position : center center;
+	display             : none;
+}
+
+/* Content ----------- */
+
+.powerwidget > div{
+	float                 : left;
+	width                 : 100%;
+	position              : relative;
+	font-size             : 14px;
+	margin                : 1px 0 1px 0;
+} 
+
+.inner-spacer {
+	padding : 20px;
+}
+
+/* Edit box ----------- */
+
+.powerwidget-editbox{
+	display : none;
+	padding : 10px;
+}
+.powerwidget-editbox div{
+	width         : 100%;
+	float         : left;
+	margin-bottom : 5px;
+}
+.powerwidget-editbox label{
+	width       : 80px;
+	height      : 26px;
+	float       : left;
+	line-height : 26px;
+	font-weight : bold;
+}
+.powerwidget-editbox input{
+	width   : 107px;
+	height  : 24px;
+	padding : 0 5px;
+}
+.powerwidget-editbox span{
+	height : 26px;
+	width  : 26px;
+	float  : left;
+	margin : 0 5px 0 0;
+	cursor : pointer;
+}
+
+/* Timestamp ----------- */
+
+.powerwidget-timestamp{ }
+
+/* Helpers ----------- */
+
+.powerwidget-placeholder{
+	-moz-border-radius    : 2px;
+	-khtml-border-radius  : 2px;
+	-webkit-border-radius : 2px;
+	border-radius         : 2px;
+	margin-bottom         : 28px;
+	padding               : 0;
+	-webkit-box-sizing    : border-box;
+	-khtml-box-sizing     : border-box;   
+	-moz-box-sizing       : border-box;
+	-ms-box-sizing        : border-box;	 
+	box-sizing            : border-box;	
+}
+
+/* Fullscreen ----------- */
+
+body.nooverflow{
+	overflow : hidden;
+	position : fixed;
+}
+#powerwidget-fullscreen-mode{
+	width    : 100%;
+	height   : 100%;
+	position : fixed;
+	top      : 0;
+	left     : 0;
+	z-index  : 99999;
+}
+#powerwidget-fullscreen-mode .powerwidget{
+	margin                : 0;
+	-moz-border-radius    : 0;
+	-khtml-border-radius  : 0;
+	-webkit-border-radius : 0;
+	border-radius         : 0;	
+}
+#powerwidget-fullscreen-mode .powerwidget > div{
+	overflow-y            : scroll;
+	-moz-border-radius    : 0;
+	-khtml-border-radius  : 0;
+	-webkit-border-radius : 0;
+	border-radius         : 0;	
+}
+#powerwidget-fullscreen-mode > div > header{
+	cursor : default;
+}
+
+/* Styling ----------- */
+
+.powerwidget{	
+	background-color  : #d9dadb;
+	box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04);
+}
+.powerwidget > header{
+	color : #333;
+	background-color: #f7f8fa;
+	margin: -1px;
+	border: 1px solid #d9dadb;
+}
+.powerwidget-ctrls .button-icon{
+	color            : rgba(0, 0, 0, 0.3);
+
+}	
+.powerwidget-ctrls .button-icon:hover{
+	color: #333;
+}
+.powerwidget > div{
+	background-color : #fff;
+} 
+.powerwidget-editbox{
+	border-bottom    : 1px solid #666;
+	background-color : #eee;
+}
+.powerwidget-editbox input{
+	border : 1px solid #666;
+}
+.powerwidget-placeholder{
+	background-color : #e4e6eb;
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom styles ----------- */
+
+.red-btn,
+.powerwidget.red{
+	background-color : #931313;
+}
+.green-btn,
+.powerwidget.green{
+	background-color : #060;
+}
+.black-btn,
+.powerwidget.black{
+	background-color : #222;
+}
+.purple-btn,
+.powerwidget.purple{
+	background-color : #5f0c7b;
+}
+.darkgrey-btn,
+.powerwidget.darkgrey{
+	background-color : #555;
+}
+
+/* RTL support ----------- */
+
+.rtl .powerwidget > header{
+	padding : 0 7px 0 0;	
+}
+.rtl .powerwidget > header h2{
+	float      : right;
+	text-align : right
+}
+.rtl .powerwidget > header .powerwidget-icon{
+	float      : right;
+	margin     : 12px 0 0 7px;
+	text-align : center;
+}
+.rtl .powerwidget-ctrls{
+	float   : left;
+	padding : 10px 0 0 3px;
+	margin  : 0;
+}
+.rtl .powerwidget-ctrls .button-icon{
+	margin : 0 0 5px 5px;
+}	
+.rtl .powerwidget-loader{
+	float : left;
+}
+  
+/* Clearfix ----------- */
+
+.powerwidget:before,
+.powerwidget:after, 
+.powerwidget > div:before, 
+.powerwidget > div:after,
+.inner-spacer:before, 
+.inner-spacer:after,
+.powerwidget-editbox:before, 
+.powerwidget-editbox:after,
+.clearfix:before,
+.clearfix:after{
+	content     : "\0020";
+	display     : block;
+	height      : 0;
+	overflow    : hidden; 
+	font-size   : 0;
+	line-height : 0;
+	visibility  : hidden;
+}
+.powerwidget:after,
+.powerwidget > div:after, 
+.inner-spacer:after,
+.powerwidget-editbox:after,
+.clearfix:after{
+	clear : both; 
+}
+.powerwidget,
+.powerwidget > div, 
+.inner-spacer:after,
+.powerwidget-editbox,
+.clearfix{
+	zoom : 1;/*IE*/
+}
+
+/* Examples (minimalistic in grid) ----------- */
+
+#examples #tabs-1 .row-fluid{
+	width : 960px;
+}
+#examples #tabs-1 .powerwidget,
+#examples #tabs-1 .powerwidget-placeholder{
+	width   : 300px;
+	height  : 206px;
+	float   : left;
+	margin  : 0 10px 20px 10px;
+	padding : 0;
+}
+#examples #tabs-1 .powerwidget > header{
+	display : none;
+}
+#examples #tabs-1 .powerwidget > div{
+	margin : 3px;
+	cursor : move;
+}
+#examples #tabs-1 .powerwidget > div,
+#examples #tabs-1 .powerwidget > div img{
+	width  : 294px;
+	height : 200px;	
+	float  : left;
+}
+
+/* Examples (lists) ----------- */
+
+#examples #tabs-3 .bootstrap-demo-grid{
+	padding          : 10px 10px 0 10px;
+	background-color : #6CC;
+	border           : 1px solid #222
+}
+#examples #tabs-3 .powerwidget > div{
+	display : none;
+}
+#examples #tabs-3 .powerwidget{
+	margin:0 0 10px 0;
+}
+#examples #tabs-3 .powerwidget-placeholder{
+	margin:0 0 8px 0;
+}
+
+.ui-sortable-helper {
+	cursor: default;
+}

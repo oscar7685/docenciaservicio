@@ -1,0 +1,18 @@
+/* 
+    Document   : micss
+    Created on : 7/03/2015, 11:15:52 AM
+    Author     : Oscar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+div.page-content{
+    margin-bottom: 0px;
+}
+#login-form{
+    padding-top: 60px;
+}

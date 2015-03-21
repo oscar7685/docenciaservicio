@@ -1,0 +1,160 @@
+/*!
+ * Yamm!3
+ * Yet another megamenu for Bootstrap 3
+ * 
+ * http://geedmo.github.com/yamm3
+ */
+
+//-----------------------------
+//  Yamm Styles
+//-----------------------------
+
+.yamm {
+
+  // reset positions 
+  .nav, .collapse, .dropup, .dropdown {
+    position: static;
+  }  
+
+  // propagate menu position under container for fw navbars
+  .container {
+    position: relative;
+  }
+
+  // by default aligns menu to left
+  .dropdown-menu {
+    left: auto;
+  }
+  // ensure a good position
+  .nav.navbar-right .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+  
+  // Content with padding
+  .yamm-content {
+    padding: 10px;
+
+    h6 {
+      margin: 0;
+      padding: 0 10px;
+      .yamm-category {
+        font-size: @font-size-mini; 
+        text-transform: uppercase; 
+        line-height: 30px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    ul {
+      li {
+        line-height: 30px;
+        color: rgba(255, 255, 255, 0.3);
+        margin: 0 -10px;
+        padding: 0 20px;
+        a {
+          color: rgba(255, 255, 255, 0.5);
+        }
+        p {
+          margin: 0;
+        }
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.06);
+          a {
+            color: #fff;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+
+  // Avalon
+  .dropdown-menu {
+    background: #0b0e13;
+    border: none;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: @border-radius-base;
+    border-bottom-right-radius: @border-radius-base;
+    color: #95979a;
+  }
+
+
+  // Full Width Menu
+
+  .yamm-fw {
+    >.dropdown-menu {
+      left: 0 !important;
+      right: 0 !important;
+      margin-left: 0 !important;
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: none !important;
+    }
+
+    >span.scroll-up, >span.scroll-down {
+      left: 0 !important;
+      right: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    >.dropdown-menu, >.dropdown-menu * {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+  }
+
+}
+
+
+// Custom classes
+
+.yamm {
+
+  .yamm-content {
+    // padding: 0 20px;
+    .yamm-col {
+      padding: 0 20px;
+    }
+    h6 {
+      margin: 0 0 5px 0;
+      padding: 0;
+      .yamm-category {
+        letter-spacing: 0.1em;
+        font-weight: 400;
+        font-size: @font-size-base; 
+        text-transform: uppercase; 
+        line-height: 30px;
+        color: @gray-lighter;
+      }
+    }
+
+    ul {
+      li {
+        color: @navbar-inverse-color;
+        margin: 0 -20px;
+        i {margin-right: 6px;}
+        a {
+          line-height: 30px;
+          color: @navbar-inverse-link-color;
+          display: block;
+          padding: 0 20px;
+        }
+        &:hover {
+          background-color: @navbar-inverse-link-hover-bg;
+          a {
+            color: #fff;
+            text-decoration: none;
+          }
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

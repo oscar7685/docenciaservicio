@@ -1,0 +1,180 @@
+#topnav {
+
+	.navbar-nav .dropdown-menu > li > a {white-space: nowrap;} //overrdie style set by smartmenu
+
+	box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+
+	//Align Dropdowns accordingly
+		ul.dropdown-menu {
+			left: 0;
+			right: auto;
+			border: none;
+			li > a {
+				padding: 5px 20px;
+			}
+		}
+
+	.navbar-right {
+		ul.dropdown-menu {
+			right: 0;
+			left: auto;
+			border: none;
+		}
+	}
+
+	.navbar-collapse-topnav ul.navbar-nav {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+
+
+	.container > .navbar-header, 
+	.container-fluid > .navbar-header, 
+	.container > .navbar-collapse, 
+	.container-fluid > .navbar-collapse {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+
+
+	.navbar-nav {
+		.toolbar-icon-bg > a:hover,
+		.toolbar-icon-bg > a:focus,  
+		.toolbar-icon-bg > a.active {background: none !important;}
+		.toolbar-icon-bg.open > a span.icon-bg {background-color: rgba(255,255,255,0.3) !important; &:hover {background-color: rgba(255,255,255,0.3) !important;}}
+		.toolbar-icon-bg.open > a {background: none !important; &:hover {background: none !important;}}
+		.toolbar.pull-right li.toolbar-icon-bg > a {
+			padding: 10px 5px;
+			span.icon-bg {background-color: rgba(255,255,255,0.15); display: block; border-radius: @border-radius-base; padding: 5px 7px;}
+		}
+		.toolbar.pull-right li.toolbar-icon-bg:hover {
+
+			span.icon-bg {background-color: rgba(255,255,255,0.3);}
+		}
+
+	}
+
+	.navbar-toggle {
+		background: none;
+		&:hover, &:focus {background: none}
+	}
+
+
+
+	//Toolbar
+
+	.toolbar {
+		.make-row();
+	}
+
+	.toolbar .dropdown-menu {
+		&.search { //common to all
+			background: #fff !important;
+			color: @gray !important;
+			padding: 0; 
+			z-index: 1300;
+			box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1);
+			border-top-left-radius: @border-radius-base !important;
+			border-top-right-radius: @border-radius-base !important;
+			border: 1px solid @dropdown-border;
+
+			width: 314px !important;
+
+			@media (max-width: 480px ) {
+				width: 280px !important;
+			}
+			ul {.list-unstyled();}
+			li {
+				border-bottom: 1px solid @tone-bright-alt;
+			
+				.time {color: @gray-lighter; font-size: @font-size-mini; white-space: nowrap; text-align: right; vertical-align: top;}
+				a:focus {background-color: #fff !important;}
+
+			}
+		}
+
+		.dd-header, .dd-footer {
+			line-height: 16px;
+			a {color: @link-color;}
+		}
+		
+		.dd-header {
+			padding: 7px 10px; .clearfix; font-size: @font-size-mini; border-bottom: 1px solid @border-darker; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04);
+			span:first-child {.pull-left; font-weight: 400; text-transform: uppercase; letter-spacing: 0.1em;}
+			span:last-child {
+				.pull-right;
+				a {padding: 0 !important;}
+			}
+			a {background: none !important}
+			a:hover {color: @link-hover-color}
+		}
+		.dd-footer {
+			font-size: @font-size-mini; padding: 7px 10px; text-align: right; border-top: 1px solid @border-darker; box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.04);
+		}
+
+		&.search { //just for search
+			.input-group {
+				padding: 15px;
+			}
+			position: absolute;
+			right: 20px;
+			top: 50px;
+			&:before, &:after {
+				right: 5px;
+			}
+		}
+	}
+
+
+	@media (max-width: @screen-xs-max) {	
+		.navbar-collapse {
+			box-shadow: none;
+			.dropdown.open {
+				ul.dropdown-menu {
+					box-shadow: none;
+					border-radius: 0;
+					border: 0;
+					li a {
+						padding: 5px 20px;
+					}
+				}
+			}
+		}
+	}
+
+	// .toolbar-icon-bg 
+	.toolbar-icon-bg {
+		& > a:hover,
+		& > a:focus,  
+		& > a.active {background: none !important;}
+		&.open > a span.icon-bg {
+			background-color: rgba(255,255,255,0.3) !important; 
+			&:hover {background-color: rgba(255,255,255,0.3) !important;}
+		}
+		&.open > a {
+			background: none !important; 
+			&:hover {background: none !important;}
+		}
+	}
+	.toolbar.pull-right li.toolbar-icon-bg > a {
+		padding-top: 10px;
+		padding-bottom: 10px;	
+		span.icon-bg {background-color: rgba(255,255,255,0.15); display: block; border-radius: @border-radius-base; padding: 5px 7px;}
+	}
+	.toolbar.pull-right li.toolbar-icon-bg:hover {
+		span.icon-bg {background-color: rgba(255,255,255,0.3);}
+	}
+
+
+	//positioning the search in smaller screens
+	@media (max-width: @screen-xs-max) {
+		.toolbar.pull-right {
+			position: absolute;
+			top: -7.5px;
+			right: 20px;
+
+		}
+	}
+
+}

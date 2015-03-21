@@ -1,0 +1,272 @@
+//
+// Avalon
+// (c) The Red Team
+//
+// The Theme Layout
+// --------------------------------------------------
+
+/* Some Base Fixes */
+
+:focus {outline:none;}
+::-moz-focus-inner {border:none;}
+
+/* Basic Layouts */
+
+html 		{
+	position: relative;
+	min-height: 100%;
+}
+
+#headernav {
+	position: relative;
+	z-index: @zindex-navbar - 1 !important;
+}
+
+
+#wrapper {
+	> .navbar {margin-bottom: 0 !important;}
+}
+
+
+// Footer Space
+.page-content {margin-bottom: 80px;}
+
+
+
+
+// Fixed Header on Scroll
+body.header-fixed-top {
+	#headernav {
+		position: fixed;
+    	top: 0px;
+    	width: 100%;
+
+    	.subline {display: none !important;}
+	}
+	.page-content {
+		padding-top: 70px;
+	}
+}
+
+
+// Page Heading
+
+.page-heading {
+	h1 {margin: 0;}
+	.breadcrumb {line-height: 2.7em; border: 0 !important;}
+	&, .breadcrumb {background: @page-title-color;}
+
+	padding: 20px 0;
+	margin-bottom: 40px;
+}
+
+
+// blocks 
+
+.frontend-block {
+	padding: 80px 0;
+	background-color: @body-bg;
+	&:last-child {margin-bottom: -80px;}
+	&.white-bg {
+		background-color: #fff;
+	}
+	&.gray-bg {
+		background-color: @border-lighter;
+	}
+	&.bright-bg {
+		background-color: @tone-bright;
+	}
+	&.brighter-bg {
+		background-color: @tone-brighter;
+	}
+
+	.promo-box {
+		background: none;
+		border: 0;
+		padding: 0;
+		p {color: @gray;}
+		.promo-msg {
+		}
+		.btn {
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+		}
+	}
+
+	blockquote.testimonial {
+		padding: 20px;
+		font-size: @font-size-large;
+		font-weight: 300;
+		border-left: 0;
+		position: relative;
+		background-color: @tone-brighter;
+		border-radius: @border-radius-base;
+		.avatar {
+			position: absolute;
+			height: 50px;
+			width: 50px;
+		}
+		.comment {
+			margin-left: 70px; 
+			p {color: @gray; font-size: @font-size-large;}
+			small {font-style: normal;}
+		}
+	}
+
+}
+
+
+//LOGO
+
+.navbar-brand {
+  	width: 80px;
+  	height: 80px !important;
+  	position: relative;
+  	left: 10px;
+  	
+  	&, &:hover {.text-hide() !important;}
+  	background: url(../img/logo-frontend.png) no-repeat -60px 0;
+
+	body.header-fixed-top & {
+		background: url(../img/logo-frontend.png) no-repeat 0 0;
+		height: 60px !important;
+		width: 60px;
+	}
+}
+
+@media (max-width: @grid-float-breakpoint-max) {
+	.navbar-brand, body.header-fixed-top .navbar-brand {
+		height: 50px !important;
+		background: url(../img/logo-admin.png) no-repeat -50px 0px;
+		width: 85px;
+		left: 20px;
+	}
+}
+
+
+.navbar-default {
+	.navbar-brand {
+		background: url(../img/logo-frontend.png) no-repeat -60px -80px;
+		body.header-fixed-top & {
+			background: url(../img/logo-frontend.png) no-repeat 0 -60px;
+		}
+	}
+	@media (max-width: @grid-float-breakpoint-max) {
+		.navbar-brand, body.header-fixed-top .navbar-brand {
+			background: url(../img/logo-admin.png) no-repeat -50px -50px !important;
+		}
+	}
+}
+
+
+
+// FOOTER
+
+footer {
+	.hidden-print();
+	padding: 40px 0 0;
+	a {
+		&:hover {text-decoration: none;}
+	}
+
+	p {margin: 0}
+	p + p {margin-top: 10px;}
+	h3.col-title {
+		font-size: @font-size-base;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #fff;
+		margin: 0 0 20px;
+		font-weight: 400;
+	}
+
+	ul.contact-info {
+		.list-unstyled();
+		margin: 0;
+		li {
+			position: relative;
+			padding: 0 0 10px 25px;
+			i {
+				position: absolute;
+				top: 3px;
+				left: 0;
+			}
+			&:first-child {padding-top: 0;}
+			&:last-child {border-bottom: 0;}
+		}
+	}
+
+	ul.categories {
+		.list-unstyled();
+		margin: 0;
+		li {
+			&:first-child {padding-top: 0;}
+			padding: 5px 0;
+			&:last-child {border-bottom: 0}
+		}
+	}
+
+	ul.recent-news, ul.recent-posts {
+		.list-unstyled();
+		margin: 0;
+		li {
+			&:first-child {padding-top: 0;}
+			padding: 10px 0;
+			&:last-child {border-bottom: 0}
+			.time, .author {font-size: @font-size-mini; display: block;}
+		}
+	}
+
+	ul.social-networks {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		li {
+			display: inline-block;
+			margin-bottom: 3px;
+			margin-right: 3px;
+			.btn-social {
+				border-radius: 50%;
+				text-align: center;
+				width: 30px;
+				padding: 4px 0;
+			}
+		}
+	}
+
+	.photo-stream {
+		margin: 0;
+		.photo-thumb {
+			padding: 0 3px 3px 0;
+			img {border-radius: 0 !important;}
+		}
+	}
+
+	ul.links {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		li {
+		}
+	}
+
+	.footer-bottom {
+		font-size: @font-size-mini;
+		ul.links {
+			float: right;
+			li {
+				display: inline-block;
+				padding: 0 20px 0 0;
+				&:last-child {padding-right: 0}
+			}
+		}
+		hr {
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+	}
+}
+
+

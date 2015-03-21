@@ -1,0 +1,130 @@
+.alternate-background {
+	background-color: @tone-bright;
+}
+
+.promo-box {
+	background-color: @tone-bright;
+	color: @gray-dark;
+	text-align: center;
+	padding: 30px;
+	border: 0px solid @border-lighter;
+	border-radius: @border-radius-base;
+	h1, h2, h3, h4, h5, h6 {margin: 0;}
+	.promo-msg {
+		
+	}
+
+}
+
+.content-box {
+	.title-text {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: @font-size-h3;
+		font-weight: 300;
+		i {margin-right: 5px;}
+	}
+
+	margin-bottom: 40px;
+	p {margin: 0}
+	p + p {margin-top: 10px;}
+	h1, h2, h3, h4, h5, h6 {margin-top: 0;}
+
+	&.content-box-simple {
+		text-transform: none;
+		letter-spacing: normal;
+	}
+
+	&.content-column 	{
+		.clearfix();
+
+		.icon-left 			{width: 45px; float: left;}
+		.content-right 		{margin-left: 45px;}
+
+		.icon-right 		{width: 45px; float: right;}
+		.content-left 		{margin-right: 45px;}
+	}
+}
+
+.box-padded 	{padding: 20px;}
+.box-centered 	{text-align: center;}
+
+.box-halftop {
+	background: @tone-bright;
+	margin-top: -50px;
+	padding-top: 50px;
+}
+
+.box-halftop, .content-box {border-radius: 2px;}
+
+.icon-rounded {border-radius: @border-radius-base;}
+.icon-circle  {border-radius: 50%;}
+
+
+.icon-highlight {
+	padding: 16px 0;
+	margin-bottom: 20px;	
+}
+
+.icon-focused {
+	padding: 16px 0;
+	border-width: 1px;
+	border-style: solid;
+}
+
+// Remove if using any other icon size except fa-2x
+
+.icon-highlight, .icon-focused {
+	height: 60px; width: 60px;
+	text-align: center;
+}
+
+h3 .icon-focused {
+	height: 50px;
+	width: 50px;
+	margin-right: 10px;
+	padding: 15px 0;
+}
+
+
+// Colors and Mixins
+
+.box-mixin(@background-color, @text-color) {
+	background: @background-color;
+	color: rgba(red(@text-color), green(@text-color), blue(@text-color), 0.8);
+
+	h1, h2, h3, h4, h5, h6 {color: @text-color;}
+	h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {color: rgba(red(@text-color), green(@text-color), blue(@text-color), 0.6);}
+	i {color: @text-color;}
+}
+
+.icon-mixin(@background-color, @text-color) {
+	background: @background-color;
+	color: @text-color !important;
+
+	&.icon-focused, &.icon-highlight {border-color: @background-color}
+}
+
+.icon-mixin-inverse(@background-color, @text-color) {
+	background: @background-color;
+	color: @text-color !important;
+	&.icon-focused, &.icon-highlight {border-color: @text-color}
+}
+
+
+.icon-default 			{.icon-mixin(@gray-dark, #fff);} 
+.icon-primary 			{.icon-mixin(@brand-primary, #fff);}
+.icon-success 			{.icon-mixin(@brand-success, #fff);}
+.icon-inverse 			{.icon-mixin(@brand-inverse, #fff);}
+
+.icon-default-inverse 	{.icon-mixin-inverse(#fff, @gray-dark);} 
+.icon-primary-inverse 	{.icon-mixin-inverse(#fff, @brand-primary);}
+.icon-success-inverse 	{.icon-mixin-inverse(#fff, @brand-success, );}
+.icon-inverse-inverse 	{.icon-mixin-inverse(#fff, @brand-inverse, );}
+
+
+.box-default 			{.box-mixin(@tone-bright, @gray-dark);}
+.box-primary 			{.box-mixin(@brand-primary, #fff);}
+.box-success 			{.box-mixin(@brand-success, #fff);}
+.box-inverse 			{.box-mixin(@brand-inverse, #fff);}
+.box-dark    			{.box-mixin(@gray-dark, #fff);}

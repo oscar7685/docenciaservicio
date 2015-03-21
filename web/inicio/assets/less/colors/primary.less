@@ -1,0 +1,54 @@
+// Horizontal primary
+    @horizontal-primary-background:                    darken(@brand-primary, 5%);
+
+    @horizontal-primary-menu-color:                    lighten(@horizontal-primary-background, 40%);
+    @horizontal-primary-menu-subline:                  lighten(@horizontal-primary-background, 20%);
+
+    @horizontal-primary-active-bg:                     darken(@horizontal-primary-background, 2.5%);
+    @horizontal-primary-active-color:                  #fff;
+    @horizontal-primary-active-subline:                lighten(@horizontal-primary-background, 40%);
+
+    @horizontal-primary-hover-bg:                      lighten(@horizontal-primary-background, 2.5%);
+    @horizontal-primary-hover-color:                   @horizontal-primary-active-color;
+    @horizontal-primary-hover-subline:                 @horizontal-primary-active-subline;
+
+    @horizontal-primary-dropdown-bg:                   darken(@horizontal-primary-background, 12.25%);
+    @horizontal-primary-dropdown-border:               @horizontal-primary-menu-subline;
+    @horizontal-primary-dropdown-li-border:            darken(@horizontal-primary-dropdown-bg, 4%);
+    @horizontal-primary-dropdown-link-color:           lighten(@horizontal-primary-dropdown-bg, 35%);
+    @horizontal-primary-dropdown-link-hover-color:     #fff;
+    @horizontal-primary-dropdown-link-hover-bg:        lighten(@horizontal-primary-dropdown-bg, 2.5%);
+
+// primary: Topnav
+
+    @topnav-primary-color: lighten(@topnav-primary-bg-color, 20%);
+    @topnav-primary-bg-color: darken(@brand-primary, 5%); //lighten(@brand-primary, 2.5%);
+    @topnav-primary-border-color: darken(@topnav-primary-bg-color, 15%);
+
+    @topnav-primary-brand-color: lighten(@topnav-primary-bg-color, 35%);
+    @topnav-primary-brand-hover-color: lighten(@topnav-primary-bg-color, 45%);
+    @topnav-primary-brand-hover-bg: transparent;
+
+    @topnav-primary-link-color: lighten(@topnav-primary-bg-color, 35%);
+    @topnav-primary-link-hover-color: lighten(@topnav-primary-bg-color, 45%);
+    @topnav-primary-link-hover-bg: darken(@topnav-primary-bg-color, 8%);
+    @topnav-primary-link-active-color: lighten(@topnav-primary-bg-color, 45%);
+    @topnav-primary-link-active-bg: darken(@topnav-primary-bg-color, 12.25%);
+    @topnav-primary-link-disabled-color: lighten(@topnav-primary-bg-color, 10%);
+    @topnav-primary-link-disabled-bg: transparent;
+
+    @topnav-primary-dropdown-bg: @topnav-primary-link-active-bg;
+    @topnav-primary-dropdown-color: lighten(@topnav-primary-dropdown-bg, 35%);
+    @topnav-primary-dropdown-link-color: lighten(@topnav-primary-dropdown-bg, 35%);
+    @topnav-primary-dropdown-link-hover-color: lighten(@topnav-primary-dropdown-bg, 55%);
+    @topnav-primary-dropdown-link-hover-bg: darken(@topnav-primary-link-hover-bg, 6.75%);
+
+
+// primary: Footer
+
+    @footer-primary-color:             lighten(@brand-primary, 20%);
+    @footer-primary-background:        darken(@brand-primary, 15%);
+    @footer-primary-link-color:        lighten(@brand-primary, 40%);
+    @footer-primary-link-hover:        #fff;
+    @footer-primary-heading-color:     #fff;
+    @footer-primary-border-color:      lighten(darken(@brand-primary, 15%), 4.25%);

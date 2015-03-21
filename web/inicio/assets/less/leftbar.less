@@ -1,0 +1,159 @@
+.sidebar {
+	.hidden-print();
+}
+
+.sidebar nav.widget-body>ul.acc-menu {
+	&, ul {.list-unstyled();}
+
+	white-space: normal; margin: 0; padding-left: 0 !important; 
+	
+	a {text-decoration: none;}
+	ul {padding: 10px 0;}
+	ul, ul li a {border-top: none; box-shadow: none; }
+	
+	//Main Menu Styles - Level 1
+	li, li a {white-space: nowrap;}
+	li a {display: block;padding: 14px 20px;position: relative;font-weight: 400;}
+
+	// Level 1 Icon styles
+	> li > a > i {
+		margin-left: 0px; 
+		margin-right: 12px; 
+		min-width: 15px; 
+		text-align: center; 
+		display: inline-block;
+	}
+	
+	// Submenu Styles - Level 2
+	ul li a {padding: 5px 20px 5px 47px;font-weight: 400;}
+	   li.active > a {font-weight: 400;}
+	ul li.active:not(.open)>a {font-weight: 700;}
+	   li ul {display: none;}
+	
+	ul ul {padding: 0;} //Removes the extra stacked padding
+	
+	// All other levels
+	li li li a {padding-left: 70px;} //level 3
+	ul ul ul li a {padding-left: 100px} // level 4
+	ul ul ul ul li a {padding-left: 130px} // level 5
+
+
+	li.disabled-link a {
+   		cursor: not-allowed;
+   		//color: @sidebar-inverse-disabled-color;
+   		font-style: italic;
+	}
+
+	//&:first-child { 
+		> li:first-child {.border-top-radius(@border-radius-base);}
+		> li:last-child {.border-bottom-radius(@border-radius-base);}
+		> li:first-child a{.border-top-radius(@border-radius-small);}
+		> li:last-child a {.border-bottom-radius(@border-radius-small);}
+		> li {border: 1px solid @border-lighter; border-bottom: none;}
+		> li:last-child {border-bottom: 1px solid @border-lighter}
+	//}
+
+	.badge, .label {
+		float: right;
+		position: absolute;
+		right: 40px;
+	}
+}
+
+
+//Arrows
+.sidebar nav.widget-body>ul.acc-menu li.hasChild {
+	&>a {position: relative; .clearfix();}
+
+	&>a:before {content: "\f105"; .opacity(0.6)}
+	&.open>a:before {content: "\f107"; .opacity(0.6)}
+
+	&>a:before, 
+	&.open>a:before,
+	&.open>a:before {
+	  font-family: FontAwesome;
+	  font-style: normal;
+	  font-weight: normal;
+	  font-size: 14px !important;
+
+	  display: inline-block;
+	  text-decoration: inherit;
+	  text-align: right;
+	  font-size: 14px;
+	  padding-right: 0px;
+
+	  float: right;
+	}
+}
+
+.sidebar nav.widget-body>ul.acc-menu li.hasChild li.hasChild a:before{top: 5px;}
+
+// Arrow on collapse (first level, always shows opened)
+body.sidebar-collapsed .sidebar nav.widget-body>ul.acc-menu>li.hasChild>a:before {content:""}
+body.sidebar-collapsed .sidebar nav.widget-body>ul.acc-menu>li.hasChild:hover>a:before  {
+	content: "\f107"; 
+	.opacity(0.3);
+}
+
+
+
+
+
+
+
+
+	@sidebar-default-divider:               @border-lighter;
+
+	@sidebar-default-background:			#fff; //@tone-bright;
+	@sidebar-default-color: 				@gray;
+	@sidebar-default-menu-color: 			@gray-dark;
+	@sidebar-default-icon-color: 			@gray-dark;
+
+	@sidebar-default-active-bg:				@brand-inverse;
+	@sidebar-default-active-color:			#fff;
+
+	@sidebar-default-hover-bg: 				@tone-brighter;
+	@sidebar-default-hover-color:           @gray-darker;
+
+	@sidebar-default-submenu-bg: 			@tone-bright;
+	@sidebar-default-submenu-hover-bg: 		@sidebar-default-border-top;
+	@sidebar-default-submenu-color:         @gray-dark;
+
+	@sidebar-default-disabled-color: 		darken(@border-darker, 7.5%);
+
+	@search-default-bg:					 	@sidebar-default-background;
+	@search-default-color:                  @gray;
+
+	@sidebar-default-border-top:			@border-lighter;
+	@sidebar-default-submenu-open:			@gray-darker;
+
+
+
+	.sidebar nav.widget-body > ul.acc-menu {
+
+		.divider, .divider:hover {
+			background-color: @sidebar-default-divider;
+		}
+
+		ul, ul li a {background: @sidebar-default-submenu-bg; color: @sidebar-default-submenu-color;}
+
+		//Main Menu Styles - Level 1 
+		li a {color: @sidebar-default-menu-color; background: @sidebar-default-background;}
+		a:hover {background-color: @sidebar-default-hover-bg; color: @sidebar-default-hover-color;}
+		>li.active>a {background: @sidebar-default-active-bg; color: @sidebar-default-active-color; box-shadow: 0 0 0 1px @sidebar-default-active-bg;}
+
+		// Level 1 Icon styles
+		> li > a > i {color: @sidebar-default-icon-color; }
+		> li > a:hover > i {color: @sidebar-default-hover-color;}
+		> li.active > a > i, > li.active > a:hover > i {color: @sidebar-default-active-color;}
+
+
+		// Submenu Styles - Level 2
+		ul li a {border-top: 1px solid transparent} //
+		ul li a:hover {background-color: @sidebar-default-submenu-hover-bg; color: @sidebar-default-hover-color; box-shadow: 1px 0 0 0 @sidebar-default-border-top, -1px 0 0 0 @sidebar-default-border-top; }
+		ul li.active:not(.open)>a {color: @sidebar-default-submenu-open;}
+		
+		li.disabled-link a {
+	   		color: @sidebar-default-disabled-color;
+		}
+	}

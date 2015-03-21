@@ -1,0 +1,100 @@
+//Panel Front
+
+.panel-front {
+	margin-bottom: 40px;
+	.panel-heading {
+		&:extend(.headline all);
+		&:extend(.clearfix all);
+
+		
+		h2, h3, h4 {
+			float: left;
+			position: relative;
+			width: auto;
+			height: 100%;
+		}
+		.panel-ctrls {
+			float: right;
+
+			a.button-icon {
+				color: lighten(@text-color, 20%);
+				font-size: 12px;
+				display: inline-block;
+				line-height: 27px;
+				padding: 0 10px;
+			}
+		}
+
+		.nav-tabs {
+
+			&:extend(.panel .panel-heading .nav-tabs all);
+			li {
+				a {
+					line-height: 27px !important;
+					top: -1px;
+					.box-shadow(~"none") !important;
+				}
+				&:not(.active) a {
+					color: @border-darker;
+				}
+			}
+			.dropdown-menu {
+				padding: 4px 0 !important;
+				margin-right: 0 !important;
+			}
+			li.tabdrop, li.tabdrop.active, li.tabdrop.open {
+				> a.dropdown-toggle {background: none !important;}
+			}
+			margin-top: 5px !important;
+		}
+		.nav-tabs li.open .dropdown-menu li a {
+			line-height: 1 !important;
+		}
+		.nav-tabs li.open .dropdown-menu {
+			margin-top: 4px !important;
+		}
+
+	}
+	.panel-body .panel-footer {
+		background: none;
+		margin: 0;
+	}
+	
+	&.panel-default {.panel-front-variated(@brand-primary);}
+	&.panel-primary {.panel-front-variated(@brand-primary);}
+	&.panel-success {.panel-front-variated(@brand-success);}
+	&.panel-warning {.panel-front-variated(@brand-warning);}
+	&.panel-danger  {.panel-front-variated(@brand-danger);}
+	&.panel-info    {.panel-front-variated(@brand-info);}
+	&.panel-inverse {.panel-front-variated(@brand-inverse);}
+	&.panel-brown   {.panel-front-variated(@brand-brown);}
+	&.panel-indigo  {.panel-front-variated(@brand-indigo);}
+	&.panel-orange  {.panel-front-variated(@brand-orange);}
+	&.panel-sky     {.panel-front-variated(@brand-sky);}
+	&.panel-midnightblue {.panel-front-variated(@brand-midnightblue);}
+	&.panel-magenta {.panel-front-variated(@brand-magenta);}
+	&.panel-green   {.panel-front-variated(@brand-green);}
+	&.panel-purple  {.panel-front-variated(@brand-purple);}
+	&.panel-grape   {.panel-front-variated(@brand-grape);}
+
+
+	.form-horizontal {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+
+.panel-front-variated(@panel-heading-color) {
+	.panel-heading {
+		h2, h3, h4 {
+			border-bottom: 1px solid @panel-heading-color;
+		}
+	}
+}
+
+
+#panel-fullscreen-mode .panel-front .panel-heading {
+	padding: 0 20px;
+}
+
