@@ -1,7 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="page-heading">            
-    <h1>Data Tables</h1>
+    <h1>Procesos</h1>
     <div class="options">
         <div class="btn-toolbar">
             <a href="#" class="btn btn-default"><i class="fa fa-fw fa-cog"></i></a>
@@ -10,9 +11,8 @@
 </div>
 <ol class="breadcrumb">
 
-    <li><a href="index.html">Home</a></li>
-    <li><a href="#">Advanced Tables</a></li>
-    <li class="active"><a href="tables-data.html">Data Tables</a></li>
+    <li><a href="#">Proceso</a></li>
+    <li class="active"><a href="#">listar</a></li>
 
 </ol>
 
@@ -22,33 +22,33 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>Data Tables</h2>
+                    <h2>Procesos</h2>
                     <div class="panel-ctrls">
                     </div>
                 </div>
                 <c:choose>
-                    <c:when test="${fn:length(escenarios)!= 0}">
+                    <c:when test="${fn:length(procesos)!= 0}">
                         <div class="panel-body panel-no-padding">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Id escenario</th>
-                                        <th>NOmbre</th>
-                                        <th>direccion</th>
-                                        <th>telefono</th>
-                                        <th>nit</th>
+                                        <th>Id Proceso</th>
+                                        <th>Descripci&oacute;n</th>
+                                        <th>Escenario</th>
+                                        <th>Fecha Inicio</th>
+                                        <th>Fecha Final</th>
                                         <th>acci&oacute;n</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${escenarios}" var="escenario" varStatus="iter">
+                                    <c:forEach items="${procesos}" var="proceso" varStatus="iter">
                                         <tr class="odd gradeX">
-                                            <td>${escenario.idEscenario}</td>
-                                            <td>${escenario.nombre}</td>
-                                            <td>${escenario.direccion}</td>
-                                            <td>${escenario.telefono}</td>
-                                            <td>${escenario.nit}</td>
-                                            <td> <a href="#editarEscenario&id=${escenario.idEscenario}" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a></td>
+                                            <td>${proceso.idproceso}</td>
+                                            <td>${proceso.descripcionp}</td>
+                                            <td>${proceso.escenarioidEscenario.nombre}</td>
+                                            <td><fmt:formatDate pattern="yyyy-MM-dd" value="${proceso.fechai}" /></td>
+                                            <td><fmt:formatDate pattern="yyyy-MM-dd" value="${proceso.fechaf}" /></td>
+                                            <td> <a href="#editarProceso&id=${proceso.idproceso}" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a></td>
                                         </tr>
                                     </c:forEach>
 
@@ -64,11 +64,11 @@
                         <!-- End loading page level scripts-->
                     </c:when>
                     <c:otherwise>
-                        NO hay escenario registrados en el sistema
+                        NO hay procesos registrados en el sistema
                     </c:otherwise>
                 </c:choose>   
             </div>
-            <a href="#crearEscenario" class="btn btn-large btn-primary"><i class="icon-plus"></i> Crear escenario</a>
+            <a href="#crearProceso" class="btn btn-large btn-primary"><i class="icon-plus"></i> Crear proceso</a>
         </div>
     </div>
 

@@ -1,8 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <ol class="breadcrumb">
 
-    <li><a href="#">Escenarios</a></li>
-    <li class="active"><a href="#">editar</a></li>
+    <li><a href="#">Procesos</a></li>
+    <li class="active"><a href="#">crear</a></li>
 
 </ol>
 <div class="container-fluid">
@@ -10,47 +10,45 @@
         <div class="col-sm-12">
             <div class="panel panel-midnightblue">
                 <div class="panel-heading">
-                    <h2>Editar escenario</h2>
+                    <h2>Crear proceso</h2>
                 </div>
                 <div class="panel-body">
 
-                    <form class="form-horizontal" id="feditarescenario" action="#" data-parsley-validate>
+                    <form class="form-horizontal" id="fcrearproceso" action="#" data-parsley-validate>
                         <div class="form-group">
-                            <label for="idescenario" class="col-sm-2 control-label">Id Escenario</label>
+                            <label class="col-sm-2 control-label">Descripci&oacute;n</label>
                             <div class="col-sm-8">
-                                <input type="text" name="idescenario" class="form-control" data-parsley-type="digits"
-                                       id="idescenario" readonly="readonly" required placeholder="Escribe un identificador para el escenario" value="${escenario.idEscenario}">
+                                <textarea class="form-control" name="descripcion" required placeholder="Escribe una descripcion para el proceso"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+                            <label class="col-sm-2 control-label">Escenario</label>
                             <div class="col-sm-8">
-                                <input type="text" name="nombre"class="form-control" id="nombre" required placeholder="Escribe un nombre para el escenario" value="${escenario.nombre}">
+                                <select name="escenario" class="form-control" id="source">
+                                    <option value="">Escoja un escenario</option>
+                                    <c:forEach items="${escenarios}" var="escenario" varStatus="iter">
+                                        <option value="${escenario.idEscenario}">${escenario.nombre}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="dire" class="col-sm-2 control-label">Direcci&oacute;n</label>
+                            <label class="col-sm-2 control-label">Fecha de Inicio</label>
                             <div class="col-sm-8">
-                                <input type="text" name="dire" class="form-control" id="dire" required placeholder="Escribe una dirección para el escenario" value="${escenario.direccion}">
+                                <input type="text" name="fechai" class="form-control mask" data-inputmask="'alias': 'date'">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="tel" class="col-sm-2 control-label">Tel&eacute;fono</label>
+                            <label class="col-sm-2 control-label">Fecha Final</label>
                             <div class="col-sm-8">
-                                <input type="text" name="tele" class="form-control" data-parsley-type="digits" id="tel" required placeholder="Escribe un telefono para el escenario" value="${escenario.telefono}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nit" class="col-sm-2 control-label">NIT</label>
-                            <div class="col-sm-8">
-                                <input type="text" name="nit" class="form-control" id="nit" required placeholder="Escribe un nit para el escenario" value="${escenario.nit}">
+                                <input type="text" name="fechaf"class="form-control mask" data-inputmask="'alias': 'date'">
                             </div>
                         </div>
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                    <button class="btn-primary btn" id="btneditare">Editar escenario</button>
-                                    <button class="btn-default btn" type="reset">Cancelar</button>
+                                    <button class="btn-primary btn" id="btncrearp">Crear proceso</button>
+                                    <button class="btn-default btn">Cancelar</button>
                                 </div>
                             </div>
                         </div>
@@ -60,6 +58,11 @@
         </div>
     </div>
 </div>
+
+<script src="assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js"></script>  	<!-- Input Masks Plugin -->
+
+<script src="assets/demo/demo-mask.js"></script>
+
 <script src="assets/plugins/form-parsley/parsley.js"></script>  					<!-- Validate Plugin / Parsley -->
 <script>
 // See Docs
@@ -75,9 +78,8 @@
     };
 
     $(function() {
-        $('#btneditare').on('click', function() {
-          
-            $('#feditarescenario').parsley().subscribe('parsley:form:validate', function(formInstance) {
+        $('#btncrearp').on('click', function() {
+            $('#fcrearproceso').parsley().subscribe('parsley:form:validate', function(formInstance) {
 
                 // if one of these blocks is not failing do not prevent submission
                 // we use here group validation with option force (validate even non required fields)
@@ -85,11 +87,11 @@
                     formInstance.submitEvent.preventDefault();
                     $.ajax({
                         type: "POST",
-                        url: "Controlador?action=editarEscenario2",
-                        data: $("#feditarescenario").serialize(),
+                        url: "Controlador?action=crearProceso2",
+                        data: $("#fcrearproceso").serialize(),
                         success: function()
                         {
-                          location = "#listarEscenarios";
+                            location = "#listarProcesos";
                         } //fin success
                     }); //fin del $.ajax 
 

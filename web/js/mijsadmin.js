@@ -10,11 +10,9 @@ $(function() {
             url: url3,
             success: function(data)
             {
-                $("div.page-content").append(data);
+                $("div.page-content").html(data);
             } //fin success
         }); //fin del $.ajax 
-
-
     });
 
 
