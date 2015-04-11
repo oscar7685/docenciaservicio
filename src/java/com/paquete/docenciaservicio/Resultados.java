@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Oscar
+ * @author Usuario
  */
 @Entity
 @Table(name = "resultados", catalog = "docencia", schema = "")
@@ -49,6 +49,9 @@ public class Resultados implements Serializable {
     @Size(min = 1, max = 2000)
     @Column(name = "respuesta")
     private String respuesta;
+    @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")
+    @ManyToOne(optional = false)
+    private Proceso procesoIdproceso;
     @JoinColumn(name = "Cuestionario_idCuestionario", referencedColumnName = "idCuestionario")
     @ManyToOne(optional = false)
     private Cuestionario cuestionarioidCuestionario;
@@ -94,6 +97,14 @@ public class Resultados implements Serializable {
 
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
+    }
+
+    public Proceso getProcesoIdproceso() {
+        return procesoIdproceso;
+    }
+
+    public void setProcesoIdproceso(Proceso procesoIdproceso) {
+        this.procesoIdproceso = procesoIdproceso;
     }
 
     public Cuestionario getCuestionarioidCuestionario() {

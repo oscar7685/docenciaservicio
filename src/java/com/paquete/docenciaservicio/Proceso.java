@@ -8,16 +8,19 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Oscar
+ * @author Usuario
  */
 @Entity
 @Table(name = "proceso", catalog = "docencia", schema = "")
@@ -38,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Proceso.findByIdproceso", query = "SELECT p FROM Proceso p WHERE p.idproceso = :idproceso"),
     @NamedQuery(name = "Proceso.findByDescripcionp", query = "SELECT p FROM Proceso p WHERE p.descripcionp = :descripcionp"),
     @NamedQuery(name = "Proceso.findByFechai", query = "SELECT p FROM Proceso p WHERE p.fechai = :fechai"),
-    @NamedQuery(name = "Proceso.findByFechaf", query = "SELECT p FROM Proceso p WHERE p.fechaf = :fechaf")})
+    @NamedQuery(name = "Proceso.findByFechaf", query = "SELECT p FROM Proceso p WHERE p.fechaf = :fechaf"),
+    @NamedQuery(name = "Proceso.findByEstado", query = "SELECT p FROM Proceso p WHERE p.estado = :estado")})
 public class Proceso implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -57,8 +61,16 @@ public class Proceso implements Serializable {
     @Column(name = "fechaf")
     @Temporal(TemporalType.DATE)
     private Date fechaf;
-    @ManyToMany(mappedBy = "procesoList")
-    private List<Estudiante> estudianteList;
+    @Size(max = 45)
+    @Column(name = "estado")
+    private String estado;
+    @JoinTable(name = "proceso_has_fuente", joinColumns = {
+        @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")}, inverseJoinColumns = {
+        @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")})
+    @ManyToMany
+    private List<Fuente> fuenteList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
+    private List<Resultados> resultadosList;
     @JoinColumn(name = "Escenario_idEscenario", referencedColumnName = "idEscenario")
     @ManyToOne(optional = false)
     private Escenario escenarioidEscenario;
@@ -107,13 +119,30 @@ public class Proceso implements Serializable {
         this.fechaf = fechaf;
     }
 
-    @XmlTransient
-    public List<Estudiante> getEstudianteList() {
-        return estudianteList;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setEstudianteList(List<Estudiante> estudianteList) {
-        this.estudianteList = estudianteList;
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    @XmlTransient
+    public List<Fuente> getFuenteList() {
+        return fuenteList;
+    }
+
+    public void setFuenteList(List<Fuente> fuenteList) {
+        this.fuenteList = fuenteList;
+    }
+
+    @XmlTransient
+    public List<Resultados> getResultadosList() {
+        return resultadosList;
+    }
+
+    public void setResultadosList(List<Resultados> resultadosList) {
+        this.resultadosList = resultadosList;
     }
 
     public Escenario getEscenarioidEscenario() {

@@ -4,7 +4,6 @@
  */
 package com.docenciaservicio.actions;
 
-import com.beans.docenciaservicio.EscenarioFacade;
 import com.beans.docenciaservicio.ProcesoFacade;
 import com.docenciaservicio.interfaz.Action;
 import com.paquete.docenciaservicio.Escenario;
@@ -19,24 +18,25 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Usuario
  */
-public class CrearProceso2 implements Action {
-
-    EscenarioFacade escenarioFacade = lookupEscenarioFacadeBean();
+public class EditarProceso2 implements Action{
     ProcesoFacade procesoFacade = lookupProcesoFacadeBean();
 
     @Override
     public String procesar(HttpServletRequest request) throws IOException, ServletException {
+        HttpSession sesion = request.getSession();
+        //String idescenario = (String) request.getParameter("idescenario");
         String descripcion = (String) request.getParameter("descripcion");
-        String escenario = (String) request.getParameter("escenario");
         String fechainicio = (String) request.getParameter("fechai");
         String fechafinal = (String) request.getParameter("fechaf");
-
-        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+        
+        
+         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaI = null;
         try {
 
@@ -57,19 +57,15 @@ public class CrearProceso2 implements Action {
             ex.printStackTrace();
 
         }
-
-
-
-        Escenario e = escenarioFacade.find(Integer.parseInt(escenario));
-        Proceso p = new Proceso();
+        
+        
+        Proceso p = (Proceso) sesion.getAttribute("proceso");
+        //e.setIdEscenario(Integer.parseInt(idescenario));
         p.setDescripcionp(descripcion);
-        p.setEscenarioidEscenario(e);
         p.setFechai(fechaI);
         p.setFechaf(fechaF);
-        p.setEstado("En configuracion");
-
-        procesoFacade.create(p);
-
+        
+        procesoFacade.edit(p);
         return "NA";
     }
 
@@ -82,14 +78,5 @@ public class CrearProceso2 implements Action {
             throw new RuntimeException(ne);
         }
     }
-
-    private EscenarioFacade lookupEscenarioFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (EscenarioFacade) c.lookup("java:global/docenciaservicio/EscenarioFacade!com.beans.docenciaservicio.EscenarioFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
+    
 }

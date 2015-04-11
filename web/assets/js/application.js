@@ -609,7 +609,7 @@ $(document).keyup(function(e) {
 // DOM Loaded
 // ------------------------------
 $(window).bind("load", function() { 
-    $('body').scrollSidebar();
+    //$('body').scrollSidebar();
     $(window).trigger('resize');
 });
 

@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Oscar
+ * @author Usuario
  */
 @Entity
 @Table(name = "fuente", catalog = "docencia", schema = "")
@@ -63,12 +64,16 @@ public class Fuente implements Serializable {
     @Size(max = 45)
     @Column(name = "tipo")
     private String tipo;
+    @ManyToMany(mappedBy = "fuenteList")
+    private List<Proceso> procesoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
     private List<Resultados> resultadosList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
     private List<Estudiante> estudianteList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
     private List<Representanteescenario> representanteescenarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
+    private List<Docente> docenteList;
 
     public Fuente() {
     }
@@ -133,6 +138,15 @@ public class Fuente implements Serializable {
     }
 
     @XmlTransient
+    public List<Proceso> getProcesoList() {
+        return procesoList;
+    }
+
+    public void setProcesoList(List<Proceso> procesoList) {
+        this.procesoList = procesoList;
+    }
+
+    @XmlTransient
     public List<Resultados> getResultadosList() {
         return resultadosList;
     }
@@ -157,6 +171,15 @@ public class Fuente implements Serializable {
 
     public void setRepresentanteescenarioList(List<Representanteescenario> representanteescenarioList) {
         this.representanteescenarioList = representanteescenarioList;
+    }
+
+    @XmlTransient
+    public List<Docente> getDocenteList() {
+        return docenteList;
+    }
+
+    public void setDocenteList(List<Docente> docenteList) {
+        this.docenteList = docenteList;
     }
 
     @Override

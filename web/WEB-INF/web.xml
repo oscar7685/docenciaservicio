@@ -8,6 +8,10 @@
         <servlet-name>Controlador</servlet-name>
         <servlet-class>com.controlador.docenciaservicio.Controlador</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DescargarFormato</servlet-name>
+        <servlet-class>com.controlador.docenciaservicio.DescargarFormato</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -16,10 +20,13 @@
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DescargarFormato</servlet-name>
+        <url-pattern>/DescargarFormato</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
 </web-app>

@@ -15,7 +15,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,22 +22,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Usuario
  */
 @Entity
-@Table(name = "estudiante", catalog = "docencia", schema = "")
+@Table(name = "docente", catalog = "docencia", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Estudiante.findAll", query = "SELECT e FROM Estudiante e"),
-    @NamedQuery(name = "Estudiante.findByIdEstudiante", query = "SELECT e FROM Estudiante e WHERE e.idEstudiante = :idEstudiante"),
-    @NamedQuery(name = "Estudiante.findBySemestre", query = "SELECT e FROM Estudiante e WHERE e.semestre = :semestre")})
-public class Estudiante implements Serializable {
+    @NamedQuery(name = "Docente.findAll", query = "SELECT d FROM Docente d"),
+    @NamedQuery(name = "Docente.findByDocenteid", query = "SELECT d FROM Docente d WHERE d.docenteid = :docenteid")})
+public class Docente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idEstudiante")
-    private Integer idEstudiante;
-    @Size(max = 45)
-    @Column(name = "semestre")
-    private String semestre;
+    @Column(name = "docenteid")
+    private Integer docenteid;
     @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Fuente fuenteidUsuario;
@@ -46,27 +41,19 @@ public class Estudiante implements Serializable {
     @ManyToOne(optional = false)
     private Programa programaIdprograma;
 
-    public Estudiante() {
+    public Docente() {
     }
 
-    public Estudiante(Integer idEstudiante) {
-        this.idEstudiante = idEstudiante;
+    public Docente(Integer docenteid) {
+        this.docenteid = docenteid;
     }
 
-    public Integer getIdEstudiante() {
-        return idEstudiante;
+    public Integer getDocenteid() {
+        return docenteid;
     }
 
-    public void setIdEstudiante(Integer idEstudiante) {
-        this.idEstudiante = idEstudiante;
-    }
-
-    public String getSemestre() {
-        return semestre;
-    }
-
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
+    public void setDocenteid(Integer docenteid) {
+        this.docenteid = docenteid;
     }
 
     public Fuente getFuenteidUsuario() {
@@ -88,18 +75,18 @@ public class Estudiante implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idEstudiante != null ? idEstudiante.hashCode() : 0);
+        hash += (docenteid != null ? docenteid.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Estudiante)) {
+        if (!(object instanceof Docente)) {
             return false;
         }
-        Estudiante other = (Estudiante) object;
-        if ((this.idEstudiante == null && other.idEstudiante != null) || (this.idEstudiante != null && !this.idEstudiante.equals(other.idEstudiante))) {
+        Docente other = (Docente) object;
+        if ((this.docenteid == null && other.docenteid != null) || (this.docenteid != null && !this.docenteid.equals(other.docenteid))) {
             return false;
         }
         return true;
@@ -107,7 +94,7 @@ public class Estudiante implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paquete.docenciaservicio.Estudiante[ idEstudiante=" + idEstudiante + " ]";
+        return "com.paquete.docenciaservicio.Docente[ docenteid=" + docenteid + " ]";
     }
     
 }

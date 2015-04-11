@@ -37,6 +37,7 @@
                                         <th>Escenario</th>
                                         <th>Fecha Inicio</th>
                                         <th>Fecha Final</th>
+                                        <th>Estado</th>
                                         <th>acci&oacute;n</th>
                                     </tr>
                                 </thead>
@@ -48,7 +49,9 @@
                                             <td>${proceso.escenarioidEscenario.nombre}</td>
                                             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${proceso.fechai}" /></td>
                                             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${proceso.fechaf}" /></td>
-                                            <td> <a href="#editarProceso&id=${proceso.idproceso}" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a></td>
+                                            <td>${proceso.estado}</td>
+                                            <td> <a href="#editarProceso&id=${proceso.idproceso}" title="Editar" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a>
+                                             <a href="#verMuestra&id=${proceso.idproceso}" title="Ver Muestra" class="btn btn-xs btn-default todo-options"><i class="fa fa-group"></i></a></td>
                                         </tr>
                                     </c:forEach>
 

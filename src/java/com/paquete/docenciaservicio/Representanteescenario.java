@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Oscar
+ * @author Usuario
  */
 @Entity
 @Table(name = "representanteescenario", catalog = "docencia", schema = "")
@@ -34,12 +34,12 @@ public class Representanteescenario implements Serializable {
     @NotNull
     @Column(name = "idRepresentanteEscenario")
     private Integer idRepresentanteEscenario;
+    @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")
+    @ManyToOne(optional = false)
+    private Fuente fuenteidUsuario;
     @JoinColumn(name = "Escenario_idEscenario", referencedColumnName = "idEscenario")
     @ManyToOne(optional = false)
     private Escenario escenarioidEscenario;
-    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne(optional = false)
-    private Fuente usuarioidUsuario;
 
     public Representanteescenario() {
     }
@@ -56,20 +56,20 @@ public class Representanteescenario implements Serializable {
         this.idRepresentanteEscenario = idRepresentanteEscenario;
     }
 
+    public Fuente getFuenteidUsuario() {
+        return fuenteidUsuario;
+    }
+
+    public void setFuenteidUsuario(Fuente fuenteidUsuario) {
+        this.fuenteidUsuario = fuenteidUsuario;
+    }
+
     public Escenario getEscenarioidEscenario() {
         return escenarioidEscenario;
     }
 
     public void setEscenarioidEscenario(Escenario escenarioidEscenario) {
         this.escenarioidEscenario = escenarioidEscenario;
-    }
-
-    public Fuente getUsuarioidUsuario() {
-        return usuarioidUsuario;
-    }
-
-    public void setUsuarioidUsuario(Fuente usuarioidUsuario) {
-        this.usuarioidUsuario = usuarioidUsuario;
     }
 
     @Override
