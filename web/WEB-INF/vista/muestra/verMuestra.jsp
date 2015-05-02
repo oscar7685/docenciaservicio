@@ -91,6 +91,8 @@
 <script src="js/jquery.iframe-transport.js"></script>
 <!-- The basic File Upload plugin -->
 <script src="js/jquery.fileupload.js"></script>
+<script src="js/jquery.fileupload-process.js"></script>
+<script src="js/jquery.fileupload-validate.js"></script>
 <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
@@ -99,11 +101,11 @@
     $(function() {
         'use strict';
         // Change this to the location of your server-side upload handler:
-        var url = window.location.hostname === 'blueimp.github.io' ?
-                '//jquery-file-upload.appspot.com/' : 'SubirArchivo';
+        var url = 'SubirArchivo';
         $('#fileupload').fileupload({
             url: url,
             dataType: 'json',
+            acceptFileTypes: /(\.|\/)(xlsm)$/i,
             done: function(e, data) {
                 $.each(data.result.files, function(index, file) {
                     $('<p/>').text(file.name).appendTo('#files');

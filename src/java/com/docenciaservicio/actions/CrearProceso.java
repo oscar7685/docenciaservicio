@@ -4,9 +4,9 @@
  */
 package com.docenciaservicio.actions;
 
-import com.beans.docenciaservicio.EscenarioFacade;
+import com.docenciaservicio.sessionbeans.EscenarioFacade;
 import com.docenciaservicio.interfaz.Action;
-import com.paquete.docenciaservicio.Escenario;
+import com.docenciaservicio.entidades.Escenario;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,7 +36,7 @@ public class CrearProceso implements Action{
     private EscenarioFacade lookupEscenarioFacadeBean() {
         try {
             Context c = new InitialContext();
-            return (EscenarioFacade) c.lookup("java:global/docenciaservicio/EscenarioFacade!com.beans.docenciaservicio.EscenarioFacade");
+            return (EscenarioFacade) c.lookup("java:global/docenciaservicio/EscenarioFacade!com.docenciaservicio.sessionbeans.EscenarioFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

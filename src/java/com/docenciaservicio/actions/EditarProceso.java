@@ -4,9 +4,9 @@
  */
 package com.docenciaservicio.actions;
 
-import com.beans.docenciaservicio.ProcesoFacade;
+import com.docenciaservicio.sessionbeans.ProcesoFacade;
 import com.docenciaservicio.interfaz.Action;
-import com.paquete.docenciaservicio.Proceso;
+import com.docenciaservicio.entidades.Proceso;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +37,7 @@ public class EditarProceso implements Action {
     private ProcesoFacade lookupProcesoFacadeBean() {
         try {
             Context c = new InitialContext();
-            return (ProcesoFacade) c.lookup("java:global/docenciaservicio/ProcesoFacade!com.beans.docenciaservicio.ProcesoFacade");
+            return (ProcesoFacade) c.lookup("java:global/docenciaservicio/ProcesoFacade!com.docenciaservicio.sessionbeans.ProcesoFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

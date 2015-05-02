@@ -2,19 +2,19 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>com.controlador.docenciaservicio.Login</servlet-class>
+        <servlet-class>com.docenciaservicio.controlador.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Controlador</servlet-name>
-        <servlet-class>com.controlador.docenciaservicio.Controlador</servlet-class>
+        <servlet-class>com.docenciaservicio.controlador.Controlador</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DescargarFormato</servlet-name>
-        <servlet-class>com.controlador.docenciaservicio.DescargarFormato</servlet-class>
+        <servlet-class>com.docenciaservicio.controlador.DescargarFormato</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SubirArchivo</servlet-name>
-        <servlet-class>com.controlador.docenciaservicio.SubirArchivo</servlet-class>
+        <servlet-class>com.docenciaservicio.controlador.SubirArchivo</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
