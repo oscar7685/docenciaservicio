@@ -46,7 +46,7 @@ public class Login extends HttpServlet {
             String usuario = request.getParameter("parametroA");
             String pass = request.getParameter("parametroB");
             String tipoIngreso = request.getParameter("parametroC");
-            Fuente f = fuenteFacade.find(Integer.parseInt(usuario));
+            Fuente f = fuenteFacade.find(usuario);
             
             if (f != null && f.getPassword().equals(pass) && f.getTipo().equals(tipoIngreso)) {
                 session.setAttribute("Usuario", "Admin");

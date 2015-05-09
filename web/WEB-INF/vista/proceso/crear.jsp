@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Escenario</label>
                             <div class="col-sm-8">
-                                <select name="escenario" class="form-control" id="source">
+                                <select name="escenario" class="form-control" id="source" required>
                                     <option value="">Escoja un escenario</option>
                                     <c:forEach items="${escenarios}" var="escenario" varStatus="iter">
                                         <option value="${escenario.idEscenario}">${escenario.nombre}</option>
@@ -35,19 +35,19 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Fecha de Inicio</label>
                             <div class="col-sm-8">
-                                <input type="text" name="fechai" class="form-control mask" data-inputmask="'alias': 'date'">
+                                <input type="text" name="fechai" required class="form-control mask" data-inputmask="'alias': 'date'">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Fecha Final</label>
                             <div class="col-sm-8">
-                                <input type="text" name="fechaf"class="form-control mask" data-inputmask="'alias': 'date'">
+                                <input type="text" name="fechaf" required class="form-control mask" data-inputmask="'alias': 'date'">
                             </div>
                         </div>
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                    <button class="btn-primary btn" id="btncrearp">Crear proceso</button>
+                                    <button type="submit" class="btn-primary btn" id="btncrearp">Crear proceso</button>
                                     <button class="btn-default btn">Cancelar</button>
                                 </div>
                             </div>
@@ -78,13 +78,11 @@
     };
 
     $(function() {
-        $('#btncrearp').on('click', function() {
-            $('#fcrearproceso').parsley().subscribe('parsley:form:validate', function(formInstance) {
-
+       $('#fcrearproceso').parsley().subscribe('parsley:form:validate', function(formInstance) {
+                formInstance.submitEvent.preventDefault();
                 // if one of these blocks is not failing do not prevent submission
                 // we use here group validation with option force (validate even non required fields)
                 if (formInstance.isValid()) {
-                    formInstance.submitEvent.preventDefault();
                     $.ajax({
                         type: "POST",
                         url: "Controlador?action=crearProceso2",
@@ -94,24 +92,10 @@
                             location = "#listarProcesos";
                         } //fin success
                     }); //fin del $.ajax 
-
-
                 }
-
-                // else stop form submission
-                formInstance.submitEvent.preventDefault();
-
-                // and display a gentle message
-                $('.invalid-form-error-message')
-                        .html("You must correctly fill at least one of these 2 blocks' fields!")
-                        .addClass("filled");
-                return;
-
-                $('.invalid-form-error-message').html('');
+                
             });
-
-
-        });
+        
 
     });
 </script>

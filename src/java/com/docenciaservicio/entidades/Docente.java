@@ -39,12 +39,12 @@ public class Docente implements Serializable {
     @Size(max = 45)
     @Column(name = "tipo_contrato")
     private String tipoContrato;
-    @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")
-    @ManyToOne(optional = false)
-    private Proceso procesoIdproceso;
     @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Fuente fuenteidUsuario;
+    @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")
+    @ManyToOne(optional = false)
+    private Proceso procesoIdproceso;
     @JoinColumn(name = "programa_idprograma", referencedColumnName = "idprograma")
     @ManyToOne(optional = false)
     private Programa programaIdprograma;
@@ -72,20 +72,20 @@ public class Docente implements Serializable {
         this.tipoContrato = tipoContrato;
     }
 
-    public Proceso getProcesoIdproceso() {
-        return procesoIdproceso;
-    }
-
-    public void setProcesoIdproceso(Proceso procesoIdproceso) {
-        this.procesoIdproceso = procesoIdproceso;
-    }
-
     public Fuente getFuenteidUsuario() {
         return fuenteidUsuario;
     }
 
     public void setFuenteidUsuario(Fuente fuenteidUsuario) {
         this.fuenteidUsuario = fuenteidUsuario;
+    }
+
+    public Proceso getProcesoIdproceso() {
+        return procesoIdproceso;
+    }
+
+    public void setProcesoIdproceso(Proceso procesoIdproceso) {
+        this.procesoIdproceso = procesoIdproceso;
     }
 
     public Programa getProgramaIdprograma() {

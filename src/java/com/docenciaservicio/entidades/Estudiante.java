@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,24 +29,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Estudiante.findAll", query = "SELECT e FROM Estudiante e"),
+    @NamedQuery(name = "Estudiante.findById", query = "SELECT e FROM Estudiante e WHERE e.id = :id"),
     @NamedQuery(name = "Estudiante.findByIdEstudiante", query = "SELECT e FROM Estudiante e WHERE e.idEstudiante = :idEstudiante"),
     @NamedQuery(name = "Estudiante.findBySemestre", query = "SELECT e FROM Estudiante e WHERE e.semestre = :semestre")})
 public class Estudiante implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "idEstudiante")
-    private Integer idEstudiante;
+    private int idEstudiante;
     @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "semestre")
     private String semestre;
-    @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")
-    @ManyToOne(optional = false)
-    private Proceso procesoIdproceso;
     @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Fuente fuenteidUsuario;
+    @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")
+    @ManyToOne(optional = false)
+    private Proceso procesoIdproceso;
     @JoinColumn(name = "programa_idprograma", referencedColumnName = "idprograma")
     @ManyToOne(optional = false)
     private Programa programaIdprograma;
@@ -52,15 +62,28 @@ public class Estudiante implements Serializable {
     public Estudiante() {
     }
 
-    public Estudiante(Integer idEstudiante) {
+    public Estudiante(Integer id) {
+        this.id = id;
+    }
+
+    public Estudiante(Integer id, int idEstudiante) {
+        this.id = id;
         this.idEstudiante = idEstudiante;
     }
 
-    public Integer getIdEstudiante() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public int getIdEstudiante() {
         return idEstudiante;
     }
 
-    public void setIdEstudiante(Integer idEstudiante) {
+    public void setIdEstudiante(int idEstudiante) {
         this.idEstudiante = idEstudiante;
     }
 
@@ -72,20 +95,20 @@ public class Estudiante implements Serializable {
         this.semestre = semestre;
     }
 
-    public Proceso getProcesoIdproceso() {
-        return procesoIdproceso;
-    }
-
-    public void setProcesoIdproceso(Proceso procesoIdproceso) {
-        this.procesoIdproceso = procesoIdproceso;
-    }
-
     public Fuente getFuenteidUsuario() {
         return fuenteidUsuario;
     }
 
     public void setFuenteidUsuario(Fuente fuenteidUsuario) {
         this.fuenteidUsuario = fuenteidUsuario;
+    }
+
+    public Proceso getProcesoIdproceso() {
+        return procesoIdproceso;
+    }
+
+    public void setProcesoIdproceso(Proceso procesoIdproceso) {
+        this.procesoIdproceso = procesoIdproceso;
     }
 
     public Programa getProgramaIdprograma() {
@@ -99,7 +122,7 @@ public class Estudiante implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idEstudiante != null ? idEstudiante.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -110,7 +133,7 @@ public class Estudiante implements Serializable {
             return false;
         }
         Estudiante other = (Estudiante) object;
-        if ((this.idEstudiante == null && other.idEstudiante != null) || (this.idEstudiante != null && !this.idEstudiante.equals(other.idEstudiante))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -118,7 +141,6 @@ public class Estudiante implements Serializable {
 
     @Override
     public String toString() {
-        return "com.docenciaservicio.entidades.Estudiante[ idEstudiante=" + idEstudiante + " ]";
+        return "com.docenciaservicio.entidades.Estudiante[ id=" + id + " ]";
     }
-    
 }

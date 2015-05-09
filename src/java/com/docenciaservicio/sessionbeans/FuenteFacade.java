@@ -31,14 +31,17 @@ public class FuenteFacade extends AbstractFacade<Fuente> {
     public FuenteFacade() {
         super(Fuente.class);
     }
-    @Resource
-    private EJBContext context;
+    
 
-    
-    
     public void insertarFuente(List<Fuente> fuente) {
         for (Fuente fuente1 : fuente) {
             create(fuente1);
+        }
+    }
+
+    public void eliminarFuente(List<Fuente> fuente) {
+        for (Fuente fuente1 : fuente) {
+            remove(fuente1);
         }
     }
 }

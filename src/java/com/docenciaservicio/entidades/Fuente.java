@@ -40,8 +40,9 @@ public class Fuente implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "idUsuario")
-    private Integer idUsuario;
+    private String idUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -62,7 +63,7 @@ public class Fuente implements Serializable {
     private String tipo;
     @ManyToMany(mappedBy = "fuenteList")
     private List<Proceso> procesoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
     private List<Resultados> resultadosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
     private List<Estudiante> estudianteList;
@@ -74,22 +75,22 @@ public class Fuente implements Serializable {
     public Fuente() {
     }
 
-    public Fuente(Integer idUsuario) {
+    public Fuente(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public Fuente(Integer idUsuario, String nombre, String apellido, String password) {
+    public Fuente(String idUsuario, String nombre, String apellido, String password) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.password = password;
     }
 
-    public Integer getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 

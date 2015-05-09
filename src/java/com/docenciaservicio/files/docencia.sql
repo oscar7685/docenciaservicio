@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50542
 File Encoding         : 65001
 
-Date: 2015-05-02 14:20:51
+Date: 2015-05-09 13:39:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -103,16 +103,16 @@ DROP TABLE IF EXISTS `docente`;
 CREATE TABLE `docente` (
   `docenteid` int(11) NOT NULL,
   `programa_idprograma` int(11) NOT NULL,
-  `fuente_idUsuario` int(11) NOT NULL,
   `tipo_contrato` varchar(45) DEFAULT NULL,
   `proceso_idproceso` int(11) NOT NULL,
+  `fuente_idUsuario` varchar(15) NOT NULL,
   PRIMARY KEY (`docenteid`),
   KEY `fk_docente_programa1_idx` (`programa_idprograma`),
-  KEY `fk_docente_fuente1_idx` (`fuente_idUsuario`),
   KEY `fk_docente_proceso1_idx` (`proceso_idproceso`),
+  KEY `fk_docente_fuente1_idx` (`fuente_idUsuario`),
   CONSTRAINT `fk_docente_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_docente_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_docente_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_docente_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_docente_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -135,34 +135,31 @@ CREATE TABLE `escenario` (
 -- ----------------------------
 -- Records of escenario
 -- ----------------------------
-INSERT INTO `escenario` VALUES ('1', 'Hopital de bocagrande', 'bocagrande', '6655465', '558988558');
+INSERT INTO `escenario` VALUES ('1', 'Hospital Universitario de Caribe', 'Zaragocilla', '6748547', '56456465');
 
 -- ----------------------------
 -- Table structure for estudiante
 -- ----------------------------
 DROP TABLE IF EXISTS `estudiante`;
 CREATE TABLE `estudiante` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idEstudiante` int(11) NOT NULL,
-  `semestre` varchar(45) DEFAULT NULL,
+  `semestre` varchar(45) NOT NULL,
   `programa_idprograma` int(11) NOT NULL,
-  `fuente_idUsuario` int(11) NOT NULL,
   `proceso_idproceso` int(11) NOT NULL,
-  PRIMARY KEY (`idEstudiante`),
+  `fuente_idUsuario` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_Estudiante_programa1_idx` (`programa_idprograma`),
-  KEY `fk_Estudiante_fuente1_idx` (`fuente_idUsuario`),
   KEY `fk_Estudiante_proceso1_idx` (`proceso_idproceso`),
-  CONSTRAINT `fk_Estudiante_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_Estudiante_fuente1_idx` (`fuente_idUsuario`),
   CONSTRAINT `fk_Estudiante_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Estudiante_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_Estudiante_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Estudiante_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of estudiante
 -- ----------------------------
-INSERT INTO `estudiante` VALUES ('2135845', '5', '1', '1546544', '1');
-INSERT INTO `estudiante` VALUES ('4526545', '5', '1', '1552025', '1');
-INSERT INTO `estudiante` VALUES ('5456465', '5', '1', '1656456', '1');
-INSERT INTO `estudiante` VALUES ('5465456', '5', '1', '1500545', '1');
 
 -- ----------------------------
 -- Table structure for factor
@@ -188,7 +185,7 @@ INSERT INTO `factor` VALUES ('5', 'Practicas formativas y su relacion con el ent
 -- ----------------------------
 DROP TABLE IF EXISTS `fuente`;
 CREATE TABLE `fuente` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` varchar(15) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
@@ -200,10 +197,6 @@ CREATE TABLE `fuente` (
 -- Records of fuente
 -- ----------------------------
 INSERT INTO `fuente` VALUES ('123456', 'Administrador', 'x', '123456', 'Administrador');
-INSERT INTO `fuente` VALUES ('1500545', 'juan', 'perez', '1500545', '');
-INSERT INTO `fuente` VALUES ('1546544', 'juan', 'perez', '1546544', '');
-INSERT INTO `fuente` VALUES ('1552025', 'juan', 'perez', '1552025', '');
-INSERT INTO `fuente` VALUES ('1656456', 'juan', 'perez', '1656456', '');
 
 -- ----------------------------
 -- Table structure for pregunta
@@ -243,7 +236,7 @@ CREATE TABLE `proceso` (
 -- ----------------------------
 -- Records of proceso
 -- ----------------------------
-INSERT INTO `proceso` VALUES ('1', 'Proceso', '1', '2014-02-01', '2016-02-06', 'En configuracion');
+INSERT INTO `proceso` VALUES ('1', 'saefs', '1', '2015-01-01', '2016-05-01', 'En configuracion');
 
 -- ----------------------------
 -- Table structure for proceso_has_fuente
@@ -251,7 +244,7 @@ INSERT INTO `proceso` VALUES ('1', 'Proceso', '1', '2014-02-01', '2016-02-06', '
 DROP TABLE IF EXISTS `proceso_has_fuente`;
 CREATE TABLE `proceso_has_fuente` (
   `proceso_idproceso` int(11) NOT NULL,
-  `fuente_idUsuario` int(11) NOT NULL,
+  `fuente_idUsuario` varchar(15) NOT NULL,
   PRIMARY KEY (`proceso_idproceso`,`fuente_idUsuario`),
   KEY `fk_proceso_has_fuente_fuente1_idx` (`fuente_idUsuario`),
   KEY `fk_proceso_has_fuente_proceso1_idx` (`proceso_idproceso`),
@@ -277,7 +270,10 @@ CREATE TABLE `programa` (
 -- ----------------------------
 -- Records of programa
 -- ----------------------------
-INSERT INTO `programa` VALUES ('1', 'quimica', 'presencial');
+INSERT INTO `programa` VALUES ('1', 'quimica farmaceutica', 'presencial');
+INSERT INTO `programa` VALUES ('2', 'medicina', 'presencial');
+INSERT INTO `programa` VALUES ('3', 'odontologia', 'presencial');
+INSERT INTO `programa` VALUES ('4', 'enfermeria', 'presencial');
 
 -- ----------------------------
 -- Table structure for representanteescenario
@@ -286,8 +282,8 @@ DROP TABLE IF EXISTS `representanteescenario`;
 CREATE TABLE `representanteescenario` (
   `idRepresentanteEscenario` int(11) NOT NULL,
   `Escenario_idEscenario` int(11) NOT NULL,
-  `fuente_idUsuario` int(11) NOT NULL,
   `cargo` varchar(255) DEFAULT NULL,
+  `fuente_idUsuario` varchar(15) NOT NULL,
   PRIMARY KEY (`idRepresentanteEscenario`),
   KEY `fk_RepresentanteEscenario_Escenario1_idx` (`Escenario_idEscenario`),
   KEY `fk_RepresentanteEscenario_fuente1_idx` (`fuente_idUsuario`),
@@ -306,20 +302,20 @@ DROP TABLE IF EXISTS `resultados`;
 CREATE TABLE `resultados` (
   `idResultados` int(11) NOT NULL AUTO_INCREMENT,
   `estado` varchar(45) NOT NULL,
-  `Usuario_idUsuario` int(11) NOT NULL,
   `respuesta` varchar(2000) NOT NULL,
   `Pregunta_idPregunta` varchar(45) NOT NULL,
   `Cuestionario_idCuestionario` int(11) NOT NULL,
   `proceso_idproceso` int(11) NOT NULL,
+  `fuente_idUsuario` varchar(15) NOT NULL,
   PRIMARY KEY (`idResultados`),
-  KEY `fk_Encuesta_Usuario1_idx` (`Usuario_idUsuario`),
   KEY `fk_resultados_Pregunta1_idx` (`Pregunta_idPregunta`),
   KEY `fk_resultados_Cuestionario1_idx` (`Cuestionario_idCuestionario`),
   KEY `fk_resultados_proceso1_idx` (`proceso_idproceso`),
-  CONSTRAINT `fk_Encuesta_Usuario1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_resultados_fuente1_idx` (`fuente_idUsuario`),
   CONSTRAINT `fk_resultados_Pregunta1` FOREIGN KEY (`Pregunta_idPregunta`) REFERENCES `pregunta` (`idPregunta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_resultados_Cuestionario1` FOREIGN KEY (`Cuestionario_idCuestionario`) REFERENCES `cuestionario` (`idCuestionario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_resultados_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_resultados_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_resultados_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

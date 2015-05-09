@@ -8,6 +8,7 @@ import com.docenciaservicio.sessionbeans.FuenteFacade;
 import com.docenciaservicio.sessionbeans.ProgramaFacade;
 import java.io.File;
 import java.io.FileInputStream;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,6 +36,7 @@ public class Prueba {
         try {
             FileInputStream fileInputStream = new FileInputStream(fileName);
             XSSFWorkbook workBook = new XSSFWorkbook(fileInputStream);
+            //la i es la hoja
             for (int i = 0; i < 3; i++) {
                 List cellDataList = new ArrayList();
                 XSSFSheet hssfSheet = workBook.getSheetAt(i);
@@ -92,7 +94,7 @@ public class Prueba {
 
                 }
                 Leer(cellDataList, i, p);
-            }
+            } //termina de leer la hoja actual
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,6 +103,7 @@ public class Prueba {
     }
 
     private void Leer(List cellDataList, int i0, Proceso pr) {
+        boolean sapo = false;
         List<Fuente> fuentes = new ArrayList<Fuente>();
         List<Estudiante> estudiantes = new ArrayList<Estudiante>();
         for (int i = 1; i < cellDataList.size(); i++) {
@@ -111,24 +114,55 @@ public class Prueba {
                 XSSFCell hssfCell = (XSSFCell) cellTempList.get(j);
                 if (i0 == 0) {
                     if (j == 0) {
-                        String aux[] = hssfCell.toString().split("\\.");
-                        f.setIdUsuario(Integer.parseInt(aux[0]));
-                        f.setPassword(aux[0]);
+
+                        String aux = "" + new BigDecimal(Double.valueOf(hssfCell.getNumericCellValue())).toPlainString();
+                        f.setIdUsuario(aux);
+                        f.setPassword(aux);
                         f.setTipo("");
 
                     } else if (j == 1) {
-                        String aux[] = hssfCell.toString().split("\\.");
-                        e.setIdEstudiante(Integer.parseInt(aux[0]));
-                        e.setProcesoIdproceso(pr);
+                        try {
+                            String aux = "" + new BigDecimal(Double.valueOf(hssfCell.getNumericCellValue())).toPlainString();
+                            e.setIdEstudiante(Integer.parseInt(aux));
+                            e.setProcesoIdproceso(pr);
+                        } catch (Exception exc) {
+                            sapo = true;
+                        }
+
                     } else if (j == 2) {
-                        f.setNombre(hssfCell.toString());
+                        try {
+                            f.setNombre(hssfCell.toString());
+                        } catch (Exception rx) {
+                            sapo = true;
+                        }
                     } else if (j == 3) {
                         f.setApellido(hssfCell.toString());
                     } else if (j == 4) {
-                        String aux[] = hssfCell.toString().split("\\.");
-                        e.setSemestre(aux[0]);
+                        try {
+                            String aux[] = hssfCell.toString().split("\\.");
+                            Integer.parseInt(aux[0]);
+                            e.setSemestre(aux[0]);
+                        } catch (NumberFormatException exc) {
+                            sapo = true;
+                        }
+
                     } else if (j == 5) {
-                        e.setProgramaIdprograma(programaFacade.find(1));
+                        try {
+                            if (hssfCell.toString().equals("quimica farmaceutica")) {
+                                e.setProgramaIdprograma(programaFacade.find(1));
+                            } else if (hssfCell.toString().equals("medicina")) {
+                                e.setProgramaIdprograma(programaFacade.find(2));
+                            } else if (hssfCell.toString().equals("odontologia")) {
+                                e.setProgramaIdprograma(programaFacade.find(3));
+                            } else if (hssfCell.toString().equals("enfermeria")) {
+                                e.setProgramaIdprograma(programaFacade.find(4));
+                            } else {
+                                sapo = true;
+                            }
+                        } catch (Exception dsf) {
+                            sapo = true;
+                        }
+
                     }
 
                 }
@@ -138,13 +172,15 @@ public class Prueba {
                 fuentes.add(f);
                 estudiantes.add(e);
             }
-        }
-        if (i0 == 0) {
+        } //termina la hoja actual
+
+        if (i0 == 0 && !sapo) {
             fuenteFacade.insertarFuente(fuentes);
             for (int k = 0; k < fuentes.size(); k++) {
                 estudiantes.get(k).setFuenteidUsuario(fuenteFacade.find(fuentes.get(k).getIdUsuario()));
             }
             estudianteFacade.insertarEstudiantes(estudiantes);
+            
         }
     }
 

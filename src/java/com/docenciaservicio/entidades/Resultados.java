@@ -49,6 +49,9 @@ public class Resultados implements Serializable {
     @Size(min = 1, max = 2000)
     @Column(name = "respuesta")
     private String respuesta;
+    @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")
+    @ManyToOne(optional = false)
+    private Fuente fuenteidUsuario;
     @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")
     @ManyToOne(optional = false)
     private Proceso procesoIdproceso;
@@ -58,9 +61,6 @@ public class Resultados implements Serializable {
     @JoinColumn(name = "Pregunta_idPregunta", referencedColumnName = "idPregunta")
     @ManyToOne(optional = false)
     private Pregunta preguntaidPregunta;
-    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne(optional = false)
-    private Fuente usuarioidUsuario;
 
     public Resultados() {
     }
@@ -99,6 +99,14 @@ public class Resultados implements Serializable {
         this.respuesta = respuesta;
     }
 
+    public Fuente getFuenteidUsuario() {
+        return fuenteidUsuario;
+    }
+
+    public void setFuenteidUsuario(Fuente fuenteidUsuario) {
+        this.fuenteidUsuario = fuenteidUsuario;
+    }
+
     public Proceso getProcesoIdproceso() {
         return procesoIdproceso;
     }
@@ -121,14 +129,6 @@ public class Resultados implements Serializable {
 
     public void setPreguntaidPregunta(Pregunta preguntaidPregunta) {
         this.preguntaidPregunta = preguntaidPregunta;
-    }
-
-    public Fuente getUsuarioidUsuario() {
-        return usuarioidUsuario;
-    }
-
-    public void setUsuarioidUsuario(Fuente usuarioidUsuario) {
-        this.usuarioidUsuario = usuarioidUsuario;
     }
 
     @Override
