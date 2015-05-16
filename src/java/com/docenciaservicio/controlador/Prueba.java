@@ -1,5 +1,6 @@
 package com.docenciaservicio.controlador;
 
+import com.docenciaservicio.controlador.sqlConnection.sqlController;
 import com.docenciaservicio.entidades.Estudiante;
 import com.docenciaservicio.entidades.Fuente;
 import com.docenciaservicio.entidades.Proceso;
@@ -9,6 +10,7 @@ import com.docenciaservicio.sessionbeans.ProgramaFacade;
 import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,6 +20,7 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.jsp.jstl.sql.Result;
 import javax.transaction.UserTransaction;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -97,6 +100,7 @@ public class Prueba {
             } //termina de leer la hoja actual
 
         } catch (Exception e) {
+            System.out.println("error aqui");
             e.printStackTrace();
         }
 
@@ -111,6 +115,7 @@ public class Prueba {
             Estudiante e = new Estudiante();
             List cellTempList = (List) cellDataList.get(i);
             for (int j = 0; j < cellTempList.size(); j++) {
+
                 XSSFCell hssfCell = (XSSFCell) cellTempList.get(j);
                 if (i0 == 0) {
                     if (j == 0) {
@@ -126,6 +131,7 @@ public class Prueba {
                             e.setIdEstudiante(Integer.parseInt(aux));
                             e.setProcesoIdproceso(pr);
                         } catch (Exception exc) {
+                            System.out.println("ha ocurrido un fucking error");
                             sapo = true;
                         }
 
@@ -168,28 +174,41 @@ public class Prueba {
                 }
 
             }
+
             if (i0 == 0) {
-                fuentes.add(f);
-                estudiantes.add(e);
+                if (f.getIdUsuario() != null) {
+                    fuentes.add(f);
+                    estudiantes.add(e);
+                }
+
             }
+
         } //termina la hoja actual
 
         if (i0 == 0 && !sapo) {
-            fuenteFacade.insertarFuente(fuentes);
-            for (int k = 0; k < fuentes.size(); k++) {
-                estudiantes.get(k).setFuenteidUsuario(fuenteFacade.find(fuentes.get(k).getIdUsuario()));
+
+            sqlController conSql = new sqlController();
+
+            Result rs2 = null;
+            String sql = "";
+            for (int i = 0; i < fuentes.size(); i++) {
+
+                sql += "INSERT INTO `fuente` (`idUsuario`, `nombre`, `apellido`, `password`) VALUES ('" + fuentes.get(i).getIdUsuario() + "', '" + fuentes.get(i).getNombre() + "', '" + fuentes.get(i).getApellido() + "', '" + fuentes.get(i).getPassword() + "');";
+                sql += "INSERT INTO `estudiante` (`idEstudiante`, `semestre`, `programa_idprograma`, `proceso_idproceso`, `fuente_idUsuario`) VALUES ('" + estudiantes.get(i).getIdEstudiante() + "', '" + estudiantes.get(i).getSemestre() + "', '" + estudiantes.get(i).getProgramaIdprograma().getIdprograma() + "', '" + estudiantes.get(i).getProcesoIdproceso().getIdproceso() + "', '" + fuentes.get(i).getIdUsuario() + "');";
             }
-            estudianteFacade.insertarEstudiantes(estudiantes);
-            
+            try {
+                boolean error = conSql.UpdateSql(sql);
+                if (!error) {
+                    System.out.println("HA ocurrido un error");
+                }
+            } catch (Exception ex) {
+                System.out.println("HA ocurrido un error2");
+                Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    /* public static void main(String[] args) throws ParseException {
-     File f = new File("C:/formato_poblacion.xlsm");
-     if (f.exists()) {
-     Prueba pb = new Prueba(f);
-     }
-     }*/
+   
     private FuenteFacade lookupFuenteFacadeBean() {
         try {
             Context c = new InitialContext();
