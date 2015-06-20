@@ -85,7 +85,24 @@
 
 </div> <!-- .container-fluid -->
 
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Errores de validación</h2>
+            </div>
+            <div class="modal-body">
+                <h2>Ha ocurrido un error de validación</h2>
+                <p id="erorres"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="js/jquery.iframe-transport.js"></script>
@@ -107,9 +124,20 @@
             dataType: 'json',
             acceptFileTypes: /(\.|\/)(xlsm)$/i,
             done: function(e, data) {
-                $.each(data.result.files, function(index, file) {
-                    $('<p/>').text(file.name).appendTo('#files');
-                });
+                if (data.result.errores) {
+                    $("p#erorres").html(data.result.errores);
+                    $("#myModal").modal('show');
+                }
+                else {
+                    $.each(data.result.files, function(index, file) {
+                        $('<p/>').text(file.name).appendTo('#files');
+                    });
+                }
+
+
+            },
+            fail: function(e, data) {
+                //por si hay error
             },
             progressall: function(e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);

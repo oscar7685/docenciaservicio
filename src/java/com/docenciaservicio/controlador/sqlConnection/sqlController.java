@@ -123,7 +123,7 @@ public class sqlController {
             } catch (SQLException ex1) {
                 Logger.getLogger(sqlController.class.getName()).log(Level.SEVERE, null, ex1);
             }
-        } catch (Error ex) {
+        } catch (Exception ex) {
             aux = false;
             System.out.println(ex);
         } finally {

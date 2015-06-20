@@ -75,34 +75,37 @@ public class SubirArchivo extends HttpServlet {
                         // escribimos el fichero colgando del nuevo path
                         actual.write(fichero);
                         Proceso pro = (Proceso) sesion.getAttribute("proceso");
-                        Prueba pb = new Prueba(fichero, pro);
+                        Prueba pb = new Prueba(fichero, pro, response);
 
-                        //archivo que contiene los xls
-                        File fichero1 = new File(str);
-                        //lista de ficheros
-                        String[] ficheros = fichero1.list();
-                        String aux = "";
-                        if (ficheros != null) {
-                            for (int i = 0; i < ficheros.length; i++) {
-                                String elementos[] = ficheros[i].split("\\.");
-                                if (!aux.equals("")) {
-                                    if (elementos[1].equals("pdf")) {
-                                        aux += ",{\"name\":\"" + ficheros[i] + "\",\"size\":\"" + 2000 + "\",\"url\":\"/docenciaservicio/file/" + ficheros[i] + "\",\"thumbnailUrl\":\"/docenciaservicio/thumbnails/" + "pdf2.png" + "\",\"deleteUrl\":\"/docenciaservicio/Subir?file=" + ficheros[i] + "\",\"deleteType\":\"DELETE\",\"type\":\"" + elementos[1] + "\"}";
-                                    } else {
-                                        aux += ",{\"name\":\"" + ficheros[i] + "\",\"size\":\"" + 2000 + "\",\"url\":\"/docenciaservicio/file/" + ficheros[i] + "\",\"thumbnailUrl\":\"/docenciaservicio/thumbnails/" + ficheros[i] + "\",\"deleteUrl\":\"/docenciaservicio/Subir?file=" + ficheros[i] + "\",\"deleteType\":\"DELETE\",\"type\":\"" + elementos[1] + "\"}";
-                                    }
+                        if (!pb.errorGlobal) {
+                            //archivo que contiene los xls
+                            File fichero1 = new File(str);
+                            //lista de ficheros
+                            String[] ficheros = fichero1.list();
+                            String aux = "";
+                            if (ficheros != null) {
+                                for (int i = 0; i < ficheros.length; i++) {
+                                    String elementos[] = ficheros[i].split("\\.");
+                                    if (!aux.equals("")) {
+                                        if (elementos[1].equals("pdf")) {
+                                            aux += ",{\"name\":\"" + ficheros[i] + "\",\"size\":\"" + 2000 + "\",\"url\":\"/docenciaservicio/file/" + ficheros[i] + "\",\"thumbnailUrl\":\"/docenciaservicio/thumbnails/" + "pdf2.png" + "\",\"deleteUrl\":\"/docenciaservicio/Subir?file=" + ficheros[i] + "\",\"deleteType\":\"DELETE\",\"type\":\"" + elementos[1] + "\"}";
+                                        } else {
+                                            aux += ",{\"name\":\"" + ficheros[i] + "\",\"size\":\"" + 2000 + "\",\"url\":\"/docenciaservicio/file/" + ficheros[i] + "\",\"thumbnailUrl\":\"/docenciaservicio/thumbnails/" + ficheros[i] + "\",\"deleteUrl\":\"/docenciaservicio/Subir?file=" + ficheros[i] + "\",\"deleteType\":\"DELETE\",\"type\":\"" + elementos[1] + "\"}";
+                                        }
 
-                                } else {
-                                    if (elementos[1].equals("pdf")) {
-                                        aux += "{\"name\":\"" + ficheros[i] + "\",\"size\":\"" + 2000 + "\",\"url\":\"/docenciaservicio/file/" + ficheros[i] + "\",\"thumbnailUrl\":\"/docenciaservicio/thumbnails/" + "pdf2.png" + "\",\"deleteUrl\":\"/docenciaservicio/Subir?file=" + ficheros[i] + "\",\"deleteType\":\"DELETE\",\"type\":\"" + elementos[1] + "\"}";
                                     } else {
-                                        aux += "{\"name\":\"" + ficheros[i] + "\",\"size\":\"" + 2000 + "\",\"url\":\"/docenciaservicio/file/" + ficheros[i] + "\",\"thumbnailUrl\":\"/docenciaservicio/thumbnails/" + ficheros[i] + "\",\"deleteUrl\":\"/docenciaservicio/Subir?file=" + ficheros[i] + "\",\"deleteType\":\"DELETE\",\"type\":\"" + elementos[1] + "\"}";
+                                        if (elementos[1].equals("pdf")) {
+                                            aux += "{\"name\":\"" + ficheros[i] + "\",\"size\":\"" + 2000 + "\",\"url\":\"/docenciaservicio/file/" + ficheros[i] + "\",\"thumbnailUrl\":\"/docenciaservicio/thumbnails/" + "pdf2.png" + "\",\"deleteUrl\":\"/docenciaservicio/Subir?file=" + ficheros[i] + "\",\"deleteType\":\"DELETE\",\"type\":\"" + elementos[1] + "\"}";
+                                        } else {
+                                            aux += "{\"name\":\"" + ficheros[i] + "\",\"size\":\"" + 2000 + "\",\"url\":\"/docenciaservicio/file/" + ficheros[i] + "\",\"thumbnailUrl\":\"/docenciaservicio/thumbnails/" + ficheros[i] + "\",\"deleteUrl\":\"/docenciaservicio/Subir?file=" + ficheros[i] + "\",\"deleteType\":\"DELETE\",\"type\":\"" + elementos[1] + "\"}";
+                                        }
                                     }
                                 }
-                            }
-                            writer.write("{\"files\":[" + aux + "]}");
+                                writer.write("{\"files\":[" + aux + "]}");
 
+                            }
                         }
+
 
                     } catch (Exception ex) {
                         Logger.getLogger(SubirArchivo.class.getName()).log(Level.SEVERE, null, ex);

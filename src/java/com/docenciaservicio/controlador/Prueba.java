@@ -9,6 +9,8 @@ import com.docenciaservicio.sessionbeans.FuenteFacade;
 import com.docenciaservicio.sessionbeans.ProgramaFacade;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -20,6 +22,7 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.jstl.sql.Result;
 import javax.transaction.UserTransaction;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -33,14 +36,15 @@ public class Prueba {
     ProgramaFacade programaFacade = lookupProgramaFacadeBean();
     EstudianteFacade estudianteFacade = lookupEstudianteFacadeBean();
     FuenteFacade fuenteFacade = lookupFuenteFacadeBean();
+    PrintWriter out;
+    public boolean errorGlobal = false;
 
-    public Prueba(File fileName, Proceso p) throws ParseException {
-
+    public Prueba(File fileName, Proceso p, HttpServletResponse response) throws ParseException, IOException {
+        out = response.getWriter();
         try {
             FileInputStream fileInputStream = new FileInputStream(fileName);
             XSSFWorkbook workBook = new XSSFWorkbook(fileInputStream);
-            //la i es la hoja
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) { //la i es la hoja
                 List cellDataList = new ArrayList();
                 XSSFSheet hssfSheet = workBook.getSheetAt(i);
                 Iterator rowIterator = hssfSheet.rowIterator();
@@ -49,17 +53,20 @@ public class Prueba {
                     XSSFRow hssfRow = (XSSFRow) rowIterator.next();
 
 
-                    if (i == 0) {
+                    if (i == 0) { //hoja estudiantes
                         Iterator iterator = hssfRow.cellIterator();
-                        List cellTempList = new ArrayList();
+                        List cellTempList = new ArrayList();//lista Temporal para agregar cada uno de los 6 datos de una fila
                         for (int j = 0; j < 6; j++) {
                             XSSFCell hssfCell = (XSSFCell) hssfRow.getCell(j);
-                            if (hssfCell != null) {
-                                cellTempList.add(hssfCell);
-                            }
-
+                            cellTempList.add(hssfCell);
                         }
-                        if (cellTempList.size() != 0) {
+
+                        if (!((cellTempList.get(0) == null)
+                                && (cellTempList.get(1) == null)
+                                && (cellTempList.get(2) == null)
+                                && (cellTempList.get(3) == null)
+                                && (cellTempList.get(4) == null)
+                                && (cellTempList.get(5) == null))) {
                             cellDataList.add(cellTempList);
                         }
                     } else {
@@ -107,7 +114,8 @@ public class Prueba {
     }
 
     private void Leer(List cellDataList, int i0, Proceso pr) {
-        boolean sapo = false;
+        boolean sapo = false; //avisa si ha ocurrido un error de validación
+        String errores = "";
         List<Fuente> fuentes = new ArrayList<Fuente>();
         List<Estudiante> estudiantes = new ArrayList<Estudiante>();
         for (int i = 1; i < cellDataList.size(); i++) {
@@ -118,41 +126,76 @@ public class Prueba {
 
                 XSSFCell hssfCell = (XSSFCell) cellTempList.get(j);
                 if (i0 == 0) {
-                    if (j == 0) {
-
-                        String aux = "" + new BigDecimal(Double.valueOf(hssfCell.getNumericCellValue())).toPlainString();
-                        f.setIdUsuario(aux);
-                        f.setPassword(aux);
-                        f.setTipo("");
-
-                    } else if (j == 1) {
+                    if (j == 0) {// identificacion
                         try {
                             String aux = "" + new BigDecimal(Double.valueOf(hssfCell.getNumericCellValue())).toPlainString();
-                            e.setIdEstudiante(Integer.parseInt(aux));
-                            e.setProcesoIdproceso(pr);
-                        } catch (Exception exc) {
-                            System.out.println("ha ocurrido un fucking error");
+                            if (!aux.equals("0")) {
+                                f.setIdUsuario(aux);
+                                f.setPassword(aux);
+                                f.setTipo("");
+                            } else {
+                                errores += "<br/>ha ocurrido un error de validación con la identificación en el registro #" + (i + 1);
+                                sapo = true;
+                            }
+
+                        } catch (Exception exc0) {
+                            errores += "<br/>ha ocurrido un error de validación con la identificación en el registro #" + (i + 1);
                             sapo = true;
                         }
 
-                    } else if (j == 2) {
+
+                    } else if (j == 1) {//codigo_estudiantil
                         try {
-                            f.setNombre(hssfCell.toString());
-                        } catch (Exception rx) {
+                            String aux = "" + new BigDecimal(Double.valueOf(hssfCell.getNumericCellValue())).toPlainString();
+                            if (!aux.equals("0")) {
+                                e.setIdEstudiante(Integer.parseInt(aux));
+                                e.setProcesoIdproceso(pr);
+                            } else {
+                                errores += "<br/>ha ocurrido un error de validación con el codigo estudiantil en el registro #" + (i + 1);
+                                sapo = true;
+                            }
+
+                        } catch (Exception exc1) {
+                            errores += "<br/>ha ocurrido un error de validación con el codigo estudiantil en el registro #" + (i + 1);
                             sapo = true;
                         }
-                    } else if (j == 3) {
-                        f.setApellido(hssfCell.toString());
-                    } else if (j == 4) {
+
+                    } else if (j == 2) {//nombre
+                        try {
+                            if (!hssfCell.toString().equals("")) {
+                                f.setNombre(hssfCell.toString());
+                            } else {
+                                errores += "<br/>ha ocurrido un error de validación con el nombre en el registro #" + (i + 1);
+                                sapo = true;
+                            }
+                        } catch (Exception exc2) {
+                            errores += "<br/>ha ocurrido un error de validación con el nombre en el registro #" + (i + 1);
+                            sapo = true;
+                        }
+                    } else if (j == 3) {//apellidos
+                        try {
+                            if (!hssfCell.toString().equals("")) {
+                                f.setApellido(hssfCell.toString());
+                            } else {
+                                errores += "<br/>ha ocurrido un error de validación con el apellido en el registro #" + (i + 1);
+                                sapo = true;
+                            }
+                        } catch (Exception ex3) {
+
+                            errores += "<br/>ha ocurrido un error de validación con el apellido en el registro #" + (i + 1);
+                            sapo = true;
+                        }
+                    } else if (j == 4) {//semestre
                         try {
                             String aux[] = hssfCell.toString().split("\\.");
                             Integer.parseInt(aux[0]);
                             e.setSemestre(aux[0]);
-                        } catch (NumberFormatException exc) {
+                        } catch (Exception exc) {
+                            errores += "<br/>ha ocurrido un error de validación con el semestre en el registro #" + (i + 1);
                             sapo = true;
                         }
 
-                    } else if (j == 5) {
+                    } else if (j == 5) {//programa
                         try {
                             if (hssfCell.toString().equals("quimica farmaceutica")) {
                                 e.setProgramaIdprograma(programaFacade.find(1));
@@ -163,9 +206,11 @@ public class Prueba {
                             } else if (hssfCell.toString().equals("enfermeria")) {
                                 e.setProgramaIdprograma(programaFacade.find(4));
                             } else {
+                                errores += "<br/>ha ocurrido un error de validación con el programa en el registro #" + (i + 1);
                                 sapo = true;
                             }
                         } catch (Exception dsf) {
+                            errores += "<br/>ha ocurrido un error de validación con el programa en el registro #" + (i + 1);
                             sapo = true;
                         }
 
@@ -184,6 +229,11 @@ public class Prueba {
             }
 
         } //termina la hoja actual
+
+        if (sapo) {
+            errorGlobal = sapo;
+            out.print("{\"errores\":\""+errores +"\"}");
+        }
 
         if (i0 == 0 && !sapo) {
 
@@ -208,7 +258,6 @@ public class Prueba {
         }
     }
 
-   
     private FuenteFacade lookupFuenteFacadeBean() {
         try {
             Context c = new InitialContext();
