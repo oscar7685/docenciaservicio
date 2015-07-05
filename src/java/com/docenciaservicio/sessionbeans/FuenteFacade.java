@@ -5,21 +5,16 @@
 package com.docenciaservicio.sessionbeans;
 
 import com.docenciaservicio.entidades.Fuente;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 
 /**
  *
- * @author Oscar
+ * @author Ususario
  */
 @Stateless
 public class FuenteFacade extends AbstractFacade<Fuente> {
-
     @PersistenceContext(unitName = "docenciaservicioPU")
     private EntityManager em;
 
@@ -32,16 +27,4 @@ public class FuenteFacade extends AbstractFacade<Fuente> {
         super(Fuente.class);
     }
     
-
-    public void insertarFuente(List<Fuente> fuente) {
-        for (Fuente fuente1 : fuente) {
-            create(fuente1);
-        }
-    }
-
-    public void eliminarFuente(List<Fuente> fuente) {
-        for (Fuente fuente1 : fuente) {
-            remove(fuente1);
-        }
-    }
 }

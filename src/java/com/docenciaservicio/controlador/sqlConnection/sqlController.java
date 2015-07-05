@@ -97,9 +97,9 @@ public class sqlController {
         return result;
     }
 
-    public boolean UpdateSql(String sql) {
+    public String UpdateSql(String sql) {
 
-        boolean aux = true;
+        String aux = "";
         String id = "";
         Connection con = null;
         sqlConnection sqlCon = new sqlConnection();
@@ -118,14 +118,22 @@ public class sqlController {
         } catch (SQLException ex) {
             try {
                 con.rollback();
-                aux = false;
-                System.out.println(ex);
+                //aux = false;
+                aux += "<br/>" + ex.getMessage();
+                // System.err.println("SQLState: " + ((SQLException) ex).getSQLState());
+                //System.err.println("Codigo del error: " + ((SQLException) ex).getErrorCode());
+                //System.err.println("Mensaje: " + ex.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    //   System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
             } catch (SQLException ex1) {
                 Logger.getLogger(sqlController.class.getName()).log(Level.SEVERE, null, ex1);
             }
         } catch (Exception ex) {
-            aux = false;
-            System.out.println(ex);
+            aux = "Excepcion deconocida";
+            //System.out.println(ex);
         } finally {
             try {
                 con.close();
@@ -134,7 +142,6 @@ public class sqlController {
                 System.out.println(ex);
             }
         }
-        System.out.println("aux es "+   aux);
         return aux;
     }
 }

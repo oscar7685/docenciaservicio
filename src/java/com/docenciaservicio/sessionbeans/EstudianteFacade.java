@@ -5,19 +5,16 @@
 package com.docenciaservicio.sessionbeans;
 
 import com.docenciaservicio.entidades.Estudiante;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 
 /**
  *
- * @author Oscar
+ * @author Ususario
  */
 @Stateless
 public class EstudianteFacade extends AbstractFacade<Estudiante> {
-
     @PersistenceContext(unitName = "docenciaservicioPU")
     private EntityManager em;
 
@@ -29,11 +26,5 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> {
     public EstudianteFacade() {
         super(Estudiante.class);
     }
-
-    public void insertarEstudiantes(List<Estudiante> estudiantes) {
-        for (Estudiante estudiante : estudiantes) {
-            create(estudiante);
-        }
-     
-    }
+    
 }

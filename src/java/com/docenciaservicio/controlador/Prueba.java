@@ -44,73 +44,36 @@ public class Prueba {
         try {
             FileInputStream fileInputStream = new FileInputStream(fileName);
             XSSFWorkbook workBook = new XSSFWorkbook(fileInputStream);
-            for (int i = 0; i < 3; i++) { //la i es la hoja
-                List cellDataList = new ArrayList();
-                XSSFSheet hssfSheet = workBook.getSheetAt(i);
-                Iterator rowIterator = hssfSheet.rowIterator();
-                while (rowIterator.hasNext()) {
 
-                    XSSFRow hssfRow = (XSSFRow) rowIterator.next();
+            List cellDataList = new ArrayList();
+            XSSFSheet hssfSheet = workBook.getSheetAt(0);
+            Iterator rowIterator = hssfSheet.rowIterator();
+            while (rowIterator.hasNext()) {
 
+                XSSFRow hssfRow = (XSSFRow) rowIterator.next();
+                List cellTempList = new ArrayList();//lista Temporal para agregar cada uno de los 6 datos de una fila
 
-                    if (i == 0) { //hoja estudiantes
-                        Iterator iterator = hssfRow.cellIterator();
-                        List cellTempList = new ArrayList();//lista Temporal para agregar cada uno de los 6 datos de una fila
-                        for (int j = 0; j < 6; j++) {
-                            XSSFCell hssfCell = (XSSFCell) hssfRow.getCell(j);
-                            cellTempList.add(hssfCell);
-                        }
-
-                        if (!((cellTempList.get(0) == null)
-                                && (cellTempList.get(1) == null)
-                                && (cellTempList.get(2) == null)
-                                && (cellTempList.get(3) == null)
-                                && (cellTempList.get(4) == null)
-                                && (cellTempList.get(5) == null))) {
-                            cellDataList.add(cellTempList);
-                        }
-                    } else {
-                        if (i == 1) {
-                            Iterator iterator = hssfRow.cellIterator();
-                            List cellTempList = new ArrayList();
-                            for (int j = 0; j < 5; j++) {
-                                XSSFCell hssfCell = (XSSFCell) hssfRow.getCell(j);
-                                if (hssfCell != null) {
-                                    cellTempList.add(hssfCell);
-                                }
-
-                            }
-                            if (cellTempList.size() != 0) {
-                                cellDataList.add(cellTempList);
-                            }
-
-                        } else {
-                            if (i == 2) {
-                                Iterator iterator = hssfRow.cellIterator();
-                                List cellTempList = new ArrayList();
-                                for (int j = 0; j < 4; j++) {
-                                    XSSFCell hssfCell = (XSSFCell) hssfRow.getCell(j);
-                                    if (hssfCell != null) {
-                                        cellTempList.add(hssfCell);
-                                    }
-                                }
-                                if (cellTempList.size() != 0) {
-                                    cellDataList.add(cellTempList);
-                                }
-                            }
-
-                        }
-                    }
-
+                for (int j = 0; j < 6; j++) {
+                    XSSFCell hssfCell = (XSSFCell) hssfRow.getCell(j);
+                    cellTempList.add(hssfCell);
                 }
-                Leer(cellDataList, i, p);
-            } //termina de leer la hoja actual
+
+                if (!((cellTempList.get(0) == null)
+                        && (cellTempList.get(1) == null)
+                        && (cellTempList.get(2) == null)
+                        && (cellTempList.get(3) == null)
+                        && (cellTempList.get(4) == null)
+                        && (cellTempList.get(5) == null))) {
+                    cellDataList.add(cellTempList);
+                }
+            }
+            Leer(cellDataList, 0, p);
+
 
         } catch (Exception e) {
             System.out.println("error aqui");
             e.printStackTrace();
         }
-
     }
 
     private void Leer(List cellDataList, int i0, Proceso pr) {
@@ -232,14 +195,12 @@ public class Prueba {
 
         if (sapo) {
             errorGlobal = sapo;
-            out.print("{\"errores\":\""+errores +"\"}");
+            out.print("{\"errores\":\"" + errores + "\"}");
         }
 
         if (i0 == 0 && !sapo) {
 
             sqlController conSql = new sqlController();
-
-            Result rs2 = null;
             String sql = "";
             for (int i = 0; i < fuentes.size(); i++) {
 
@@ -247,12 +208,14 @@ public class Prueba {
                 sql += "INSERT INTO `estudiante` (`idEstudiante`, `semestre`, `programa_idprograma`, `proceso_idproceso`, `fuente_idUsuario`) VALUES ('" + estudiantes.get(i).getIdEstudiante() + "', '" + estudiantes.get(i).getSemestre() + "', '" + estudiantes.get(i).getProgramaIdprograma().getIdprograma() + "', '" + estudiantes.get(i).getProcesoIdproceso().getIdproceso() + "', '" + fuentes.get(i).getIdUsuario() + "');";
             }
             try {
-                boolean error = conSql.UpdateSql(sql);
-                if (!error) {
-                    System.out.println("HA ocurrido un error");
+                String error = conSql.UpdateSql(sql);
+                if (error != null && !error.equals("")) {
+                    errorGlobal = true;
+                    out.print("{\"errores\":\"" + error + "\"}");
                 }
             } catch (Exception ex) {
-                System.out.println("HA ocurrido un error2");
+                errorGlobal = true;
+                out.print("{\"errores\":\"" + "ha ocurrido un error desconocido" + "\"}");
                 Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

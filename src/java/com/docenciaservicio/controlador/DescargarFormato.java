@@ -36,7 +36,7 @@ public class DescargarFormato extends HttpServlet {
    
         try {
             String ruta = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/com/docenciaservicio/files/");
-            ruta += "\\formato_poblacion.xlsm";
+            ruta += "\\formato_poblacion_estudiantes.xlsm";
 
             File f2 = new File(ruta);
             FileInputStream inStream = new FileInputStream(f2);

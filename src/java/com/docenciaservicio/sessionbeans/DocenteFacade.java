@@ -4,7 +4,7 @@
  */
 package com.docenciaservicio.sessionbeans;
 
-import com.docenciaservicio.entidades.Criterio;
+import com.docenciaservicio.entidades.Docente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author Ususario
  */
 @Stateless
-public class CriterioFacade extends AbstractFacade<Criterio> {
+public class DocenteFacade extends AbstractFacade<Docente> {
     @PersistenceContext(unitName = "docenciaservicioPU")
     private EntityManager em;
 
@@ -23,8 +23,8 @@ public class CriterioFacade extends AbstractFacade<Criterio> {
         return em;
     }
 
-    public CriterioFacade() {
-        super(Criterio.class);
+    public DocenteFacade() {
+        super(Docente.class);
     }
     
 }
