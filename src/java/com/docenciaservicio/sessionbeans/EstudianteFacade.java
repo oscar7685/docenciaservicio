@@ -5,9 +5,15 @@
 package com.docenciaservicio.sessionbeans;
 
 import com.docenciaservicio.entidades.Estudiante;
+import com.docenciaservicio.entidades.Proceso;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+        
+
+
+
 
 /**
  *
@@ -15,6 +21,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class EstudianteFacade extends AbstractFacade<Estudiante> {
+
     @PersistenceContext(unitName = "docenciaservicioPU")
     private EntityManager em;
 
@@ -26,5 +33,9 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> {
     public EstudianteFacade() {
         super(Estudiante.class);
     }
-    
+
+    public List<Estudiante> listaEstudiantes(Proceso p) {
+        em.createNamedQuery("Estudiante.findByProceso").setParameter("parametroProceso", p).setHint("javax.persistence.cache.storeMode", "REFRESH").getResultList();
+        return null;
+    }
 }

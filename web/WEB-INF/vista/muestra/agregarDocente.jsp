@@ -25,5 +25,19 @@
                     </tr>
                 </c:forEach>
             </c:when>
-        </tbody>
-    </table>
+        </c:choose>           
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(function() {
+        $("#formAsigMue3").validate({
+            submitHandler: function() {
+                $('#myModalNuevoConglomerado').modal('hide');
+                $('#myModalNuevoConglomerado').on('hidden', function() {
+                    $("#selectConglomerado option[value='nuevoCriterio']").attr("selected", "selected");
+                    $("#enlace").show();
+                });
+            }
+        });
+    });
+</script>

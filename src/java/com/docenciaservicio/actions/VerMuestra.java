@@ -30,7 +30,8 @@ public class VerMuestra implements Action{
         String idProceso = (String) request.getParameter("id");
         Proceso p = procesoFacade.find(Integer.parseInt(idProceso));
         sesion.setAttribute("proceso", p);
-        sesion.setAttribute("fuente", p.getFuenteList());
+        sesion.setAttribute("estudiantesMuestra", p.getEstudianteList());
+        sesion.setAttribute("docentesMuestra", p.getDocenteList());
         return "/WEB-INF/vista/muestra/verMuestra.jsp";
     }
 
