@@ -45,9 +45,9 @@ public class Estudiante implements Serializable {
     @NotNull
     @Column(name = "idEstudiante")
     private int idEstudiante;
-    @Size(max = 45)
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "semestre")
     private String semestre;
     @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")
@@ -67,9 +67,10 @@ public class Estudiante implements Serializable {
         this.id = id;
     }
 
-    public Estudiante(Integer id, int idEstudiante) {
+    public Estudiante(Integer id, int idEstudiante, String semestre) {
         this.id = id;
         this.idEstudiante = idEstudiante;
+        this.semestre = semestre;
     }
 
     public Integer getId() {

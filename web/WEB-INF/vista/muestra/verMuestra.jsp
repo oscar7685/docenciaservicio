@@ -436,6 +436,20 @@
                     $.each(data.result.files, function(index, file) {
                         $('<p/>').text(file.name).appendTo('#files');
                     });
+                    
+                    $.ajax({
+                    type: "POST",
+                    url: "Controlador?action=listarMuestraEstudiantes",
+                    data: $("#fcrearestudiante").serialize(),
+                    success: function(data)
+                    {
+                        $("#bodytablaestudiante").empty();
+                        $("#bodytablaestudiante").prepend(data);
+                        $("#modalAgregarEstudiante").modal('hide');
+
+                    } //fin success
+                }); //fin del $.ajax 
+                    
                 }
 
 

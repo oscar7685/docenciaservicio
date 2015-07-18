@@ -11,7 +11,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -61,8 +60,6 @@ public class Fuente implements Serializable {
     @Size(max = 45)
     @Column(name = "tipo")
     private String tipo;
-    @ManyToMany(mappedBy = "fuenteList")
-    private List<Proceso> procesoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
     private List<Resultados> resultadosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
@@ -124,15 +121,6 @@ public class Fuente implements Serializable {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    @XmlTransient
-    public List<Proceso> getProcesoList() {
-        return procesoList;
-    }
-
-    public void setProcesoList(List<Proceso> procesoList) {
-        this.procesoList = procesoList;
     }
 
     @XmlTransient

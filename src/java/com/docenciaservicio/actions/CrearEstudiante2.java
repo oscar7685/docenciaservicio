@@ -63,20 +63,10 @@ public class CrearEstudiante2 implements Action {
             f.setNombre(nombre);
             f.setIdUsuario(identificacion);
             f.setPassword(identificacion);
-            f.setProcesoList(listP);
             fuenteFacade.create(f);
-        } else {
-            List<Proceso> listP2 = aux1.getProcesoList();
-            listP2.add(proceso);
-            aux1.setProcesoList(listP2);
-            fuenteFacade.edit(aux1);
-        }
+        } 
 
         Fuente aux = fuenteFacade.find(identificacion);
-        List<Fuente> listF =  proceso.getFuenteList();
-        listF.add(aux);
-        proceso.setFuenteList(listF);
-        procesoFacade.edit(proceso);
         
         
         Programa paux = programaFacade.find(Integer.parseInt(programa));

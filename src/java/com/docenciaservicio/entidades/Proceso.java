@@ -16,8 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -66,11 +64,6 @@ public class Proceso implements Serializable {
     @Size(max = 45)
     @Column(name = "estado")
     private String estado;
-    @JoinTable(name = "proceso_has_fuente", joinColumns = {
-        @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")}, inverseJoinColumns = {
-        @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")})
-    @ManyToMany
-    private List<Fuente> fuenteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
     private List<Resultados> resultadosList;
     @JoinColumn(name = "Escenario_idEscenario", referencedColumnName = "idEscenario")
@@ -78,6 +71,8 @@ public class Proceso implements Serializable {
     private Escenario escenarioidEscenario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
     private List<Estudiante> estudianteList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
+    private List<Representanteescenario> representanteescenarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
     private List<Docente> docenteList;
 
@@ -134,15 +129,6 @@ public class Proceso implements Serializable {
     }
 
     @XmlTransient
-    public List<Fuente> getFuenteList() {
-        return fuenteList;
-    }
-
-    public void setFuenteList(List<Fuente> fuenteList) {
-        this.fuenteList = fuenteList;
-    }
-
-    @XmlTransient
     public List<Resultados> getResultadosList() {
         return resultadosList;
     }
@@ -166,6 +152,15 @@ public class Proceso implements Serializable {
 
     public void setEstudianteList(List<Estudiante> estudianteList) {
         this.estudianteList = estudianteList;
+    }
+
+    @XmlTransient
+    public List<Representanteescenario> getRepresentanteescenarioList() {
+        return representanteescenarioList;
+    }
+
+    public void setRepresentanteescenarioList(List<Representanteescenario> representanteescenarioList) {
+        this.representanteescenarioList = representanteescenarioList;
     }
 
     @XmlTransient

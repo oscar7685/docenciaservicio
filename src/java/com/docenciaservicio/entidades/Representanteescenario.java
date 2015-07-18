@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -41,6 +40,9 @@ public class Representanteescenario implements Serializable {
     @Size(max = 255)
     @Column(name = "cargo")
     private String cargo;
+    @JoinColumn(name = "proceso_idproceso", referencedColumnName = "idproceso")
+    @ManyToOne(optional = false)
+    private Proceso procesoIdproceso;
     @JoinColumn(name = "fuente_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Fuente fuenteidUsuario;
@@ -69,6 +71,14 @@ public class Representanteescenario implements Serializable {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public Proceso getProcesoIdproceso() {
+        return procesoIdproceso;
+    }
+
+    public void setProcesoIdproceso(Proceso procesoIdproceso) {
+        this.procesoIdproceso = procesoIdproceso;
     }
 
     public Fuente getFuenteidUsuario() {

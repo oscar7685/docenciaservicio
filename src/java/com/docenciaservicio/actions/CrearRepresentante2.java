@@ -60,29 +60,19 @@ public class CrearRepresentante2 implements Action {
             f.setNombre(nombre);
             f.setIdUsuario(identificacion);
             f.setPassword(identificacion);
-            f.setProcesoList(listP);
             fuenteFacade.create(f);
-        } else {
-            List<Proceso> listP2 = aux1.getProcesoList();
-            listP2.add(proceso);
-            aux1.setProcesoList(listP2);
-            fuenteFacade.edit(aux1);
-        }
+        } 
 
         Fuente aux = fuenteFacade.find(identificacion);
-        List<Fuente> listF =  proceso.getFuenteList();
-        listF.add(aux);
-        proceso.setFuenteList(listF);
-        procesoFacade.edit(proceso);
-        
         Representanteescenario repre = new Representanteescenario();
         repre.setCargo(cargo);
         repre.setEscenarioidEscenario(proceso.getEscenarioidEscenario());
+        repre.setProcesoIdproceso(proceso);
         repre.setFuenteidUsuario(aux);
         representanteescenarioFacade.create(repre);
         
        
-        sesion.setAttribute("listaRepresentantes", representanteescenarioFacade.findByList("escenarioidEscenario", proceso.getEscenarioidEscenario()));
+        sesion.setAttribute("listaRepresentantes", representanteescenarioFacade.findByList("procesoIdproceso", proceso));
 
         return "/WEB-INF/vista/muestra/agregarRepresentante.jsp";
     }

@@ -205,7 +205,6 @@ public class Prueba {
             for (int i = 0; i < fuentes.size(); i++) {
 
                 sql += "INSERT INTO `fuente` (`idUsuario`, `nombre`, `apellido`, `password`) VALUES ('" + fuentes.get(i).getIdUsuario() + "', '" + fuentes.get(i).getNombre() + "', '" + fuentes.get(i).getApellido() + "', '" + fuentes.get(i).getPassword() + "');";
-                sql += "INSERT INTO `proceso_has_fuente` (`proceso_idproceso`, `fuente_idUsuario`) VALUES ('" + estudiantes.get(i).getProcesoIdproceso().getIdproceso() + "', '" + fuentes.get(i).getIdUsuario() + "');";
                 sql += "INSERT INTO `estudiante` (`idEstudiante`, `semestre`, `programa_idprograma`, `proceso_idproceso`, `fuente_idUsuario`) VALUES ('" + estudiantes.get(i).getIdEstudiante() + "', '" + estudiantes.get(i).getSemestre() + "', '" + estudiantes.get(i).getProgramaIdprograma().getIdprograma() + "', '" + estudiantes.get(i).getProcesoIdproceso().getIdproceso() + "', '" + fuentes.get(i).getIdUsuario() + "');";
             }
             try {

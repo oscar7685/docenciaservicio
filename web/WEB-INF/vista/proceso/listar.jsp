@@ -67,7 +67,7 @@
                         <!-- End loading page level scripts-->
                     </c:when>
                     <c:otherwise>
-                        NO hay procesos registrados en el sistema
+                        <div class="panel-body panel-no-padding">NO hay procesos registrados en el sistema</div>
                     </c:otherwise>
                 </c:choose>   
             </div>
