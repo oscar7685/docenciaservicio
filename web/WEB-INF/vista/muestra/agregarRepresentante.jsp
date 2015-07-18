@@ -6,21 +6,19 @@
             <th>Identificación</th>
             <th>Nombre</th>
             <th>Apellidos</th>
-            <th>Programa</th>
-            <th>Tipo contrato</th>
+            <th>Cargo</th>
             <th>acci&oacute;n</th>
         </tr>
     </thead>
     <tbody>
         <c:choose>
-            <c:when test="${fn:length(listaDocentes)!= 0}">
-                <c:forEach items="${listaDocentes}" var="docente" varStatus="iter">
+            <c:when test="${fn:length(listaRepresentantes)!= 0}">
+                <c:forEach items="${listaRepresentantes}" var="representante" varStatus="iter">
                     <tr class="odd gradeX">
-                        <td>${docente.fuenteidUsuario.idUsuario}</td>
-                        <td>${docente.fuenteidUsuario.nombre}</td>
-                        <td>${docente.fuenteidUsuario.apellido}</td>
-                        <td>${docente.programaIdprograma.nombrepro}</td>
-                        <td>${docente.tipoContrato}</td>
+                        <td>${representante.fuenteidUsuario.idUsuario}</td>
+                        <td>${representante.fuenteidUsuario.nombre}</td>
+                        <td>${representante.fuenteidUsuario.apellido}</td>
+                        <td>${representante.cargo}</td>
                         <td> <a href="#" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a></td>
                     </tr>
                 </c:forEach>

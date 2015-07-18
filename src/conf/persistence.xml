@@ -3,6 +3,7 @@
   <persistence-unit name="docenciaservicioPU" transaction-type="JTA">
     <jta-data-source>Docencia</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
     <properties/>
   </persistence-unit>
 </persistence>

@@ -32,6 +32,7 @@ public class VerMuestra implements Action{
         sesion.setAttribute("proceso", p);
         sesion.setAttribute("estudiantesMuestra", p.getEstudianteList());
         sesion.setAttribute("docentesMuestra", p.getDocenteList());
+        sesion.setAttribute("representanteMuestra", p.getEscenarioidEscenario().getRepresentanteescenarioList());
         return "/WEB-INF/vista/muestra/verMuestra.jsp";
     }
 

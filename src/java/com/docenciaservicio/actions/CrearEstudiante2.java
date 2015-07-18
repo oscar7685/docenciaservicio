@@ -8,10 +8,12 @@ import com.docenciaservicio.entidades.Docente;
 import com.docenciaservicio.sessionbeans.EscenarioFacade;
 import com.docenciaservicio.interfaz.Action;
 import com.docenciaservicio.entidades.Escenario;
+import com.docenciaservicio.entidades.Estudiante;
 import com.docenciaservicio.entidades.Fuente;
 import com.docenciaservicio.entidades.Proceso;
 import com.docenciaservicio.entidades.Programa;
 import com.docenciaservicio.sessionbeans.DocenteFacade;
+import com.docenciaservicio.sessionbeans.EstudianteFacade;
 import com.docenciaservicio.sessionbeans.FuenteFacade;
 import com.docenciaservicio.sessionbeans.ProcesoFacade;
 import com.docenciaservicio.sessionbeans.ProgramaFacade;
@@ -31,11 +33,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Usuario
  */
-public class CrearDocente2 implements Action {
+public class CrearEstudiante2 implements Action {
+    EstudianteFacade estudianteFacade = lookupEstudianteFacadeBean();
     ProcesoFacade procesoFacade = lookupProcesoFacadeBean();
 
     ProgramaFacade programaFacade = lookupProgramaFacadeBean();
-    DocenteFacade docenteFacade = lookupDocenteFacadeBean();
+    
     FuenteFacade fuenteFacade = lookupFuenteFacadeBean();
     
     @Override
@@ -43,11 +46,12 @@ public class CrearDocente2 implements Action {
         HttpSession sesion = request.getSession();
         Proceso proceso = (Proceso) sesion.getAttribute("proceso");
 
-        String identificacion = (String) request.getParameter("identificacion");
-        String nombre = (String) request.getParameter("nombre");
-        String apellido = (String) request.getParameter("apellido");
-        String programa = (String) request.getParameter("programa");
-        String tipoContrato = (String) request.getParameter("tipoContrato");
+        String identificacion = (String) request.getParameter("identificacionE");
+        String codigo = (String) request.getParameter("codigoE");
+        String nombre = (String) request.getParameter("nombreE");
+        String apellido = (String) request.getParameter("apellidoE");
+        String programa = (String) request.getParameter("programaE");
+        String semestre = (String) request.getParameter("semestreE");
 
 
         Fuente aux1 = fuenteFacade.find(identificacion);
@@ -76,32 +80,23 @@ public class CrearDocente2 implements Action {
         
         
         Programa paux = programaFacade.find(Integer.parseInt(programa));
-        Docente d = new Docente();
-        d.setProgramaIdprograma(paux);
-        d.setTipoContrato(tipoContrato);
-        d.setFuenteidUsuario(aux);
-        d.setProcesoIdproceso(proceso);
+        Estudiante e = new Estudiante();
+        e.setProgramaIdprograma(paux);
+        e.setIdEstudiante(Integer.parseInt(codigo));
+        e.setSemestre(semestre);
+        e.setFuenteidUsuario(aux);
+        e.setProcesoIdproceso(proceso);
 
-        docenteFacade.create(d);
-        sesion.setAttribute("listaDocentes", docenteFacade.findByList("procesoIdproceso", proceso));
+        estudianteFacade.create(e);
+        sesion.setAttribute("listaEstudiantes", estudianteFacade.findByList("procesoIdproceso", proceso));
 
-        return "/WEB-INF/vista/muestra/agregarDocente.jsp";
+        return "/WEB-INF/vista/muestra/agregarEstudiante.jsp";
     }
 
     private FuenteFacade lookupFuenteFacadeBean() {
         try {
             Context c = new InitialContext();
             return (FuenteFacade) c.lookup("java:global/docenciaservicio/FuenteFacade!com.docenciaservicio.sessionbeans.FuenteFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
-
-    private DocenteFacade lookupDocenteFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (DocenteFacade) c.lookup("java:global/docenciaservicio/DocenteFacade!com.docenciaservicio.sessionbeans.DocenteFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
@@ -122,6 +117,16 @@ public class CrearDocente2 implements Action {
         try {
             Context c = new InitialContext();
             return (ProcesoFacade) c.lookup("java:global/docenciaservicio/ProcesoFacade!com.docenciaservicio.sessionbeans.ProcesoFacade");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private EstudianteFacade lookupEstudianteFacadeBean() {
+        try {
+            Context c = new InitialContext();
+            return (EstudianteFacade) c.lookup("java:global/docenciaservicio/EstudianteFacade!com.docenciaservicio.sessionbeans.EstudianteFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

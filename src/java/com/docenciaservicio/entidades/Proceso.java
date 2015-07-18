@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Usuario
  */
+@Cacheable
 @Entity
 @Table(name = "proceso", catalog = "docencia", schema = "")
 @XmlRootElement

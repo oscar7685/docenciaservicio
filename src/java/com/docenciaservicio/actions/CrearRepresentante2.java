@@ -11,10 +11,12 @@ import com.docenciaservicio.entidades.Escenario;
 import com.docenciaservicio.entidades.Fuente;
 import com.docenciaservicio.entidades.Proceso;
 import com.docenciaservicio.entidades.Programa;
+import com.docenciaservicio.entidades.Representanteescenario;
 import com.docenciaservicio.sessionbeans.DocenteFacade;
 import com.docenciaservicio.sessionbeans.FuenteFacade;
 import com.docenciaservicio.sessionbeans.ProcesoFacade;
 import com.docenciaservicio.sessionbeans.ProgramaFacade;
+import com.docenciaservicio.sessionbeans.RepresentanteescenarioFacade;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,23 +33,22 @@ import javax.servlet.http.HttpSession;
  *
  * @author Usuario
  */
-public class CrearDocente2 implements Action {
+public class CrearRepresentante2 implements Action {
+    RepresentanteescenarioFacade representanteescenarioFacade = lookupRepresentanteescenarioFacadeBean();
     ProcesoFacade procesoFacade = lookupProcesoFacadeBean();
-
-    ProgramaFacade programaFacade = lookupProgramaFacadeBean();
-    DocenteFacade docenteFacade = lookupDocenteFacadeBean();
     FuenteFacade fuenteFacade = lookupFuenteFacadeBean();
+    
     
     @Override
     public String procesar(HttpServletRequest request) throws IOException, ServletException {
         HttpSession sesion = request.getSession();
         Proceso proceso = (Proceso) sesion.getAttribute("proceso");
 
-        String identificacion = (String) request.getParameter("identificacion");
-        String nombre = (String) request.getParameter("nombre");
-        String apellido = (String) request.getParameter("apellido");
-        String programa = (String) request.getParameter("programa");
-        String tipoContrato = (String) request.getParameter("tipoContrato");
+        String identificacion = (String) request.getParameter("identificacionR");
+        String nombre = (String) request.getParameter("nombreR");
+        String apellido = (String) request.getParameter("apellidoR");
+        String cargo = (String) request.getParameter("cargo");
+        
 
 
         Fuente aux1 = fuenteFacade.find(identificacion);
@@ -74,18 +75,16 @@ public class CrearDocente2 implements Action {
         proceso.setFuenteList(listF);
         procesoFacade.edit(proceso);
         
+        Representanteescenario repre = new Representanteescenario();
+        repre.setCargo(cargo);
+        repre.setEscenarioidEscenario(proceso.getEscenarioidEscenario());
+        repre.setFuenteidUsuario(aux);
+        representanteescenarioFacade.create(repre);
         
-        Programa paux = programaFacade.find(Integer.parseInt(programa));
-        Docente d = new Docente();
-        d.setProgramaIdprograma(paux);
-        d.setTipoContrato(tipoContrato);
-        d.setFuenteidUsuario(aux);
-        d.setProcesoIdproceso(proceso);
+       
+        sesion.setAttribute("listaRepresentantes", representanteescenarioFacade.findByList("escenarioidEscenario", proceso.getEscenarioidEscenario()));
 
-        docenteFacade.create(d);
-        sesion.setAttribute("listaDocentes", docenteFacade.findByList("procesoIdproceso", proceso));
-
-        return "/WEB-INF/vista/muestra/agregarDocente.jsp";
+        return "/WEB-INF/vista/muestra/agregarRepresentante.jsp";
     }
 
     private FuenteFacade lookupFuenteFacadeBean() {
@@ -98,30 +97,22 @@ public class CrearDocente2 implements Action {
         }
     }
 
-    private DocenteFacade lookupDocenteFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (DocenteFacade) c.lookup("java:global/docenciaservicio/DocenteFacade!com.docenciaservicio.sessionbeans.DocenteFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
+ 
 
-    private ProgramaFacade lookupProgramaFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (ProgramaFacade) c.lookup("java:global/docenciaservicio/ProgramaFacade!com.docenciaservicio.sessionbeans.ProgramaFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
-
-    private ProcesoFacade lookupProcesoFacadeBean() {
+     private ProcesoFacade lookupProcesoFacadeBean() {
         try {
             Context c = new InitialContext();
             return (ProcesoFacade) c.lookup("java:global/docenciaservicio/ProcesoFacade!com.docenciaservicio.sessionbeans.ProcesoFacade");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private RepresentanteescenarioFacade lookupRepresentanteescenarioFacadeBean() {
+        try {
+            Context c = new InitialContext();
+            return (RepresentanteescenarioFacade) c.lookup("java:global/docenciaservicio/RepresentanteescenarioFacade!com.docenciaservicio.sessionbeans.RepresentanteescenarioFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

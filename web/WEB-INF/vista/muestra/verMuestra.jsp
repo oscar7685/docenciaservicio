@@ -75,7 +75,7 @@
                                                         <th>acci&oacute;n</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="bodytabladocente">
+                                                <tbody id="bodytablaestudiante">
                                                     <c:choose>
                                                         <c:when test="${fn:length(estudiantesMuestra)!= 0}">
                                                             <c:forEach items="${estudiantesMuestra}" var="estudiante" varStatus="iter">
@@ -94,7 +94,7 @@
 
                                                 </tbody>
                                             </table>
-
+                                             <button class="btn btn-primary" id="agregarEstudiante">Agregar estudiante</button>                
                                         </div>
                                     </div>
                                 </div>
@@ -139,8 +139,34 @@
                             <div class="panel panel-default">
                                 <a data-toggle="collapse" data-parent="#accordionA" href="#collapseThree"><div class="panel-heading"><h2>Muestra Representantes Escenario</h2></div></a>
                                 <div id="collapseThree" class="collapse in">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    <div class="panel-body" id="panel-body-representante">
+                                        <table id="tablarepresentante" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Identificación</th>
+                                                    <th>Nombre</th>
+                                                    <th>Apellidos</th>
+                                                    <th>Cargo</th>
+                                                    <th>acci&oacute;n</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bodytablarepresentante">
+                                                <c:choose>
+                                                    <c:when test="${fn:length(representanteMuestra)!= 0}">
+                                                        <c:forEach items="${representanteMuestra}" var="representante" varStatus="iter">
+                                                            <tr>
+                                                                <td>${representante.fuenteidUsuario.idUsuario}</td>
+                                                                <td>${representante.fuenteidUsuario.nombre}</td>
+                                                                <td>${representante.fuenteidUsuario.apellido}</td>
+                                                                <td>${representante.cargo}</td>
+                                                                <td></td>
+                                                            </tr>       
+                                                        </c:forEach>
+                                                    </c:when>
+                                                </c:choose>
+                                            </tbody>
+                                        </table>
+                                        <button class="btn btn-primary" id="agregarRepresentante">Agregar representante</button>
                                     </div>
                                 </div>
                             </div>
@@ -237,6 +263,137 @@
 
 
 
+<!-- Modal -->
+<div class="modal fade" id="modalAgregarRepresentante" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" id="fcrearrepresentate" action="#" data-parsley-validate>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title">Agregar Representante</h2>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="identificacionR" class="col-sm-2 control-label">Identificación</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="identificacionR" class="form-control" data-parsley-type="digits" data-parsley-group="block1" id="identificacionR" required placeholder="Escribe una identificación para el representante">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombreR" class="col-sm-2 control-label">Nombre</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nombreR" class="form-control" id="nombreR" required placeholder="Escribe un nombre para el representante">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoR" class="col-sm-2 control-label">Apellidos</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="apellidoR" class="form-control" id="apellidoR" required placeholder="Escribe los  apellidos del representante">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cargo" class="col-sm-2 control-label">Cargo</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="cargo" class="form-control" id="cargo" required placeholder="Escribe el cargo del representante">
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="botonAgregarRepresentante" class="btn btn-primary">Agregar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Modal Estudiante-->
+<div class="modal fade" id="modalAgregarEstudiante" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" id="fcrearestudiante" action="#" data-parsley-validate>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title">Agregar Estudiante</h2>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="identificacionE" class="col-sm-2 control-label">Identificación</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="identificacionE" class="form-control" data-parsley-type="digits" data-parsley-group="block1" id="identificacionE" required placeholder="Escribe una identificación para el estudiante">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="codigoE" class="col-sm-2 control-label">Codigo estudiante</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="codigoE" class="form-control" data-parsley-type="digits" data-parsley-group="block1" id="codigoE" required placeholder="Escribe el codigo estudiantil">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombreE" class="col-sm-2 control-label">Nombre</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nombreE" class="form-control" id="nombreE" required placeholder="Escribe un nombre para el estudiante">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoE" class="col-sm-2 control-label">Apellidos</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="apellidoE" class="form-control" id="apellidoE" required placeholder="Escribe los  apellidos del estudiante">
+                        </div>
+                    </div>
+                   <div class="form-group">
+                        <label for="semestreE" class="col-sm-2 control-label">Semestre</label>
+                        <div class="col-sm-8">
+                            <select name="semestreE" class="form-control" id="semestreE" required>
+                                <option value="">Escoja un semestre</option>
+                                <option value="12">12</option>
+                                <option value="11">11</option>
+                                <option value="10">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                    </div>
+                   <div class="form-group">
+                        <label for="programaE" class="col-sm-2 control-label">Programa</label>
+                        <div class="col-sm-8">
+                            <select name="programaE" class="form-control" id="programaE" required>
+                                <option value="">Escoja un programa</option>
+                                <option value="1">Quimica Farmaceutica</option>
+                                <option value="2">Medicina</option>
+                                <option value="3">Odontologia</option>
+                                <option value="4">Enfermeria</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="botonAgregarEstudiante" class="btn btn-primary">Agregar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="js/jquery.iframe-transport.js"></script>
 <!-- The basic File Upload plugin -->
@@ -292,6 +449,10 @@
             }
         }).prop('disabled', !$.support.fileInput)
                 .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+
+
+
         $('#myModal').on('hidden.bs.modal', function(e) {
             $('#progress .progress-bar').css('width', 0 + '%');
         });
@@ -304,7 +465,6 @@
             // if one of these blocks is not failing do not prevent submission
             // we use here group validation with option force (validate even non required fields)
             if (formInstance.isValid()) {
-                console.log("es valido!!")
                 $.ajax({
                     type: "POST",
                     url: "Controlador?action=crearDocente2",
@@ -318,21 +478,69 @@
                     } //fin success
                 }); //fin del $.ajax 
 
-            } else {/*
-             // else stop form submission
-             formInstance.submitEvent.preventDefault();
-             
-             // and display a gentle message
-             $('.invalid-form-error-message')
-             .html("You must correctly fill at least one of these 2 blocks' fields!")
-             .addClass("filled");
-             return;
-             
-             $('.invalid-form-error-message').html('');*/
+            } else {
+           
 
             }
+        });
+        
+        
+        $("#agregarRepresentante").click(function() {
+            $("#modalAgregarRepresentante").modal('show');
+        });
+        
+        $("#botonAgregarRepresentante").click(function() {
+            $('#fcrearrepresentate').parsley().validate();
+            var formInstance = $('#fcrearrepresentate').parsley();
+            // if one of these blocks is not failing do not prevent submission
+            // we use here group validation with option force (validate even non required fields)
+            if (formInstance.isValid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "Controlador?action=crearRepresentante2",
+                    data: $("#fcrearrepresentate").serialize(),
+                    success: function(data)
+                    {
+                        $("#tablarepresentante").remove();
+                        $("#panel-body-representante").prepend(data);
+                        $("#modalAgregarRepresentante").modal('hide');
 
+                    } //fin success
+                }); //fin del $.ajax 
 
+            } else {
+           
+
+            }
+        });
+        
+        $("#agregarEstudiante").click(function() {
+            $("#modalAgregarEstudiante").modal('show');
+        });
+        
+        $("#botonAgregarEstudiante").click(function() {
+            $('#fcrearestudiante').parsley().validate();
+            var formInstance = $('#fcrearestudiante').parsley();
+            // if one of these blocks is not failing do not prevent submission
+            // we use here group validation with option force (validate even non required fields)
+            if (formInstance.isValid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "Controlador?action=crearEstudiante2",
+                    data: $("#fcrearestudiante").serialize(),
+                    success: function(data)
+                    {
+                        $("#bodytablaestudiante").empty();
+                        $("#bodytablaestudiante").prepend(data);
+                        $("#modalAgregarEstudiante").modal('hide');
+
+                    } //fin success
+                }); //fin del $.ajax 
+
+            } else {
+           
+
+            }
         });
     });
 </script>
