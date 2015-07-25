@@ -32,6 +32,7 @@ public class Controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
         try {
             ResourceBundle rb = ResourceBundle.getBundle("com/actions/properties/action");
@@ -39,10 +40,17 @@ public class Controlador extends HttpServlet {
             String clase = rb.getString(action);
             Action objeto = (Action) Class.forName(clase).newInstance();
             String ruta = objeto.procesar(request);
-            if (!ruta.equals("NA")) {
+
+            int longitudRuta = ruta.length();
+            if (longitudRuta > 2) {
                 RequestDispatcher rd = request.getRequestDispatcher(ruta);
                 rd.forward(request, response);
+            } else if (longitudRuta == 2 && ruta.equals("NA") ) {
+                //NO pasa nada
+            } else if (longitudRuta == 1) {
+                out.print(ruta);
             }
+            
 
         } catch (Exception e) {
             System.out.println("Error " + e);

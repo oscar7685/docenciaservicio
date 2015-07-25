@@ -114,6 +114,7 @@
                                     <ul class="acc-menu">
                                         <li><a href="#listarEscenarios"><i class="fa fa-medkit"></i>Escenarios</a></li>
                                         <li><a href="#listarProcesos"><i class="fa fa-th"></i><span>Procesos</span><span class="badge badge-dark">15</span></a></li>
+                                        <li><a href="#listarCuestionarios"><i class="fa fa-th"></i><span>Cuestionarios</span><span class="badge badge-dark">15</span></a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -126,7 +127,7 @@
                 <div class="static-content-wrapper">
                     <div class="static-content">
                         <div class="page-content">
-                           
+
 
 
                         </div> <!-- #page-content -->
@@ -144,9 +145,45 @@
         </div>
 
 
+        <div class="modal fade" id="modalCc1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-title">Atenci&oacute;n!</h2>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Ejecutar Proceso de Autoevaluaci&oacute;n.</h4>
+                        <br>
+                        <p style="text-align: justify">Esta seguro que desea ejecutar el Proceso?.</p>
 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="modalCc1b2" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="modalCc1b1">Ejecutar Proceso</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
-
+        <div class="modal fade" id="modalCp2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-title">Atenci&oacute;n!</h2>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Ejecutar Proceso de Autoevaluaci&oacute;n</h4>
+                        <br>
+                        <p>Debe configurar todo el proceso para continuar.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
 
         <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -176,17 +213,17 @@
 
         <script src="assets/js/application.js"></script>
         <script src="assets/demo/demo.js"></script>
-       
+
 
 
         <!-- End loading site level scripts -->
 
-       
 
-      <!--  <script src="assets/demo/demo-index.js"></script> -->									
+
+        <!--  <script src="assets/demo/demo-index.js"></script> -->									
         <!-- Initialize scripts for this page-->
 
-      
+
 
 
         <!-- End loading page level scripts-->

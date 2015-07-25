@@ -51,7 +51,13 @@
                                             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${proceso.fechaf}" /></td>
                                             <td>${proceso.estado}</td>
                                             <td> <a href="#editarProceso&id=${proceso.idproceso}" title="Editar" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a>
-                                             <a href="#verMuestra&id=${proceso.idproceso}" title="Ver Muestra" class="btn btn-xs btn-default todo-options"><i class="fa fa-group"></i></a></td>
+                                                <a href="#verMuestra&id=${proceso.idproceso}" title="Ver Muestra" class="btn btn-xs btn-default todo-options"><i class="fa fa-group"></i></a>&nbsp;
+                                             <c:choose>
+                                                 <c:when test="${proceso.estado == 'En configuracion'}">
+                                                 <a style="margin-left: 20px;" href="#ejecutarProceso&id=${proceso.idproceso}" title="Ejecutar proceso" class="btn btn-xs btn-default todo-options"><i class="fa fa-play-circle"></i></a>
+                                                 </c:when>
+                                             </c:choose>
+                                            </td>
                                         </tr>
                                     </c:forEach>
 
