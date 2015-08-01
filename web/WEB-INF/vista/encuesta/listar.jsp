@@ -42,7 +42,7 @@
                                         <tr class="odd gradeX">
                                             <td>${encuesta.idCuestionario}</td>
                                             <td>${encuesta.nombre}</td>
-                                            <td> <a href="#vistaPrevia&id=${encuesta.idCuestionario}" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a></td>
+                                            <td> <a href="#vistaPrevia&id=${encuesta.idCuestionario}" class="btn btn-xs btn-default todo-options"><i class="fa fa-eye"></i></a></td>
                                         </tr>
                                     </c:forEach>
 

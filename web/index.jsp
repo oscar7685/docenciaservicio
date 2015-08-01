@@ -7,7 +7,7 @@
         if (aux.equals("Admin")) {
             RequestDispatcher rd = request.getRequestDispatcher("/Controlador?action=indexAdmin");
             rd.forward(request, response);
-        } 
+        }
     }
 %>
 
@@ -350,23 +350,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-xs-12">
-                                            <div class="input-group">							
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-group"></i>
-                                                </span>
-                                                <select  class="form-control" name='parametroC'>
-                                                    <option></option>
-                                                    <option>Administrador</option>
-                                                    <option>Docente</option>
-                                                    <option>Empleador</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-xs-12">
-                                            <a href="extras-forgotpassword.html" class="pull-left">Â¿Olvistaste tu clave?</a>
+                                            <a href="extras-forgotpassword.html" class="pull-left">¿Olvistaste tu clave?</a>
 
                                         </div>
                                     </div>

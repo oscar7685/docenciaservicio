@@ -3,99 +3,107 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 <link rel="stylesheet" href="css/jquery.fileupload.css">
-
-<div class="page-heading">            
-    <h1>Encuesta</h1>
-    <div class="options">
-        <div class="btn-toolbar">
-            <a href="#" class="btn btn-default"><i class="fa fa-fw fa-cog"></i></a>
-        </div>
-    </div>
-</div>
+<style type="text/css">
+    h3{
+        font-weight: bold;
+    }
+    #wrapper{
+        overflow: auto !important;
+    }
+    
+</style>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2>Encuesta</h2>
-                    <div class="panel-ctrls">
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel-group panel-default" id="accordionA">
-                                <div class="panel panel-default">
-                                    <c:choose>
-                                        <c:when test="${cuestionario.idCuestionario==1}">
-                                            <div class="panel-heading"><h2>Encuesta Estudiantes</h2></div>
-                                        </c:when>
-                                        <c:when test="${cuestionario.idCuestionario==2}">
-                                            <div class="panel-heading"><h2>Encuesta Docentes</h2></div>
-                                        </c:when>
-                                        <c:when test="${cuestionario.idCuestionario==3}">
-                                            <div class="panel-heading"><h2>Encuesta Directivos</h2></div>
-                                        </c:when>
-                                    </c:choose>
+    <div class="row" style="background-color: #fff;">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="full-height-content">
+                <table class="table table-bordered" style="font-weight: bold;">
+                    <tbody>
+                        <tr>
+                            <td rowspan="3" style="width: 25%; text-align: center;"><img src="<%=request.getContextPath()%>/assets/img/LogoU.png"></td>
+                            <td style="width: 75%; text-align: center; vertical-align: middle;">UNIVERSIDAD DE CARTAGENA</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 75%; text-align: center; vertical-align: middle;">MODELO DE AUTOEVALUACIÓN DE LA RELACIÓN DOCENCIA-SERVICIO</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 75%; text-align: center; vertical-align: middle;text-transform: uppercase;">${cuestionario.nombre}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Objetivo:</h3>
+                <p style="text-align: justify;">Evaluar la relación Docencia Servicio con fundamento en el convenio suscrito entre la Universidad de Cartagena y las Instituciones prestadoras de servicio, con el fin de identificar las fortalezas y debilidades que permitan el diseño de planes de mejoramiento de las prácticas formativas y garantizar la calidad en la atención de salud.</p>
+                <h3>Instrucciones:</h3>
+                <p id="insp" style="text-align: justify;">A continuación encuentra una serie de enunciados consistentes en un afirmación. Frente a cada una de estas, encuentra diferentes opciones de respuesta. Seleccione la respuesta correspondiente segun su criterio</p>
+                <h3>Criterio de Evaluación:</h3>
+                5. Completamente de acuerdo. Fortaleza Mayor<br/>
+                4. De acuerdo. Fortaleza Menor<br/>
+                3. Parcialmente de acuerdo. Debilidad Minima o Poco significativa<br/>
+                2. En desacuerdo. Debilidad Menor<br/>
+                1. Completamente en desacuerdo. Debilidad Mayor<br/>
+                0. No sabe/No responde
 
-                                    <div id="collapseOne" class="collapse in">
-                                        <div class="panel-body">
-                                            <!-- <div class="alert alert-dismissable alert-warning">
-                                                 <i class="fa fa-fw fa-warning"></i>&nbsp; <strong>Alerta!</strong> No hay muestra asignada para este proceso hasta el momento.
-                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                             </div>-->
-                                            <br/>
-                                            <table id="tablaencuesta" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Id pregunta</th>
-                                                        <th>Enunciado</th>
-                                                        <th>Respuesta</th>
-                                                        <th>acci&oacute;n</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="bodytablaencuesta">
-                                                    <c:forEach items="${preguntas}" var="pregunta" varStatus="iter">
-                                                        <tr>
-                                                            <td>${pregunta.idPregunta}</td>
-                                                            <td>${pregunta.enunciado}</td>
-                                                            <c:choose>
-                                                                <c:when test="${pregunta.tipo.equals('0a5')}">
-                                                                    <td>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="${pregunta.idPregunta}">0</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="${pregunta.idPregunta}">1</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="${pregunta.idPregunta}">2</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="${pregunta.idPregunta}">3</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="${pregunta.idPregunta}">4</label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <label><input type="radio" name="${pregunta.idPregunta}">5</label>
-                                                                        </div>
-                                                                    </td>
-                                                                </c:when>
-                                                            </c:choose>
-                                                            <td></td>
-                                                        </tr>       
-                                                    </c:forEach>
-                                                </tbody>
-                                            </table>         
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+
+            <br/>
+            <table id="tablaencuesta" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th style="text-align: center; vertical-align: middle;" rowspan="2">Criterios de Evaluación</th>
+                        <th style="text-align: center; vertical-align: middle;" rowspan="2">Enunciado</th>
+                        <th style="text-align: center; vertical-align: middle;" colspan="6">Respuesta</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: center; vertical-align: middle;">5</th>
+                        <th style="text-align: center; vertical-align: middle;">4</th>
+                        <th style="text-align: center; vertical-align: middle;">3</th>
+                        <th style="text-align: center; vertical-align: middle;">2</th>
+                        <th style="text-align: center; vertical-align: middle;">1</th>
+                        <th style="text-align: center; vertical-align: middle;">0</th>
+                    </tr>
+                </thead>
+                <tbody id="bodytablaencuesta">
+                    <c:forEach items="${preguntas}" var="pregunta" varStatus="iter">
+                        <tr>
+                            <td>${pregunta.criterioidCriterio.idCriterio}</td>
+                            <td style="text-transform:initial">${pregunta.enunciado}</td>
+                            <c:choose>
+                                <c:when test="${pregunta.tipo.equals('0a5')}">
+                                    <td>
+                                        <div class="radio">
+                                            <label><input type="radio" name="${pregunta.idPregunta}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="radio">
+                                            <label><input type="radio" name="${pregunta.idPregunta}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="radio">
+                                            <label><input type="radio" name="${pregunta.idPregunta}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="radio">
+                                            <label><input type="radio" name="${pregunta.idPregunta}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="radio">
+                                            <label><input type="radio" name="${pregunta.idPregunta}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="radio">
+                                            <label><input type="radio" name="${pregunta.idPregunta}"></label>
+                                        </div>
+                                    </td>
+                                </c:when>
+                            </c:choose>
+                        </tr>       
+                    </c:forEach>
+                </tbody>
+            </table>         
         </div>
     </div>
 </div> <!-- .container-fluid -->
@@ -133,18 +141,18 @@
     // See Docs
     window.ParsleyConfig = {
         successClass: 'has-success'
-        , errorClass: 'has-error'
-        , errorElem: '<span></span>'
-        , errorsWrapper: '<span class="help-block"></span>'
-        , errorTemplate: "<div></div>"
-        , classHandler: function (el) {
+                , errorClass: 'has-error'
+                , errorElem: '<span></span>'
+                , errorsWrapper: '<span class="help-block"></span>'
+                , errorTemplate: "<div></div>"
+                , classHandler: function(el) {
             return el.$element.closest(".form-group");
         }
     };
 
     /*jslint unparam: true */
     /*global window, $ */
-    $(function () {
+    $(function() {
         'use strict';
         // Change this to the location of your server-side upload handler:
         var url = 'SubirArchivo';
@@ -152,13 +160,13 @@
             url: url,
             dataType: 'json',
             acceptFileTypes: /(\.|\/)(xlsm)$/i,
-            done: function (e, data) {
+            done: function(e, data) {
                 if (data.result.errores) {
                     $("p#erorres").html(data.result.errores);
                     $("#myModal").modal('show');
                 }
                 else {
-                    $.each(data.result.files, function (index, file) {
+                    $.each(data.result.files, function(index, file) {
                         $('<p/>').text(file.name).appendTo('#files');
                     });
 
@@ -166,7 +174,7 @@
                         type: "POST",
                         url: "Controlador?action=listarMuestraEstudiantes",
                         data: $("#fcrearestudiante").serialize(),
-                        success: function (data)
+                        success: function(data)
                         {
                             $("#bodytablaestudiante").empty();
                             $("#bodytablaestudiante").prepend(data);
@@ -179,10 +187,10 @@
 
 
             },
-            fail: function (e, data) {
+            fail: function(e, data) {
                 //por si hay error
             },
-            progressall: function (e, data) {
+            progressall: function(e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .progress-bar').css('width', progress + '%');
             }
@@ -192,13 +200,13 @@
 
 
 
-        $('#myModal').on('hidden.bs.modal', function (e) {
+        $('#myModal').on('hidden.bs.modal', function(e) {
             $('#progress .progress-bar').css('width', 0 + '%');
         });
-        $("#agregarDocente").click(function () {
+        $("#agregarDocente").click(function() {
             $("#modalAgregarDocente").modal('show');
         });
-        $("#botonAgregarDocente").click(function () {
+        $("#botonAgregarDocente").click(function() {
             $('#fcreardocente').parsley().validate();
             var formInstance = $('#fcreardocente').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -208,7 +216,7 @@
                     type: "POST",
                     url: "Controlador?action=crearDocente2",
                     data: $("#fcreardocente").serialize(),
-                    success: function (data)
+                    success: function(data)
                     {
                         $("#tabladocente").remove();
                         $("#panel-body-docente").prepend(data);
@@ -224,11 +232,11 @@
         });
 
 
-        $("#agregarRepresentante").click(function () {
+        $("#agregarRepresentante").click(function() {
             $("#modalAgregarRepresentante").modal('show');
         });
 
-        $("#botonAgregarRepresentante").click(function () {
+        $("#botonAgregarRepresentante").click(function() {
             $('#fcrearrepresentate').parsley().validate();
             var formInstance = $('#fcrearrepresentate').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -238,7 +246,7 @@
                     type: "POST",
                     url: "Controlador?action=crearRepresentante2",
                     data: $("#fcrearrepresentate").serialize(),
-                    success: function (data)
+                    success: function(data)
                     {
                         $("#tablarepresentante").remove();
                         $("#panel-body-representante").prepend(data);
@@ -253,11 +261,11 @@
             }
         });
 
-        $("#agregarEstudiante").click(function () {
+        $("#agregarEstudiante").click(function() {
             $("#modalAgregarEstudiante").modal('show');
         });
 
-        $("#botonAgregarEstudiante").click(function () {
+        $("#botonAgregarEstudiante").click(function() {
             $('#fcrearestudiante').parsley().validate();
             var formInstance = $('#fcrearestudiante').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -267,7 +275,7 @@
                     type: "POST",
                     url: "Controlador?action=crearEstudiante2",
                     data: $("#fcrearestudiante").serialize(),
-                    success: function (data)
+                    success: function(data)
                     {
                         $("#bodytablaestudiante").empty();
                         $("#bodytablaestudiante").prepend(data);

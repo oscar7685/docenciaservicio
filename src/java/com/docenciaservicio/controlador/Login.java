@@ -4,10 +4,14 @@
  */
 package com.docenciaservicio.controlador;
 
+import com.docenciaservicio.entidades.Estudiante;
 import com.docenciaservicio.sessionbeans.FuenteFacade;
 import com.docenciaservicio.entidades.Fuente;
+import com.docenciaservicio.sessionbeans.EstudianteFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +26,8 @@ import javax.servlet.http.HttpSession;
  */
 public class Login extends HttpServlet {
 
+    @EJB
+    private EstudianteFacade estudianteFacade;
     @EJB
     private FuenteFacade fuenteFacade;
 
@@ -39,22 +45,45 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-         HttpSession session = request.getSession();
-        
+
+        HttpSession session = request.getSession();
+
         try {
-            String usuario = request.getParameter("parametroA");
-            String pass = request.getParameter("parametroB");
-            String tipoIngreso = request.getParameter("parametroC");
-            Fuente f = fuenteFacade.find(usuario);
-            
-            if (f != null && f.getPassword().equals(pass) && f.getTipo().equals(tipoIngreso)) {
-                session.setAttribute("Usuario", "Admin");
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/vista/index.html");
-                rd.forward(request, response);
+            String action = request.getParameter("action");
+            if (action != null && action.equals("CerrarSesion")) {
+                session.invalidate();
             } else {
-                System.out.println("ERROR de Login!!!");
+                String usuario = request.getParameter("parametroA");
+                String pass = request.getParameter("parametroB");
+                String tipoIngreso = request.getParameter("parametroC");
+                Fuente f = fuenteFacade.find(usuario);
+
+                if (f != null && f.getPassword().equals(pass)) {
+                    if (f.getTipo().equals("Administrador")) {
+                        session.setAttribute("Usuario", "Admin");
+                        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/vista/index.html");
+                        rd.forward(request, response);
+                    } else {
+                        session.setAttribute("fuente", "f");
+                        List<Estudiante> estudiantes = estudianteFacade.findByList("fuente_idUsuario", f);
+                        List<Estudiante> aux = new ArrayList<>();
+
+                        for (Estudiante estudiante : estudiantes) {
+                            if (estudiante.getProcesoIdproceso().getEstado().equals("En Ejecución")) {
+                                aux.add(estudiante);
+                            }
+                        }
+
+                        session.setAttribute("estudiantesConEncuesta", aux);
+                        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/vista/responderEncuesta.jsp");
+                        rd.forward(request, response);
+                    }
+
+                } else {
+                    System.out.println("ERROR de Login!!!");
+                }
             }
+
         } finally {
             out.close();
         }
