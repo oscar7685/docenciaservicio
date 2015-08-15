@@ -1,12 +1,17 @@
 <%
     HttpSession session1 = request.getSession();
-    String aux = (String) session1.getAttribute("Usuario");
+    String aux = (String) session1.getAttribute("tipoLogin");
     if (aux == null || aux.isEmpty()) {
         session1.invalidate();
     } else {
         if (aux.equals("Admin")) {
             RequestDispatcher rd = request.getRequestDispatcher("/Controlador?action=indexAdmin");
             rd.forward(request, response);
+        } else {
+            if (aux.equals("fuente")) {
+                RequestDispatcher rd = request.getRequestDispatcher("/Controlador?action=indexFuente");
+                rd.forward(request, response);
+            }
         }
     }
 %>
@@ -15,7 +20,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Avalon Frontend</title>
+        <title>Docencia Servicio</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -323,7 +328,7 @@
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h2>Login Form</h2></div>
+                            <div class="panel-heading"><h2>Formulario de ingreso</h2></div>
                             <div class="panel-body">
 
                                 <form action="Login" class="form-horizontal" id="validate-form" method="POST">
@@ -739,7 +744,7 @@
                 <div class="row footer-bottom">
                     <hr>
                     <div class="col-xs-6 mb20">
-                        <p>Avalon Â© 2014.</p>
+                        <p>Universidad de Cartagena © 2015.</p>
                     </div>
                     <div class="col-xs-6 mb20">
                         <ul class="links">

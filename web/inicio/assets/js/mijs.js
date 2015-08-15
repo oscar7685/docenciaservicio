@@ -14,7 +14,7 @@ $(function() {
     $("#inicio").click(function() {
         $(".footer-inverse").show();
         $("#login-form").hide();
-        $(".page-content").show()();
+        $(".page-content").show();
 
 
     });
