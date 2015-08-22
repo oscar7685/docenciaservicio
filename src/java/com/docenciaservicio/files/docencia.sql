@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50542
 File Encoding         : 65001
 
-Date: 2015-07-25 12:49:27
+Date: 2015-08-22 12:32:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -284,13 +284,40 @@ CREATE TABLE `docente` (
   KEY `fk_docente_programa1_idx` (`programa_idprograma`),
   KEY `fk_docente_proceso1_idx` (`proceso_idproceso`),
   KEY `fk_docente_fuente1_idx` (`fuente_idUsuario`),
-  CONSTRAINT `fk_docente_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_docente_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_docente_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_docente_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_docente_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of docente
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for encabezado
+-- ----------------------------
+DROP TABLE IF EXISTS `encabezado`;
+CREATE TABLE `encabezado` (
+  `idEncabezado` int(11) NOT NULL AUTO_INCREMENT,
+  `estado` varchar(45) NOT NULL,
+  `Cuestionario_idCuestionario` int(11) NOT NULL,
+  `proceso_idproceso` int(11) NOT NULL,
+  `fuente_idUsuario` varchar(15) NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `debilidades` varchar(2000) DEFAULT NULL,
+  `fortalezas` varchar(2000) DEFAULT NULL,
+  `recomendaciones` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`idEncabezado`),
+  KEY `fk_resultados_Cuestionario1_idx` (`Cuestionario_idCuestionario`),
+  KEY `fk_resultados_proceso1_idx` (`proceso_idproceso`),
+  KEY `fk_resultados_fuente1_idx` (`fuente_idUsuario`),
+  CONSTRAINT `fk_resultados_Cuestionario1` FOREIGN KEY (`Cuestionario_idCuestionario`) REFERENCES `cuestionario` (`idCuestionario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_resultados_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_resultados_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of encabezado
 -- ----------------------------
 
 -- ----------------------------
@@ -326,9 +353,9 @@ CREATE TABLE `estudiante` (
   KEY `fk_Estudiante_programa1_idx` (`programa_idprograma`),
   KEY `fk_Estudiante_proceso1_idx` (`proceso_idproceso`),
   KEY `fk_Estudiante_fuente1_idx` (`fuente_idUsuario`),
-  CONSTRAINT `fk_Estudiante_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Estudiante_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Estudiante_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Estudiante_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Estudiante_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -449,7 +476,7 @@ INSERT INTO `pregunta` VALUES ('4.3.1.1', '0a5', 'existen mecanismos de acceso a
 INSERT INTO `pregunta` VALUES ('4.3.1.2', '0a5', 'se aplican estos mecanismos', '', '4.3.1');
 INSERT INTO `pregunta` VALUES ('4.3.2.1', '0a5', 'es veraz la información recibida', '', '4.3.2');
 INSERT INTO `pregunta` VALUES ('4.3.2.2', '0a5', 'es oportuna y agil la entrega de la información', '', '4.3.2');
-INSERT INTO `pregunta` VALUES ('4.3.3.1', '0a5', 'existen mecanismos paa la producción, emisión y divulgación de la información generada en la relación docencia-servicio', '', '4.3.3');
+INSERT INTO `pregunta` VALUES ('4.3.3.1', '0a5', 'existen mecanismos para la producción, emisión y divulgación de la información generada en la relación docencia-servicio', '', '4.3.3');
 INSERT INTO `pregunta` VALUES ('4.3.4.1', '0a5', 'la información intena y externa que se origina en la relación docencia-servicio fluye de manera eficiente', '', '4.3.4');
 INSERT INTO `pregunta` VALUES ('4.4.1.1', '0a5', 'existen espacios fisicos adicionales disponibles para la docencia del programa en los campos de practica', '', '4.4.1');
 INSERT INTO `pregunta` VALUES ('4.4.2.1', '0a5', 'los espacios existentes están disponibles para la practica formativa', '', '4.4.2');
@@ -525,28 +552,21 @@ CREATE TABLE `representanteescenario` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for resultados
+-- Table structure for respuestas
 -- ----------------------------
-DROP TABLE IF EXISTS `resultados`;
-CREATE TABLE `resultados` (
-  `idResultados` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(45) NOT NULL,
-  `respuesta` varchar(2000) NOT NULL,
+DROP TABLE IF EXISTS `respuestas`;
+CREATE TABLE `respuestas` (
+  `idrespuestas` int(11) NOT NULL AUTO_INCREMENT,
   `Pregunta_idPregunta` varchar(45) NOT NULL,
-  `Cuestionario_idCuestionario` int(11) NOT NULL,
-  `proceso_idproceso` int(11) NOT NULL,
-  `fuente_idUsuario` varchar(15) NOT NULL,
-  PRIMARY KEY (`idResultados`),
-  KEY `fk_resultados_Pregunta1_idx` (`Pregunta_idPregunta`),
-  KEY `fk_resultados_Cuestionario1_idx` (`Cuestionario_idCuestionario`),
-  KEY `fk_resultados_proceso1_idx` (`proceso_idproceso`),
-  KEY `fk_resultados_fuente1_idx` (`fuente_idUsuario`),
-  CONSTRAINT `fk_resultados_Cuestionario1` FOREIGN KEY (`Cuestionario_idCuestionario`) REFERENCES `cuestionario` (`idCuestionario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_resultados_fuente1` FOREIGN KEY (`fuente_idUsuario`) REFERENCES `fuente` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_resultados_Pregunta1` FOREIGN KEY (`Pregunta_idPregunta`) REFERENCES `pregunta` (`idPregunta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_resultados_proceso1` FOREIGN KEY (`proceso_idproceso`) REFERENCES `proceso` (`idproceso`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `respuesta` int(11) DEFAULT NULL,
+  `encabezado_idEncabezado` int(11) NOT NULL,
+  PRIMARY KEY (`idrespuestas`),
+  KEY `fk_respuestas_Pregunta1_idx` (`Pregunta_idPregunta`),
+  KEY `fk_respuestas_encabezado1_idx` (`encabezado_idEncabezado`),
+  CONSTRAINT `fk_respuestas_Pregunta1` FOREIGN KEY (`Pregunta_idPregunta`) REFERENCES `pregunta` (`idPregunta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_respuestas_encabezado1` FOREIGN KEY (`encabezado_idEncabezado`) REFERENCES `encabezado` (`idEncabezado`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of resultados
+-- Records of respuestas
 -- ----------------------------
