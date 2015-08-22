@@ -65,7 +65,7 @@ public class Proceso implements Serializable {
     @Column(name = "estado")
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
-    private List<Resultados> resultadosList;
+    private List<Encabezado> encabezadoList;
     @JoinColumn(name = "Escenario_idEscenario", referencedColumnName = "idEscenario")
     @ManyToOne(optional = false)
     private Escenario escenarioidEscenario;
@@ -129,12 +129,12 @@ public class Proceso implements Serializable {
     }
 
     @XmlTransient
-    public List<Resultados> getResultadosList() {
-        return resultadosList;
+    public List<Encabezado> getEncabezadoList() {
+        return encabezadoList;
     }
 
-    public void setResultadosList(List<Resultados> resultadosList) {
-        this.resultadosList = resultadosList;
+    public void setEncabezadoList(List<Encabezado> encabezadoList) {
+        this.encabezadoList = encabezadoList;
     }
 
     public Escenario getEscenarioidEscenario() {

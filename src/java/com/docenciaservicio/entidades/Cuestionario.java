@@ -52,7 +52,7 @@ public class Cuestionario implements Serializable {
     @ManyToMany
     private List<Pregunta> preguntaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuestionarioidCuestionario")
-    private List<Resultados> resultadosList;
+    private List<Encabezado> encabezadoList;
 
     public Cuestionario() {
     }
@@ -87,12 +87,12 @@ public class Cuestionario implements Serializable {
     }
 
     @XmlTransient
-    public List<Resultados> getResultadosList() {
-        return resultadosList;
+    public List<Encabezado> getEncabezadoList() {
+        return encabezadoList;
     }
 
-    public void setResultadosList(List<Resultados> resultadosList) {
-        this.resultadosList = resultadosList;
+    public void setEncabezadoList(List<Encabezado> encabezadoList) {
+        this.encabezadoList = encabezadoList;
     }
 
     @Override

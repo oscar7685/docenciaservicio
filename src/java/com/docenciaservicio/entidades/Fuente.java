@@ -61,7 +61,7 @@ public class Fuente implements Serializable {
     @Column(name = "tipo")
     private String tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
-    private List<Resultados> resultadosList;
+    private List<Encabezado> encabezadoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
     private List<Estudiante> estudianteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fuenteidUsuario")
@@ -124,12 +124,12 @@ public class Fuente implements Serializable {
     }
 
     @XmlTransient
-    public List<Resultados> getResultadosList() {
-        return resultadosList;
+    public List<Encabezado> getEncabezadoList() {
+        return encabezadoList;
     }
 
-    public void setResultadosList(List<Resultados> resultadosList) {
-        this.resultadosList = resultadosList;
+    public void setEncabezadoList(List<Encabezado> encabezadoList) {
+        this.encabezadoList = encabezadoList;
     }
 
     @XmlTransient

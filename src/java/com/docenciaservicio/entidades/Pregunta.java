@@ -60,7 +60,7 @@ public class Pregunta implements Serializable {
     @ManyToMany(mappedBy = "preguntaList")
     private List<Cuestionario> cuestionarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "preguntaidPregunta")
-    private List<Resultados> resultadosList;
+    private List<Respuestas> respuestasList;
     @JoinColumn(name = "Criterio_idCriterio", referencedColumnName = "idCriterio")
     @ManyToOne
     private Criterio criterioidCriterio;
@@ -119,12 +119,12 @@ public class Pregunta implements Serializable {
     }
 
     @XmlTransient
-    public List<Resultados> getResultadosList() {
-        return resultadosList;
+    public List<Respuestas> getRespuestasList() {
+        return respuestasList;
     }
 
-    public void setResultadosList(List<Resultados> resultadosList) {
-        this.resultadosList = resultadosList;
+    public void setRespuestasList(List<Respuestas> respuestasList) {
+        this.respuestasList = respuestasList;
     }
 
     public Criterio getCriterioidCriterio() {

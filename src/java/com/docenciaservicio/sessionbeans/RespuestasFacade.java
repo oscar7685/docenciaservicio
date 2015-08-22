@@ -4,9 +4,7 @@
  */
 package com.docenciaservicio.sessionbeans;
 
-import com.docenciaservicio.entidades.Estudiante;
-import com.docenciaservicio.entidades.Proceso;
-import java.util.List;
+import com.docenciaservicio.entidades.Respuestas;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,8 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author Ususario
  */
 @Stateless
-public class ProcesoFacade extends AbstractFacade<Proceso> {
-
+public class RespuestasFacade extends AbstractFacade<Respuestas> {
     @PersistenceContext(unitName = "docenciaservicioPU")
     private EntityManager em;
 
@@ -26,8 +23,8 @@ public class ProcesoFacade extends AbstractFacade<Proceso> {
         return em;
     }
 
-    public ProcesoFacade() {
-        super(Proceso.class);
+    public RespuestasFacade() {
+        super(Respuestas.class);
     }
     
 }
