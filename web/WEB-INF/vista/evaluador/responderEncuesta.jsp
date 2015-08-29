@@ -74,32 +74,32 @@
                                     <c:when test="${pregunta.tipo.equals('0a5')}">
                                         <td>
                                             <div class="radio">
-                                                <label><input type="radio" value="5" name="${pregunta.idPregunta}"></label>
+                                                <label><input type="radio" value="5" name="pregunta${pregunta.idPregunta}"></label>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="radio">
-                                                <label><input type="radio" value="4" name="${pregunta.idPregunta}"></label>
+                                                <label><input type="radio" value="4" name="pregunta${pregunta.idPregunta}"></label>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="radio">
-                                                <label><input type="radio" value="3" name="${pregunta.idPregunta}"></label>
+                                                <label><input type="radio" value="3" name="pregunta${pregunta.idPregunta}"></label>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="radio">
-                                                <label><input type="radio" value="2" name="${pregunta.idPregunta}"></label>
+                                                <label><input type="radio" value="2" name="pregunta${pregunta.idPregunta}"></label>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="radio">
-                                                <label><input type="radio" value="1" name="${pregunta.idPregunta}"></label>
+                                                <label><input type="radio" value="1" name="pregunta${pregunta.idPregunta}"></label>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="radio">
-                                                <label><input type="radio" value="0" required name="${pregunta.idPregunta}"></label>
+                                                <label><input type="radio" value="0" required name="pregunta${pregunta.idPregunta}"></label>
                                             </div>
                                         </td>
                                     </c:when>
@@ -142,6 +142,24 @@
     </div>
 </div> <!-- .container-fluid -->
 
+<!-- Modal -->
+<div class="modal fade" id="myModalGracias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Gracias</h2>
+            </div>
+            <div class="modal-body">
+                <h2> La encuesta se ha enviado correctamente.
+                 Muchas gracias por participar del proceso de autoevaluaci&oacute;n del escenario ${escenario.nombre}.</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="assets/plugins/datatables/jquery.dataTables.js"></script> 						<!-- Data Tables -->
@@ -163,7 +181,7 @@
 
     $(function() {
         $("button").popover({trigger: "hover", placement: 'top'});
-        
+
         $('#fencuesta').parsley().subscribe('parsley:form:validate', function(formInstance) {
             formInstance.submitEvent.preventDefault();
             // if one of these blocks is not failing do not prevent submission
@@ -175,7 +193,10 @@
                     data: $("#fencuesta").serialize(),
                     success: function()
                     {
-                       // location = "#listarProcesos";
+                        $("#myModalGracias").modal();
+                        $('#myModalGracias').on('hidden.bs.modal', function() {
+                            location = "<%=request.getContextPath()%>/#inicio";
+                        });
                     } //fin success
                 }); //fin del $.ajax 
             }

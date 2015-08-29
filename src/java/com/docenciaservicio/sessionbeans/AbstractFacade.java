@@ -60,14 +60,14 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
+
     public List<T> findByList(String property, Object m) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         Query q = getEntityManager().createQuery("SELECT c FROM " + entityClass.getSimpleName() + " c WHERE c." + property + " = :name", entityClass);
         q.setParameter("name", m);
         return q.getResultList();
-}
+    }
 
     public List<T> findByList2(String property1, Object m1, String property2, Object m2) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
@@ -77,13 +77,22 @@ public abstract class AbstractFacade<T> {
         q.setParameter("name2", m2);
         return q.getResultList();
     }
+
     public List<T> findByList3(String property1, Object m1, String property2, Object m2, String property3, Object m3) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
-        Query q = getEntityManager().createQuery("SELECT c FROM " + entityClass.getSimpleName() + " c WHERE c." + property1 + " = :name1 and c." + property2 + " = :name2 and c." + property3 + " = :name3" , entityClass);
+        Query q = getEntityManager().createQuery("SELECT c FROM " + entityClass.getSimpleName() + " c WHERE c." + property1 + " = :name1 and c." + property2 + " = :name2 and c." + property3 + " = :name3", entityClass);
         q.setParameter("name1", m1);
         q.setParameter("name2", m2);
         q.setParameter("name3", m3);
         return q.getResultList();
+    }
+
+    public T findUltimo(String id) {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        Query q = getEntityManager().createQuery("SELECT c FROM " + entityClass.getSimpleName() + " c  ORDER BY c." + id + " DESC", entityClass);
+        q.setMaxResults(1);
+        return (T) q.getSingleResult();
     }
 }

@@ -78,23 +78,42 @@
                                                 <tbody id="bodytablaestudiante">
                                                     <c:choose>
                                                         <c:when test="${fn:length(estudiantesMuestra)!= 0}">
-                                                            <c:forEach items="${estudiantesMuestra}" var="estudiante" varStatus="iter">
-                                                                <tr>
-                                                                    <td>${estudiante.fuenteidUsuario.idUsuario}</td>
-                                                                    <td>${estudiante.idEstudiante}</td>
-                                                                    <td>${estudiante.fuenteidUsuario.nombre}</td>
-                                                                    <td>${estudiante.fuenteidUsuario.apellido}</td>
-                                                                    <td>${estudiante.programaIdprograma.nombrepro}</td>
-                                                                    <td>${estudiante.semestre}</td>
-                                                                    <td></td>
-                                                                </tr>       
+                                                            <c:forEach items="${estudiantesMuestra}" var="estudiante" varStatus="iter55">
+                                                                <c:set var="varaux" value="0"/>
+                                                                <c:forEach items="${encabezadosEstudiantes}" var="item3" >
+                                                                    <c:if test="${estudiante.fuenteidUsuario.idUsuario == item3.fuenteidUsuario.idUsuario}">
+                                                                        <c:set var="varaux" value="1"/>
+                                                                        <tr class="terminadoC">
+                                                                            <td style="background-color: #DFF0D8; color: #468847;">${estudiante.fuenteidUsuario.idUsuario}</td>
+                                                                            <td style="background-color: #DFF0D8; color: #468847;">${estudiante.idEstudiante}</td>
+                                                                            <td style="background-color: #DFF0D8; color: #468847;">${estudiante.fuenteidUsuario.nombre}</td>
+                                                                            <td style="background-color: #DFF0D8; color: #468847;">${estudiante.fuenteidUsuario.apellido}</td>
+                                                                            <td style="background-color: #DFF0D8; color: #468847;">${estudiante.programaIdprograma.nombrepro}</td>
+                                                                            <td style="background-color: #DFF0D8; color: #468847;">${estudiante.semestre}</td>
+                                                                            <td style="background-color: #DFF0D8; color: #468847;"></td>
+                                                                        </tr>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                                <c:if test="${varaux == 0}">
+                                                                    <tr>
+                                                                        <td>${estudiante.fuenteidUsuario.idUsuario}</td>
+                                                                        <td>${estudiante.idEstudiante}</td>
+                                                                        <td>${estudiante.fuenteidUsuario.nombre}</td>
+                                                                        <td>${estudiante.fuenteidUsuario.apellido}</td>
+                                                                        <td>${estudiante.programaIdprograma.nombrepro}</td>
+                                                                        <td>${estudiante.semestre}</td>
+                                                                        <td></td>
+                                                                    </tr>  
+
+                                                                </c:if>
+                                                                <c:set var="contador" value="${iter55.index}"></c:set>
                                                             </c:forEach>
                                                         </c:when>
                                                     </c:choose>
 
                                                 </tbody>
                                             </table>
-                                             <button class="btn btn-primary" id="agregarEstudiante">Agregar estudiante</button>                
+                                            <button class="btn btn-primary" id="agregarEstudiante">Agregar estudiante</button>                
                                         </div>
                                     </div>
                                 </div>
@@ -117,15 +136,32 @@
                                             <tbody id="bodytabladocente">
                                                 <c:choose>
                                                     <c:when test="${fn:length(docentesMuestra)!= 0}">
-                                                        <c:forEach items="${docentesMuestra}" var="docente" varStatus="iter">
-                                                            <tr>
-                                                                <td>${docente.fuenteidUsuario.idUsuario}</td>
-                                                                <td>${docente.fuenteidUsuario.nombre}</td>
-                                                                <td>${docente.fuenteidUsuario.apellido}</td>
-                                                                <td>${docente.programaIdprograma.nombrepro}</td>
-                                                                <td>${docente.tipoContrato}</td>
-                                                                <td></td>
-                                                            </tr>       
+                                                        <c:forEach items="${docentesMuestra}" var="docente" varStatus="iter56">
+                                                            <c:set var="varaux" value="0"/>
+                                                            <c:forEach items="${encabezadosDocentes}" var="item3" >
+                                                                <c:if test="${docente.fuenteidUsuario.idUsuario == item3.fuenteidUsuario.idUsuario}">
+                                                                    <c:set var="varaux" value="1"/>
+                                                                    <tr class="terminadoC">
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${docente.fuenteidUsuario.idUsuario}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${docente.fuenteidUsuario.nombre}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${docente.fuenteidUsuario.apellido}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${docente.programaIdprograma.nombrepro}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${docente.tipoContrato}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;"></td>
+                                                                    </tr>  
+                                                                </c:if>
+                                                            </c:forEach>
+                                                            <c:if test="${varaux == 0}">
+                                                                <tr>
+                                                                    <td>${docente.fuenteidUsuario.idUsuario}</td>
+                                                                    <td>${docente.fuenteidUsuario.nombre}</td>
+                                                                    <td>${docente.fuenteidUsuario.apellido}</td>
+                                                                    <td>${docente.programaIdprograma.nombrepro}</td>
+                                                                    <td>${docente.tipoContrato}</td>
+                                                                    <td></td>
+                                                                </tr>  
+
+                                                            </c:if>
                                                         </c:forEach>
                                                     </c:when>
                                                 </c:choose>
@@ -153,14 +189,30 @@
                                             <tbody id="bodytablarepresentante">
                                                 <c:choose>
                                                     <c:when test="${fn:length(representanteMuestra)!= 0}">
-                                                        <c:forEach items="${representanteMuestra}" var="representante" varStatus="iter">
-                                                            <tr>
-                                                                <td>${representante.fuenteidUsuario.idUsuario}</td>
-                                                                <td>${representante.fuenteidUsuario.nombre}</td>
-                                                                <td>${representante.fuenteidUsuario.apellido}</td>
-                                                                <td>${representante.cargo}</td>
-                                                                <td></td>
-                                                            </tr>       
+
+                                                        <c:forEach items="${representanteMuestra}" var="representante" varStatus="iter56">
+                                                            <c:set var="varaux" value="0"/>
+                                                            <c:forEach items="${encabezadosRepresentantes}" var="item3" >
+                                                                <c:if test="${representante.fuenteidUsuario.idUsuario == item3.fuenteidUsuario.idUsuario}">
+                                                                    <c:set var="varaux" value="1"/>
+                                                                    <tr class="terminadoC">
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${representante.fuenteidUsuario.idUsuario}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${representante.fuenteidUsuario.nombre}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${representante.fuenteidUsuario.apellido}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;">${representante.cargo}</td>
+                                                                        <td style="background-color: #DFF0D8; color: #468847;"></td>
+                                                                    </tr>  
+                                                                </c:if>
+                                                            </c:forEach>
+                                                            <c:if test="${varaux == 0}">
+                                                                <tr>
+                                                                    <td>${representante.fuenteidUsuario.idUsuario}</td>
+                                                                    <td>${representante.fuenteidUsuario.nombre}</td>
+                                                                    <td>${representante.fuenteidUsuario.apellido}</td>
+                                                                    <td>${representante.cargo}</td>
+                                                                    <td></td>
+                                                                </tr>  
+                                                            </c:if>
                                                         </c:forEach>
                                                     </c:when>
                                                 </c:choose>
@@ -347,7 +399,7 @@
                             <input type="text" name="apellidoE" class="form-control" id="apellidoE" required placeholder="Escribe los  apellidos del estudiante">
                         </div>
                     </div>
-                   <div class="form-group">
+                    <div class="form-group">
                         <label for="semestreE" class="col-sm-2 control-label">Semestre</label>
                         <div class="col-sm-8">
                             <select name="semestreE" class="form-control" id="semestreE" required>
@@ -367,7 +419,7 @@
                             </select>
                         </div>
                     </div>
-                   <div class="form-group">
+                    <div class="form-group">
                         <label for="programaE" class="col-sm-2 control-label">Programa</label>
                         <div class="col-sm-8">
                             <select name="programaE" class="form-control" id="programaE" required>
@@ -380,7 +432,7 @@
                         </div>
                     </div>
 
-                    
+
 
 
                 </div>
@@ -436,20 +488,20 @@
                     $.each(data.result.files, function(index, file) {
                         $('<p/>').text(file.name).appendTo('#files');
                     });
-                    
-                    $.ajax({
-                    type: "POST",
-                    url: "Controlador?action=listarMuestraEstudiantes",
-                    data: $("#fcrearestudiante").serialize(),
-                    success: function(data)
-                    {
-                        $("#bodytablaestudiante").empty();
-                        $("#bodytablaestudiante").prepend(data);
-                        $("#modalAgregarEstudiante").modal('hide');
 
-                    } //fin success
-                }); //fin del $.ajax 
-                    
+                    $.ajax({
+                        type: "POST",
+                        url: "Controlador?action=listarMuestraEstudiantes",
+                        data: $("#fcrearestudiante").serialize(),
+                        success: function(data)
+                        {
+                            $("#bodytablaestudiante").empty();
+                            $("#bodytablaestudiante").prepend(data);
+                            $("#modalAgregarEstudiante").modal('hide');
+
+                        } //fin success
+                    }); //fin del $.ajax 
+
                 }
 
 
@@ -493,16 +545,16 @@
                 }); //fin del $.ajax 
 
             } else {
-           
+
 
             }
         });
-        
-        
+
+
         $("#agregarRepresentante").click(function() {
             $("#modalAgregarRepresentante").modal('show');
         });
-        
+
         $("#botonAgregarRepresentante").click(function() {
             $('#fcrearrepresentate').parsley().validate();
             var formInstance = $('#fcrearrepresentate').parsley();
@@ -523,15 +575,15 @@
                 }); //fin del $.ajax 
 
             } else {
-           
+
 
             }
         });
-        
+
         $("#agregarEstudiante").click(function() {
             $("#modalAgregarEstudiante").modal('show');
         });
-        
+
         $("#botonAgregarEstudiante").click(function() {
             $('#fcrearestudiante').parsley().validate();
             var formInstance = $('#fcrearestudiante').parsley();
@@ -552,7 +604,7 @@
                 }); //fin del $.ajax 
 
             } else {
-           
+
 
             }
         });

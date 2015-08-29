@@ -23,7 +23,18 @@ $(function() {
                 } //fin success
             }); //fin del $.ajax 
 
-        }
+        } else if (hash === "#inicio") {
+            var url3 = "/docenciaservicio/Controlador?action=retornarListadoEncuestas";
+            $("div.container-fluid").empty();
+            $.ajax({
+                type: "POST",
+                url: url3,
+                success: function(data)
+                {
+                    $("div.container-fluid").html(data);
+                } //fin success
+            }); //fin del $.ajax 
 
+        }
     });
 });
