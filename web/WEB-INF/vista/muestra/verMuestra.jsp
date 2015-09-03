@@ -102,7 +102,7 @@
                                                                         <td>${estudiante.fuenteidUsuario.apellido}</td>
                                                                         <td>${estudiante.programaIdprograma.nombrepro}</td>
                                                                         <td>${estudiante.semestre}</td>
-                                                                        <td></td>
+                                                                        <td><button class="btn btn-xs btn-default todo-options" title="Eliminar" id="eliminarEstudiante"><i class="fa fa-times"></i></button></td>
                                                                     </tr>  
 
                                                                 </c:if>
@@ -245,6 +245,25 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal Eliminar-->
+<div class="modal fade" id="modalEliminarEstudiante" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Confirmación de Eliminación</h2>
+            </div>
+            <div class="modal-body">
+                <h2>Está seguro que quiere eliminar al estudiante del proceso: ${proceso.descripcionp}</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="botonEliminarEstudiante" class="btn btn-primary">Eliminar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -460,18 +479,18 @@
     // See Docs
     window.ParsleyConfig = {
         successClass: 'has-success'
-                , errorClass: 'has-error'
-                , errorElem: '<span></span>'
-                , errorsWrapper: '<span class="help-block"></span>'
-                , errorTemplate: "<div></div>"
-                , classHandler: function(el) {
+        , errorClass: 'has-error'
+        , errorElem: '<span></span>'
+        , errorsWrapper: '<span class="help-block"></span>'
+        , errorTemplate: "<div></div>"
+        , classHandler: function (el) {
             return el.$element.closest(".form-group");
         }
     };
 
     /*jslint unparam: true */
     /*global window, $ */
-    $(function() {
+    $(function () {
         'use strict';
         // Change this to the location of your server-side upload handler:
         var url = 'SubirArchivo';
@@ -479,13 +498,13 @@
             url: url,
             dataType: 'json',
             acceptFileTypes: /(\.|\/)(xlsm)$/i,
-            done: function(e, data) {
+            done: function (e, data) {
                 if (data.result.errores) {
                     $("p#erorres").html(data.result.errores);
                     $("#myModal").modal('show');
                 }
                 else {
-                    $.each(data.result.files, function(index, file) {
+                    $.each(data.result.files, function (index, file) {
                         $('<p/>').text(file.name).appendTo('#files');
                     });
 
@@ -493,7 +512,7 @@
                         type: "POST",
                         url: "Controlador?action=listarMuestraEstudiantes",
                         data: $("#fcrearestudiante").serialize(),
-                        success: function(data)
+                        success: function (data)
                         {
                             $("#bodytablaestudiante").empty();
                             $("#bodytablaestudiante").prepend(data);
@@ -506,10 +525,10 @@
 
 
             },
-            fail: function(e, data) {
+            fail: function (e, data) {
                 //por si hay error
             },
-            progressall: function(e, data) {
+            progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .progress-bar').css('width', progress + '%');
             }
@@ -519,13 +538,13 @@
 
 
 
-        $('#myModal').on('hidden.bs.modal', function(e) {
+        $('#myModal').on('hidden.bs.modal', function (e) {
             $('#progress .progress-bar').css('width', 0 + '%');
         });
-        $("#agregarDocente").click(function() {
+        $("#agregarDocente").click(function () {
             $("#modalAgregarDocente").modal('show');
         });
-        $("#botonAgregarDocente").click(function() {
+        $("#botonAgregarDocente").click(function () {
             $('#fcreardocente').parsley().validate();
             var formInstance = $('#fcreardocente').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -535,7 +554,7 @@
                     type: "POST",
                     url: "Controlador?action=crearDocente2",
                     data: $("#fcreardocente").serialize(),
-                    success: function(data)
+                    success: function (data)
                     {
                         $("#tabladocente").remove();
                         $("#panel-body-docente").prepend(data);
@@ -550,12 +569,31 @@
             }
         });
 
+        $("#eliminarEstudiante").click(function () {
+            $("#modalEliminarEstudiante").modal('show');
+        });
 
-        $("#agregarRepresentante").click(function() {
+        $("#botonEliminarEstudiante").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "Controlador?action=eliminarEstudiante",
+                success: function ()
+                {
+                    $("#tabladocente").remove();
+                    $("#panel-body-docente").prepend(data);
+                    $("#modalEliminarEstudiante").modal('hide');
+
+                } //fin success
+            }); //fin del $.ajax 
+
+
+        });
+
+        $("#agregarRepresentante").click(function () {
             $("#modalAgregarRepresentante").modal('show');
         });
 
-        $("#botonAgregarRepresentante").click(function() {
+        $("#botonAgregarRepresentante").click(function () {
             $('#fcrearrepresentate').parsley().validate();
             var formInstance = $('#fcrearrepresentate').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -565,7 +603,7 @@
                     type: "POST",
                     url: "Controlador?action=crearRepresentante2",
                     data: $("#fcrearrepresentate").serialize(),
-                    success: function(data)
+                    success: function (data)
                     {
                         $("#tablarepresentante").remove();
                         $("#panel-body-representante").prepend(data);
@@ -580,11 +618,11 @@
             }
         });
 
-        $("#agregarEstudiante").click(function() {
+        $("#agregarEstudiante").click(function () {
             $("#modalAgregarEstudiante").modal('show');
         });
 
-        $("#botonAgregarEstudiante").click(function() {
+        $("#botonAgregarEstudiante").click(function () {
             $('#fcrearestudiante').parsley().validate();
             var formInstance = $('#fcrearestudiante').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -594,7 +632,7 @@
                     type: "POST",
                     url: "Controlador?action=crearEstudiante2",
                     data: $("#fcrearestudiante").serialize(),
-                    success: function(data)
+                    success: function (data)
                     {
                         $("#bodytablaestudiante").empty();
                         $("#bodytablaestudiante").prepend(data);
