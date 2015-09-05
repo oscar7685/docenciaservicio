@@ -14,15 +14,31 @@
     <tbody>
         <c:choose>
             <c:when test="${fn:length(listaDocentes)!= 0}">
-                <c:forEach items="${listaDocentes}" var="docente" varStatus="iter">
-                    <tr class="odd gradeX">
-                        <td>${docente.fuenteidUsuario.idUsuario}</td>
-                        <td>${docente.fuenteidUsuario.nombre}</td>
-                        <td>${docente.fuenteidUsuario.apellido}</td>
-                        <td>${docente.programaIdprograma.nombrepro}</td>
-                        <td>${docente.tipoContrato}</td>
-                        <td> <a href="#" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a></td>
-                    </tr>
+                <c:forEach items="${listaDocentes}" var="docente" varStatus="iter56">
+                    <c:set var="varaux" value="0"/>
+                    <c:forEach items="${encabezadosDocentes}" var="item3" >
+                        <c:if test="${docente.fuenteidUsuario.idUsuario == item3.fuenteidUsuario.idUsuario}">
+                            <c:set var="varaux" value="1"/>
+                            <tr class="terminadoC">
+                                <td style="background-color: #DFF0D8; color: #468847;">${docente.fuenteidUsuario.idUsuario}</td>
+                                <td style="background-color: #DFF0D8; color: #468847;">${docente.fuenteidUsuario.nombre}</td>
+                                <td style="background-color: #DFF0D8; color: #468847;">${docente.fuenteidUsuario.apellido}</td>
+                                <td style="background-color: #DFF0D8; color: #468847;">${docente.programaIdprograma.nombrepro}</td>
+                                <td style="background-color: #DFF0D8; color: #468847;">${docente.tipoContrato}</td>
+                                <td style="background-color: #DFF0D8; color: #468847;"></td>
+                            </tr>  
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${varaux == 0}">
+                        <tr>
+                            <td>${docente.fuenteidUsuario.idUsuario}</td>
+                            <td>${docente.fuenteidUsuario.nombre}</td>
+                            <td>${docente.fuenteidUsuario.apellido}</td>
+                            <td>${docente.programaIdprograma.nombrepro}</td>
+                            <td>${docente.tipoContrato}</td>
+                            <td><button class="btn btn-xs btn-default todo-options eliminarDocente" title="Eliminar" data-value="${docente.docenteid}"><i class="fa fa-times"></i></button></td>
+                        </tr>  
+                    </c:if>
                 </c:forEach>
             </c:when>
         </c:choose>           

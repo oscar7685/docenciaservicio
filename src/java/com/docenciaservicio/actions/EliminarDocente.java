@@ -4,11 +4,11 @@
  */
 package com.docenciaservicio.actions;
 
-
-
+import com.docenciaservicio.entidades.Docente;
 import com.docenciaservicio.interfaz.Action;
 import com.docenciaservicio.entidades.Estudiante;
 import com.docenciaservicio.entidades.Proceso;
+import com.docenciaservicio.sessionbeans.DocenteFacade;
 import com.docenciaservicio.sessionbeans.EstudianteFacade;
 import com.docenciaservicio.sessionbeans.FuenteFacade;
 import com.docenciaservicio.sessionbeans.ProcesoFacade;
@@ -29,30 +29,29 @@ import javax.servlet.http.HttpSession;
  *
  * @author Usuario
  */
-public class EliminarEstudiante implements Action {
-    EstudianteFacade estudianteFacade = lookupEstudianteFacadeBean();
+public class EliminarDocente implements Action {
 
-    
+    DocenteFacade docenteFacade = lookupDocenteFacadeBean();
+
     @Override
     public String procesar(HttpServletRequest request) throws IOException, ServletException {
         HttpSession sesion = request.getSession();
         Proceso proceso = (Proceso) sesion.getAttribute("proceso");
 
-        String identificacion = (String) request.getParameter("idEstudiante");
-        
-        Estudiante aux = estudianteFacade.find(Integer.parseInt(identificacion));
+        String identificacion = (String) request.getParameter("idDocente");
 
-        estudianteFacade.remove(aux);
-        sesion.setAttribute("listaEstudiantes", estudianteFacade.findByList("procesoIdproceso", proceso));
+        Docente aux = docenteFacade.find(Integer.parseInt(identificacion));
 
-         return "/WEB-INF/vista/muestra/agregarEstudiante.jsp";
+        docenteFacade.remove(aux);
+        sesion.setAttribute("listaDocentes", docenteFacade.findByList("procesoIdproceso", proceso));
+
+        return "/WEB-INF/vista/muestra/agregarDocente.jsp";
     }
 
-
-    private EstudianteFacade lookupEstudianteFacadeBean() {
+    private DocenteFacade lookupDocenteFacadeBean() {
         try {
             Context c = new InitialContext();
-            return (EstudianteFacade) c.lookup("java:global/docenciaservicio/EstudianteFacade!com.docenciaservicio.sessionbeans.EstudianteFacade");
+            return (DocenteFacade) c.lookup("java:global/docenciaservicio/DocenteFacade!com.docenciaservicio.sessionbeans.DocenteFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

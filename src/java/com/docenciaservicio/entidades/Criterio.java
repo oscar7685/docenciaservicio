@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -52,6 +53,8 @@ public class Criterio implements Serializable {
     @JoinColumn(name = "Caracteristica_idCaracteristica", referencedColumnName = "idCaracteristica")
     @ManyToOne(optional = false)
     private Caracteristica caracteristicaidCaracteristica;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "criterioidCriterio")
+    private List<Documental> documentalList;
 
     public Criterio() {
     }
@@ -96,6 +99,15 @@ public class Criterio implements Serializable {
 
     public void setCaracteristicaidCaracteristica(Caracteristica caracteristicaidCaracteristica) {
         this.caracteristicaidCaracteristica = caracteristicaidCaracteristica;
+    }
+
+    @XmlTransient
+    public List<Documental> getDocumentalList() {
+        return documentalList;
+    }
+
+    public void setDocumentalList(List<Documental> documentalList) {
+        this.documentalList = documentalList;
     }
 
     @Override

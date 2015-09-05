@@ -66,13 +66,15 @@ public class Proceso implements Serializable {
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
     private List<Encabezado> encabezadoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
+    private List<Representanteescenario> representanteescenarioList;
     @JoinColumn(name = "Escenario_idEscenario", referencedColumnName = "idEscenario")
     @ManyToOne(optional = false)
     private Escenario escenarioidEscenario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
     private List<Estudiante> estudianteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
-    private List<Representanteescenario> representanteescenarioList;
+    private List<Documental> documentalList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "procesoIdproceso")
     private List<Docente> docenteList;
 
@@ -137,6 +139,15 @@ public class Proceso implements Serializable {
         this.encabezadoList = encabezadoList;
     }
 
+    @XmlTransient
+    public List<Representanteescenario> getRepresentanteescenarioList() {
+        return representanteescenarioList;
+    }
+
+    public void setRepresentanteescenarioList(List<Representanteescenario> representanteescenarioList) {
+        this.representanteescenarioList = representanteescenarioList;
+    }
+
     public Escenario getEscenarioidEscenario() {
         return escenarioidEscenario;
     }
@@ -155,12 +166,12 @@ public class Proceso implements Serializable {
     }
 
     @XmlTransient
-    public List<Representanteescenario> getRepresentanteescenarioList() {
-        return representanteescenarioList;
+    public List<Documental> getDocumentalList() {
+        return documentalList;
     }
 
-    public void setRepresentanteescenarioList(List<Representanteescenario> representanteescenarioList) {
-        this.representanteescenarioList = representanteescenarioList;
+    public void setDocumentalList(List<Documental> documentalList) {
+        this.documentalList = documentalList;
     }
 
     @XmlTransient

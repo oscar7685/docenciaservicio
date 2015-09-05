@@ -52,6 +52,7 @@
                                             <td>${proceso.estado}</td>
                                             <td> <a href="#editarProceso&id=${proceso.idproceso}" title="Editar" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a>
                                                 <a href="#verMuestra&id=${proceso.idproceso}" title="Ver Muestra" class="btn btn-xs btn-default todo-options"><i class="fa fa-group"></i></a>&nbsp;
+                                                <a href="#calificarDocumentos&id=${proceso.idproceso}" title="Calificar Criterios Documentales" class="btn btn-xs btn-default todo-options"><i class="fa fa-file-text"></i></a>&nbsp;
                                              <c:choose>
                                                  <c:when test="${proceso.estado == 'En configuracion'}">
                                                  <a style="margin-left: 20px;" href="#ejecutarProceso&id=${proceso.idproceso}" title="Ejecutar proceso" class="btn btn-xs btn-default todo-options"><i class="fa fa-play-circle"></i></a>
@@ -73,7 +74,7 @@
                         <!-- End loading page level scripts-->
                     </c:when>
                     <c:otherwise>
-                        <div class="panel-body panel-no-padding">NO hay procesos registrados en el sistema</div>
+                        <div class="panel-body panel-no-padding">No hay procesos registrados en el sistema</div>
                     </c:otherwise>
                 </c:choose>   
             </div>
