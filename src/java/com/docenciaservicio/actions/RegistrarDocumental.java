@@ -28,31 +28,62 @@ import javax.servlet.http.HttpSession;
  *
  * @author Usuario
  */
-public class CalificarDocumentos implements Action {
+public class RegistrarDocumental implements Action {
 
-    ProcesoFacade procesoFacade = lookupProcesoFacadeBean();
     DocumentalFacade documentalFacade = lookupDocumentalFacadeBean();
     CriterioFacade criterioFacade = lookupCriterioFacadeBean();
 
     @Override
     public String procesar(HttpServletRequest request) throws IOException, ServletException {
         HttpSession sesion = request.getSession();
-        String idProceso = request.getParameter("id");
-        Proceso p = procesoFacade.find(Integer.parseInt(idProceso));
-        List<Criterio> criterios = criterioFacade.findAll();
-        List<Criterio> aux = new ArrayList<Criterio>();
-        for (Criterio criterio : criterios) {
-            if (criterio.getPreguntaList().isEmpty()) {
-                aux.add(criterio);
+        Proceso p = (Proceso) sesion.getAttribute("Proceso");
+        String idCriterio = request.getParameter("indicador");
+        String columna = request.getParameter("columna");
+        String valor = request.getParameter("valor");
+
+
+        Criterio aux = criterioFacade.find(idCriterio);
+
+
+        Documental documental = documentalFacade.findBySingle2("procesoIdproceso", p, "criterioidCriterio", aux);
+
+        if (documental == null) {
+            Documental documental3 = new Documental();
+            documental3.setProcesoIdproceso(p);
+            documental3.setCriterioidCriterio(aux);
+
+
+            if (columna.equals("1")) {
+                documental3.setDocumento(valor);
+            } else if (columna.equals("2")) {
+                documental3.setResponsable(valor);
+            } else if (columna.equals("3")) {
+                documental3.setMedio(valor);
+            } else if (columna.equals("4")) {
+                documental3.setLugar(valor);
+            } else if (columna.equals("5")) {
+                documental3.setEvaluacion(Integer.parseInt(valor));
+            } else if (columna.equals("6")) {
+                documental3.setAccion(valor);
             }
+            documentalFacade.create(documental3);
+        } else {
+            if (columna.equals("1")) {
+                documental.setDocumento(valor);
+            } else if (columna.equals("2")) {
+                documental.setResponsable(valor);
+            } else if (columna.equals("3")) {
+                documental.setMedio(valor);
+            } else if (columna.equals("4")) {
+                documental.setLugar(valor);
+            } else if (columna.equals("5")) {
+                documental.setEvaluacion(Integer.parseInt(valor));
+            } else if (columna.equals("6")) {
+                documental.setAccion(valor);
+            }
+            documentalFacade.edit(documental);
         }
-
-        List<Documental> listaCriteriosCalificados = documentalFacade.findByList("procesoIdproceso", p);
-        sesion.setAttribute("criteriosCalificados", listaCriteriosCalificados);
-        sesion.setAttribute("Proceso", p);
-
-        sesion.setAttribute("listaCriterios", aux);
-        return "/WEB-INF/vista/proceso/documental/calificarDocumentos.jsp";
+        return "NA";
     }
 
     private CriterioFacade lookupCriterioFacadeBean() {
@@ -69,16 +100,6 @@ public class CalificarDocumentos implements Action {
         try {
             Context c = new InitialContext();
             return (DocumentalFacade) c.lookup("java:global/docenciaservicio/DocumentalFacade!com.docenciaservicio.sessionbeans.DocumentalFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
-
-    private ProcesoFacade lookupProcesoFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (ProcesoFacade) c.lookup("java:global/docenciaservicio/ProcesoFacade!com.docenciaservicio.sessionbeans.ProcesoFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

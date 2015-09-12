@@ -11,7 +11,7 @@ $(function() {
         var hash = location.hash;
         if (hash === "#CerrarSesion") {
             $.post('Login?action=CerrarSesion', function() {
-                location.reload(); 
+                location.reload();
 
             }); //fin post
         } else if (hash.indexOf("#ejecutarPro") !== -1) {

@@ -53,11 +53,17 @@
                                             <td> <a href="#editarProceso&id=${proceso.idproceso}" title="Editar" class="btn btn-xs btn-default todo-options"><i class="fa fa-pencil"></i></a>
                                                 <a href="#verMuestra&id=${proceso.idproceso}" title="Ver Muestra" class="btn btn-xs btn-default todo-options"><i class="fa fa-group"></i></a>&nbsp;
                                                 <a href="#calificarDocumentos&id=${proceso.idproceso}" title="Calificar Criterios Documentales" class="btn btn-xs btn-default todo-options"><i class="fa fa-file-text"></i></a>&nbsp;
-                                             <c:choose>
-                                                 <c:when test="${proceso.estado == 'En configuracion'}">
-                                                 <a style="margin-left: 20px;" href="#ejecutarProceso&id=${proceso.idproceso}" title="Ejecutar proceso" class="btn btn-xs btn-default todo-options"><i class="fa fa-play-circle"></i></a>
-                                                 </c:when>
-                                             </c:choose>
+                                                    <c:choose>
+                                                        <c:when test="${proceso.estado == 'En configuracion'}">
+                                                        <a style="margin-left: 20px;" href="#ejecutarProceso&id=${proceso.idproceso}" title="Ejecutar proceso" class="btn btn-xs btn-default todo-options"><i class="fa fa-play-circle"></i></a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        <a href="#verInformes&id=${proceso.idproceso}" title="Ver Informes" class="btn btn-xs btn-default todo-options"><i class="fa fa-bar-chart"></i></a>&nbsp;
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+
+
                                             </td>
                                         </tr>
                                     </c:forEach>

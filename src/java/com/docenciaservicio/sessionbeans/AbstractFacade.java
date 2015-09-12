@@ -95,4 +95,25 @@ public abstract class AbstractFacade<T> {
         q.setMaxResults(1);
         return (T) q.getSingleResult();
     }
+
+    public T findBySingle2(String property1, Object m1, String property2, Object m2) {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        Query q = getEntityManager().createQuery("SELECT c FROM " + entityClass.getSimpleName() + " c WHERE c." + property1 + " = :name1 and c." + property2 + " = :name2", entityClass);
+        q.setParameter("name1", m1);
+        q.setParameter("name2", m2);
+        try {
+            return (T) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public int countByProperty(String property, Object m) {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        Query q = getEntityManager().createQuery("SELECT COUNT(c) FROM " + entityClass.getSimpleName() + " c WHERE c." + property + " = :name", entityClass);
+        q.setParameter("name", m);
+        return ((Long) q.getSingleResult()).intValue();
+    }
 }

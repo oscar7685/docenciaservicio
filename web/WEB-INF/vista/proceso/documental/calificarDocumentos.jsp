@@ -26,74 +26,85 @@
     }
 
 </style>
-<div class="hero-unit">
+<div class="page-heading">            
+    <h1>Proceso</h1>
+</div>
+<div class="container-fluid">
     <div class="row">
-        <div id="conte" class="span10">
-            <form id="formInfoNum" class="form-horizontal" method="post" action="">
-                <fieldset>
-                    <legend>Evaluar información numérica</legend>
-                    <table id="tablaX" class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="span3">Criterio</th>
-                                <th class="span2">Documento asociado</th>
-                                <th class="span2">Responsable</th>
-                                <th class="span1">Medio</th>
-                                <th class="span1">Lugar</th>
-                                <th class="span1">Estado <i style="font-size: 25px; vertical-align: -2px;" class="icon-info-sign" data-content="<p style='font-weight:normal'>5: La información requerida en el indicador está completa y actualizada.<br/>
-                                      4: La información requerida en el indicador está completa y en proceso de actualización.<br/>
-                                      3: La información requerida en el indicador está en proceso de elaboración.<br/>
-                                      2: Se detectó la inexistencia de la información requerida en el indicador. Ya se previó su elaboración.<br/>
-                                      1: La información requerida en el indicador no existe y no se ha previsto su elaboración.<br/>
-                                      0: No aplica</p>" data-original-title="Escala de gradación"></i></th>
-                                <th class="span2">Acci&oacute;n a implementar u observaci&oacute;n</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <c:forEach items="${lisrInidicadorsNum}" var="item" varStatus="iter">
-                                <c:set var="encontrado" value="false"></c:set>
-                                <c:forEach items="${listaNum}" var="itemNC" varStatus="iterNC"> 
-                                    <c:choose>
-                                        <c:when test="${itemNC.indicadorId.id==item.id}">
-                                            <c:set var="encontrado" value="true"></c:set>
-                                                <tr>
-                                                    <td style="text-align: justify;"><c:out value="${item.codigo} ${item.nombre}"></c:out>
-                                                    <input type="hidden" name="indicadorInput" value="<c:out value="${item.id}"></c:out>">
-                                                    </td>
-                                                    <td><c:out value="${itemNC.documento}"></c:out></td>
-                                                <td>${itemNC.responsable}</td>
-                                                <td>${itemNC.medio}</td>
-                                                <td>${itemNC.lugar}</td>
-                                                <td>${itemNC.evaluacion}</td>
-                                                <td>${itemNC.accion}</td>
-                                            </tr> 
-                                        </c:when>
-                                    </c:choose>
-                                </c:forEach>
-                                <c:choose>
-                                    <c:when test="${encontrado==false}">
+        <div class="col-md-12">
+            <!-- Accordion -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="conte" class="span10">
+                        <form id="formInfoNum" class="form-horizontal" method="post" action="">
+                            <fieldset>
+                                <legend>Evaluar Criterios</legend>
+                                <table id="tablaX" class="table table-striped table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td style="text-align: justify;">${item.codigo} ${item.nombre}
-                                                <input type="hidden" name="indicadorInput" value="${item.id}">
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <th class="col-md-3">Criterio</th>
+                                            <th class="col-md-2">Documento asociado</th>
+                                            <th class="col-md-2">Responsable</th>
+                                            <th class="col-md-1">Medio</th>
+                                            <th class="col-md-1">Lugar</th>
+                                            <th class="col-md-1">Estado <i class="fa fa-info-circle" style="width: 25px;height: 25px; font-size: 28px" data-content="<p style='font-weight:normal'>5: La información requerida en el criterio está completa y actualizada.<br/>
+                                                                           4: La información requerida en el criterio está completa y en proceso de actualización.<br/>
+                                                                           3: La información requerida en el criterio está en proceso de elaboración.<br/>
+                                                                           2: Se detectó la inexistencia de la información requerida en el criterio. Ya se previó su elaboración.<br/>
+                                                                           1: La información requerida en el criterio no existe y no se ha previsto su elaboración.<br/>
+                                                                           0: No aplica</p>" data-original-title="Escala de gradación"></i></th>
+                                            <th class="col-md-2">Acci&oacute;n a implementar u observaci&oacute;n</th>
                                         </tr>
-                                    </c:when>
-                                </c:choose>            
-                            </c:forEach>                 
-                        </tbody>
-                    </table>
-                </fieldset>
-            </form>
+                                    </thead>
+                                    <tbody>
+
+                                        <c:forEach items="${listaCriterios}" var="item" varStatus="iter">
+                                            <c:set var="encontrado" value="false"></c:set>
+                                            <c:forEach items="${criteriosCalificados}" var="itemNC" varStatus="iterNC"> 
+                                                <c:choose>
+                                                    <c:when test="${itemNC.criterioidCriterio.idCriterio==item.idCriterio}">
+                                                        <c:set var="encontrado" value="true"></c:set>
+                                                            <tr>
+                                                                <td style="text-align: justify;"><c:out value="${item.idCriterio} ${item.descripcion}"></c:out>
+                                                                <input type="hidden" name="indicadorInput" value="<c:out value="${item.idCriterio}"></c:out>">
+                                                                </td>
+                                                                <td><c:out value="${itemNC.documento}"></c:out></td>
+                                                            <td>${itemNC.responsable}</td>
+                                                            <td>${itemNC.medio}</td>
+                                                            <td>${itemNC.lugar}</td>
+                                                            <td>${itemNC.evaluacion}</td>
+                                                            <td>${itemNC.accion}</td>
+                                                        </tr> 
+                                                    </c:when>
+                                                </c:choose>
+                                            </c:forEach>
+                                            <c:choose>
+                                                <c:when test="${encontrado==false}">
+                                                    <tr>
+                                                        <td style="text-align: justify;">${item.idCriterio} ${item.descripcion}
+                                                            <input type="hidden" name="indicadorInput" value="${item.idCriterio}">
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </c:when>
+                                            </c:choose>            
+                                        </c:forEach>                 
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <script>
     $(function() {
         $('#tablaX').editableTableWidget({editor: $('<textarea>')});
@@ -102,7 +113,7 @@
                 return false; // mark cell as invalid 
             }
         });
-        
+
         $('#tablaX tr').find("td").on('validate', function(evt, newValue) {
             if (newValue.length > 1999) {
                 return false; // mark cell as invalid 
@@ -118,17 +129,16 @@
             var columna = $(this).index();
             $.ajax({
                 type: 'POST',
-                url: "<%=request.getContextPath()%>/controladorCP?action=registrarInfoNumerica",
+                url: "<%=request.getContextPath()%>/Controlador?action=registrarDocumental",
                 data: "indicador=" + indicador + "&columna=" + columna + "&valor=" + newValue,
                 success: function() {
-                    $("#dancing-dots-text").remove();
+                   // $("#dancing-dots-text").remove();
                 }
             }); //fin $.ajax
 
         });
-        $("i").popover({trigger: "hover", placement: 'bottom',html: true});
-        
+        $("i").popover({trigger: "hover", placement: 'bottom', html: true});
+
 
     });
 </script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/dataTableN.js"></script>
