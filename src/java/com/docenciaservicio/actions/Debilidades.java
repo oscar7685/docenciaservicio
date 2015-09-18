@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ususario
  */
-public class Recomendaciones implements Action {
+public class Debilidades implements Action {
 
     CuestionarioFacade cuestionarioFacade = lookupCuestionarioFacadeBean();
     EncabezadoFacade encabezadoFacade = lookupEncabezadoFacadeBean();
@@ -39,9 +39,9 @@ public class Recomendaciones implements Action {
         Cuestionario docen = cuestionarioFacade.find(2);
         Cuestionario ips = cuestionarioFacade.find(3);
 
-        List<Encabezado> estudiantes = encabezadoFacade.findByList2yNO3("cuestionarioidCuestionario", est, "procesoIdproceso", pro, "recomendaciones");
-        List<Encabezado> docentes = encabezadoFacade.findByList2yNO3("cuestionarioidCuestionario", docen, "procesoIdproceso", pro, "recomendaciones");
-        List<Encabezado> ipeses = encabezadoFacade.findByList2yNO3("cuestionarioidCuestionario", ips, "procesoIdproceso", pro, "recomendaciones");
+        List<Encabezado> estudiantes = encabezadoFacade.findByList2yNO3("cuestionarioidCuestionario", est, "procesoIdproceso", pro, "debilidades");
+        List<Encabezado> docentes = encabezadoFacade.findByList2yNO3("cuestionarioidCuestionario", docen, "procesoIdproceso", pro, "debilidades");
+        List<Encabezado> ipeses = encabezadoFacade.findByList2yNO3("cuestionarioidCuestionario", ips, "procesoIdproceso", pro, "debilidades");
 
 
         sesion.setAttribute("estudiantes", estudiantes);
@@ -49,7 +49,7 @@ public class Recomendaciones implements Action {
         sesion.setAttribute("ipeses", ipeses);
 
 
-        return "/WEB-INF/vista/proceso/informe/recomendaciones.jsp";
+        return "/WEB-INF/vista/proceso/informe/debilidades.jsp";
     }
 
     private EncabezadoFacade lookupEncabezadoFacadeBean() {

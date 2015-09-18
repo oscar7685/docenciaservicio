@@ -169,9 +169,9 @@
                             <div>
                                 <a  href="<%=request.getContextPath()%>/#informeMatrizFactores" class="btn btn-info"><i class="fa fa-bar-chart-o">  </i>Matriz de calidad por factores</a>
                                 <a  href="<%=request.getContextPath()%>/#informeMatrizCaracteristicas" class="btn btn-info"><i class="fa fa-bar-chart-o">  </i>Matriz de calidad por caracter&iacute;sticas</a>
-                                <a class="btn btn-info" href="<%=request.getContextPath()%>/#Debilidades"><i class="fa fa-thumbs-o-down"></i> Debilidades</a>    
-                                <a class="btn btn-info" href="<%=request.getContextPath()%>/#Fortalezas"><i class="fa fa-thumbs-o-up"></i> Fortalezas</a>    
-                                <a class="btn btn-info" href="<%=request.getContextPath()%>/#Recomendaciones"><i class="fa fa-comment-o"></i> Recomendaciones</a>    
+                                <a class="btn btn-info" href="<%=request.getContextPath()%>/#debilidades"><i class="fa fa-thumbs-o-down"></i> Debilidades</a>    
+                                <a class="btn btn-info" href="<%=request.getContextPath()%>/#fortalezas"><i class="fa fa-thumbs-o-up"></i> Fortalezas</a>    
+                                <a class="btn btn-info" href="<%=request.getContextPath()%>/#recomendaciones"><i class="fa fa-comment-o"></i> Recomendaciones</a>    
 
                             </div>
                             <br>

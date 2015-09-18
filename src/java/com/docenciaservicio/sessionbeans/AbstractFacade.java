@@ -77,6 +77,14 @@ public abstract class AbstractFacade<T> {
         q.setParameter("name2", m2);
         return q.getResultList();
     }
+    public List<T> findByList2yNO3(String property1, Object m1, String property2, Object m2, String property3) {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        Query q = getEntityManager().createQuery("SELECT c FROM " + entityClass.getSimpleName() + " c WHERE c." + property1 + " = :name1 and c." + property2 + " = :name2 and c."+property3+"!=''" , entityClass);
+        q.setParameter("name1", m1);
+        q.setParameter("name2", m2);
+        return q.getResultList();
+    }
 
     public List<T> findByList3(String property1, Object m1, String property2, Object m2, String property3, Object m3) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();

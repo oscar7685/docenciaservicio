@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Respuestas.findAll", query = "SELECT r FROM Respuestas r"),
     @NamedQuery(name = "Respuestas.findByIdrespuestas", query = "SELECT r FROM Respuestas r WHERE r.idrespuestas = :idrespuestas"),
+    @NamedQuery(name = "Respuestas.findResultadosxPreguntaxEncuestaxProceso", query = "SELECT r FROM Respuestas r WHERE r.preguntaidPregunta=:pregunta and r.encabezadoidEncabezado.cuestionarioidCuestionario=:cuestionario and r.encabezadoidEncabezado.procesoIdproceso=:proceso and (r.respuesta='5' or r.respuesta='4' or r.respuesta='3' or r.respuesta='2' or r.respuesta='1')"),
     @NamedQuery(name = "Respuestas.findByRespuesta", query = "SELECT r FROM Respuestas r WHERE r.respuesta = :respuesta")})
 public class Respuestas implements Serializable {
     private static final long serialVersionUID = 1L;
