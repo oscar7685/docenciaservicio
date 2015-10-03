@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <style type="text/css">
 
     .inicial td {
@@ -8,7 +8,11 @@
     }
 </style>
 <script type="text/javascript">
-    var chart;
+    $(function () {
+    $('.tool').tooltip().click(function(e){
+    $(this).tooltip('hide');
+    });
+            var chart;
             $(document).ready(function() {
     chart = new Highcharts.Chart({
     chart: {
@@ -17,21 +21,21 @@
             margin: [ 50, 30, 100, 50]
     },
             title: {
-    text: 'Matriz de calidad de factores'
+    text: '${caracteristicasDF.get(0).factoridFactor.nombreF}'
     },
             xAxis: {
     categories: [
-    <c:forEach items="${factores}" var="factorG" varStatus="status">
-        <fmt:parseNumber var="cum3"  value="${cumplimientoF[status.index]}" />
+    <c:forEach items="${caracteristicasDF}" var="caracteristica2" varStatus="status2">
+        <fmt:parseNumber var="cum4"  value="${cumplimientoDF[status2.index]}" />
         <c:choose>
-            <c:when test="${cum3>0}">
+            <c:when test="${cum4>0}">
                 <c:choose>
-                    <c:when test="${factores.size()!=status.index+1}">
-                    '${factorG.idFactor}-${factorG.nombreF}',</c:when><c:otherwise>
-                            '${factorG.idFactor}-${factorG.nombreF}'
+                    <c:when test="${caracteristicasDF.size()!=status.index+1}">
+                    '${caracteristica2.idCaracteristica}-${caracteristica2.nombreC}',</c:when><c:otherwise>
+                            '${caracteristica2.idCaracteristica}-${caracteristica2.nombreC}'
                     </c:otherwise>
-                </c:choose> 
-            </c:when>
+                </c:choose>    
+            </c:when>             
         </c:choose>
 
 
@@ -40,7 +44,7 @@
                 labels: {
         formatter: function() {
         var partes = this.value.split("-");
-                return "Factor " + partes[0];
+                return "" + partes[0];
         },
                 rotation: - 45,
                 align: 'right',
@@ -82,83 +86,80 @@
         }
         },
                 series: [{
-        name: 'Factores',
+        name: 'Caracteristicas',
                 data: [
-    <c:forEach items="${factores}" var="fact" varStatus="status">
-        <fmt:parseNumber var="cum4"  value="${cumplimientoF[status.index]}" />
+    <c:forEach items="${caracteristicasDF}" var="caracteristica4" varStatus="status33">
+        <fmt:parseNumber var="cum5"  value="${cumplimientoDF[status33.index]}" />
         <c:choose>
-            <c:when test="${cum4>0}">
+            <c:when test="${cum5>0}">
                 <c:choose>
-                    <c:when test="${factores.size()!=status.index+1}">
+                    <c:when test="${caracteristicasDF.size()!=status33.index+1}">
                         <c:choose>
-                            <c:when test="${cumplimientoF[status.index]>=4.5}">
+                            <c:when test="${cumplimientoDF[status33.index]>=4.5}">
                             {
-                            y: ${cumplimientoF[status.index]},
+                            y: ${cumplimientoDF[status33.index]},
                                     color: '#89A54E'
                             },</c:when>
-                            <c:when test="${cumplimientoF[status.index]<4.5 && cumplimientoF[status.index]>=4.0}">
+                            <c:when test="${cumplimientoDF[status33.index]<4.5 && cumplimientoDF[status33.index]>=4.0}">
                             {
-                            y: ${cumplimientoF[status.index]},
+                            y: ${cumplimientoDF[status33.index]},
                                     color: '#80699B'
                             },</c:when>
-                            <c:when test="${cumplimientoF[status.index]<4.0 && cumplimientoF[status.index]>=3.0}">
+                            <c:when test="${cumplimientoDF[status33.index]<4.0 && cumplimientoDF[status33.index]>=3.0}">
                             {
-                            y: ${cumplimientoF[status.index]},
+                            y: ${cumplimientoDF[status33.index]},
                                     color: '#3D96AE'
                             },</c:when>
-                            <c:when test="${cumplimientoF[status.index]<3.0 && cumplimientoF[status.index]>=2.0}">
+                            <c:when test="${cumplimientoDF[status33.index]<3.0 && cumplimientoDF[status33.index]>=2.0}">
                             {
-                            y: ${cumplimientoF[status.index]},
+                            y: ${cumplimientoDF[status33.index]},
                                     color: '#DB843D'
                             },</c:when><c:otherwise>
                             {
-                            y: ${cumplimientoF[status.index]},
+                            y: ${cumplimientoDF[status33.index]},
                                     color: '#AA4643'
-                            },</c:otherwise></c:choose></c:when><c:otherwise><c:choose>
-                            <c:when test="${cumplimientoF[status.index]>=4.5}">
+                            },</c:otherwise></c:choose></c:when>                    <c:otherwise>
+                        <c:choose>
+                            <c:when test="${cumplimientoDF[status33.index]>=4.5}">
                             {
-                            y: ${cumplimientoF[status.index]},
+                            y: ${cumplimientoDF[status33.index]},
                                     color: '#89A54E'
                             }
 
                             </c:when>
-                            <c:when test="${cumplimientoF[status.index]<4.5 && cumplimientoF[status.index]>=4.0}">
+                            <c:when test="${cumplimientoDF[status33.index]<4.5 && cumplimientoDF[status33.index]>=4.0}">
                                 {
-                                y: ${cumplimientoF[status.index]},
+                                y: ${cumplimientoDF[status33.index]},
                                         color: '#80699B'
                                 }
 
                             </c:when>
-                            <c:when test="${cumplimientoF[status.index]<4.0 && cumplimientoF[status.index]>=3.0}">
+                            <c:when test="${cumplimientoDF[status33.index]<4.0 && cumplimientoDF[status33.index]>=3.0}">
                                 {
-                                y: ${cumplimientoF[status.index]},
+                                y: ${cumplimientoDF[status33.index]},
                                         color: '#3D96AE'
                                 }
 
                             </c:when>
-                            <c:when test="${cumplimientoF[status.index]<3.0 && cumplimientoF[status.index]>=2.0}">
+                            <c:when test="${cumplimientoDF[status33.index]<3.0 && cumplimientoDF[status33.index]>=2.0}">
                                 {
-                                y: ${cumplimientoF[status.index]},
+                                y: ${cumplimientoDF[status33.index]},
                                         color: '#DB843D'
                                 }
 
                             </c:when>
                             <c:otherwise>
                                 {
-                                y: ${cumplimientoF[status.index]},
+                                y: ${cumplimientoDF[status33.index]},
                                         color: '#AA4643'
                                 }
                             </c:otherwise>
                         </c:choose>
-
-
-
-
-
                     </c:otherwise>
-                </c:choose>     
-            </c:when>
+                </c:choose>      
+            </c:when>             
         </c:choose>
+
 
     </c:forEach>
 
@@ -169,7 +170,7 @@
                 rotation: - 90,
                 color: '#FFFFFF',
                 align: 'right',
-                x: 4,
+                x: - 3,
                 y: 10,
                 formatter: function() {
         return this.y;
@@ -182,11 +183,10 @@
         }]
         });
         });
-
-
+        });
 </script>
 <div class="page-heading">            
-    <h1>Matriz de Calidad de Factores</h1>
+    <h1>Detalle Factor</h1>
 </div>
 
 <div class="container-fluid">
@@ -195,54 +195,51 @@
             <div class="row">
                 <div class="col-md-12">
                     <div id="conte" class="span10">
-                        <legend></legend>
+                        <legend>Factor: ${factor.nombreF}</legend>
                         <ul class="breadcrumb">
-                            <li class="active">Matriz de Calidad de Factores  <span class="divider"></span></li>
-                            <li><a href="<%=request.getContextPath()%>/#informeMatrizCaracteristicas">Matriz de Calidad de Características</a></li>
+                            <li><a href="<%=request.getContextPath()%>/#informeMatrizFactores">Matriz de Calidad de Factores</a> <span class="divider"></span></li>
+                            <li><a href="<%=request.getContextPath()%>/#informeMatrizCaracteristicas">Matriz de Calidad de Características</a> <span class="divider"></span></li>
+                            <li class="active tool" data-placement="top" rel="tooltip" data-original-title="${factor.nombreF}">Factor ${factor.idFactor}</li>
+
                         </ul>
                         <br>
                         <c:choose>
-                            <c:when test="${factores.size()!= 0}">
+                            <c:when test="${caracteristicasDF.size()!= 0}">
 
                                 <table class="table table-striped table-bordered table-condensed inicial">
                                     <thead>
-                                    <th>Id Factor</th>
-                                    <th>Factor</th>
+                                    <th>C&oacute;digo</th>
+                                    <th>Caracteristica</th>
                                     <th>Grado de Cumplimiento</th>
                                     </thead>
                                     <tbody>
-                                        <c:set var="indice2" value="0"></c:set>
-                                        <c:set var="final" value="0"></c:set>
-                                        <c:forEach items="${factores}" var="factor" varStatus="iter2">
-                                            <fmt:parseNumber var="cum2"  value="${cumplimientoF[iter2.index]}" />
+                                        <c:set var="indice" value="0"></c:set>
+                                        <c:forEach items="${caracteristicasDF}" var="caracteristica" varStatus="iter">
+                                            <fmt:parseNumber var="cum"  value="${cumplimientoDF[iter.index]}" />
                                             <c:choose>
-                                                <c:when test="${cum2>0}"> 
+                                                <c:when test="${cum>0}"> 
                                                     <tr>
                                                         <td style="text-align: left">   
-                                                            ${factor.idFactor}
+                                                            ${caracteristica.idCaracteristica}
                                                         </td>
-
                                                         <td style="text-align: left">   
-                                                            <a href="#detalleFactor&id=${factor.getIdFactor()}" data="${factor.nombreF}">${factor.nombreF}</a>
+                                                            <a href="#detalleCaracteristica&id=${caracteristica.idCaracteristica}" data="${caracteristica.nombreC}">${caracteristica.nombreC}</a> 
                                                         </td>
-
                                                         <td>   
-                                                            <fmt:formatNumber type="number" maxFractionDigits="1" value="${cumplimientoF[iter2.index]}"/>
-
+                                                            <fmt:formatNumber type="number" maxFractionDigits="1" value="${cumplimientoDF[iter.index]}"/>
                                                         </td>
                                                     </tr>
-                                                    <c:set var="final" value="${final+((ponderacionesF.get(indice2).ponderacion)*(cumplimientoF[iter2.index]))}"></c:set>
-                                                    <c:set var="indice2" value="${indice2+1}"></c:set>
-
+                                                    <c:set var="indice" value="${indice+1}"></c:set>
                                                 </c:when>
-                                            </c:choose>       
+                                            </c:choose>
+
                                         </c:forEach>
                                     </tbody>
-
                                 </table>
-                                <br/>          
-                                <div id="grafica" style="height: 500px; margin: 0 auto" class="span10"></div>
+                                <br/>
+                                <div id="grafica" style="height: 500px; margin: 0 auto" class="span10">
 
+                                </div>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -314,10 +311,10 @@
                             <c:otherwise>
                                 No Existen Hay datos Registrados en el Sistema.
                             </c:otherwise>
-                        </c:choose> 
+                        </c:choose>
                     </div>
                 </div>
-            </div>
+            </div>    
         </div>
     </div>
-</div> 
+</div>

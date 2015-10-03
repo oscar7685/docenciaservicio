@@ -40,4 +40,11 @@ public class RespuestasFacade extends AbstractFacade<Respuestas> {
         q.setParameter("proceso", p);
         return q.getResultList();
     }
+
+    public List findResultadosxPreguntaxEncuestaxProcesoxValor1(Proceso p, Pregunta pre) {
+        Query q = em.createNamedQuery("Respuestas.findResultadosxPreguntaxEncuestaxProcesoxValor1");
+        q.setParameter("pregunta", pre);
+        q.setParameter("proceso", p);
+        return q.getResultList();
+    }
 }
