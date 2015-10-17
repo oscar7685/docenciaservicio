@@ -198,7 +198,7 @@
                             <li><a href="<%=request.getContextPath()%>/#informeMatrizFactores">Matriz de Calidad de Factores</a> <span class="divider"></span></li>
                             <li><a href="<%=request.getContextPath()%>/#informeMatrizCaracteristicas">Matriz de Calidad de Caracter&iacute;sticas</a> <span class="divider"></span></li>
                             <li>
-                                <a href="<%=request.getContextPath()%>/#detalleFactor&${caracteristica.factoridFactor.idFactor}" class="tool" data-placement="top" rel="tooltip" data-original-title="${caracteristica.factoridFactor.nombreF}">Factor ${caracteristica.factoridFactor.idFactor}</a> 
+                                <a href="<%=request.getContextPath()%>/#detalleFactor&id=${caracteristica.factoridFactor.idFactor}" class="tool" data-placement="top" rel="tooltip" data-original-title="${caracteristica.factoridFactor.nombreF}">Factor ${caracteristica.factoridFactor.idFactor}</a> 
                                 <span class="divider">/</span>
                             </li>
                             <li class="active tool" data-placement="top" rel="tooltip" data-original-title="${caracteristica.nombreC}">Caracter&iacute;stica ${caracteristica.idCaracteristica}</li>

@@ -107,38 +107,39 @@
 
 <script>
     $(function() {
-        $('#tablaX').editableTableWidget({editor: $('<textarea>')});
-        $('#tablaX tr').find("td:eq(5)").on('validate', function(evt, newValue) {
-            if (newValue !== '1' && newValue !== '2' && newValue !== '3' && newValue !== '4' && newValue !== '5' && newValue !== '0') {
-                return false; // mark cell as invalid 
-            }
-        });
-
-        $('#tablaX tr').find("td").on('validate', function(evt, newValue) {
-            if (newValue.length > 1999) {
-                return false; // mark cell as invalid 
-            }
-        });
-        $('#tablaX tr').find("td:eq(0)").on('validate', function(evt, newValue) {
-            return false; // mark cell as invalid 
-        });
-        $('#tablaX td').on('change', function(evt, newValue) {
-            // do something with the new cell value 
-
-            var indicador = $(this).parents("tr").find("input[name='indicadorInput']").val();
-            var columna = $(this).index();
-            $.ajax({
-                type: 'POST',
-                url: "<%=request.getContextPath()%>/Controlador?action=registrarDocumental",
-                data: "indicador=" + indicador + "&columna=" + columna + "&valor=" + newValue,
-                success: function() {
-                   // $("#dancing-dots-text").remove();
+    <c:choose>
+        <c:when test="${Proceso.estado != 'Finalizado'}">
+            $('#tablaX').editableTableWidget({editor: $('<textarea>')});
+            $('#tablaX tr').find("td:eq(5)").on('validate', function(evt, newValue) {
+                if (newValue !== '1' && newValue !== '2' && newValue !== '3' && newValue !== '4' && newValue !== '5' && newValue !== '0') {
+                    return false; // mark cell as invalid 
                 }
-            }); //fin $.ajax
+            });
+            $('#tablaX tr').find("td").on('validate', function(evt, newValue) {
+                if (newValue.length > 1999) {
+                    return false; // mark cell as invalid 
+                }
+            });
+            $('#tablaX tr').find("td:eq(0)").on('validate', function(evt, newValue) {
+                return false; // mark cell as invalid 
+            });
+            $('#tablaX td').on('change', function(evt, newValue) {
+                // do something with the new cell value 
 
+                var indicador = $(this).parents("tr").find("input[name='indicadorInput']").val();
+                var columna = $(this).index();
+                $.ajax({
+                    type: 'POST',
+                    url: "<%=request.getContextPath()%>/Controlador?action=registrarDocumental",
+                    data: "indicador=" + indicador + "&columna=" + columna + "&valor=" + newValue,
+                    success: function() {
+                        // $("#dancing-dots-text").remove();
+                    }
+                }); //fin $.ajax
+
+            });
+        </c:when>
+    </c:choose>
+            $("i").popover({trigger: "hover", placement: 'bottom', html: true});
         });
-        $("i").popover({trigger: "hover", placement: 'bottom', html: true});
-
-
-    });
 </script>

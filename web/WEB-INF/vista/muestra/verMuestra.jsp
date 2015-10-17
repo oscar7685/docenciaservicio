@@ -39,30 +39,35 @@
 
                                             <li style="list-style: none;"><a target="_blank" class="btn btn-lg btn-primary-alt btn-label" href="DescargarFormato"><i class="fa fa-download"></i> Descargar formato</a></li>
                                             <br/>
-                                            <form action="Formulario" class="form row-border" enctype='multipart/form-data'>
+                                            <c:choose>
+                                                <c:when test="${proceso.estado != 'Finalizado'}">
+                                                    <form action="Formulario" class="form row-border" enctype='multipart/form-data'>
 
-                                                <div class="form-group">
-                                                    <label class="col-sm-10 control-label">Ingrese el archivo con la poblacion estudiantil asociada al escenario ${proceso.escenarioidEscenario.nombre}</label>
-                                                    <div class="col-sm-10">
-                                                        <span class="btn btn-success fileinput-button">
-                                                            <i class="glyphicon glyphicon-plus"></i>
-                                                            <span>Seleccionar archivo...</span>
-                                                            <!-- The file input field used as target for the file upload widget -->
-                                                            <input id="fileupload" type="file" name="files[]" multiple>
-                                                        </span>
-                                                        <br>
-                                                        <br>
-                                                        <!-- The global progress bar -->
-                                                        <div id="progress" class="progress">
-                                                            <div class="progress-bar progress-bar-success"></div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-10 control-label">Ingrese el archivo con la poblacion estudiantil asociada al escenario ${proceso.escenarioidEscenario.nombre}</label>
+                                                            <div class="col-sm-10">
+                                                                <span class="btn btn-success fileinput-button">
+                                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                                    <span>Seleccionar archivo...</span>
+                                                                    <!-- The file input field used as target for the file upload widget -->
+                                                                    <input id="fileupload" type="file" name="files[]" multiple>
+                                                                </span>
+                                                                <br>
+                                                                <br>
+                                                                <!-- The global progress bar -->
+                                                                <div id="progress" class="progress">
+                                                                    <div class="progress-bar progress-bar-success"></div>
+                                                                </div>
+                                                                <!-- The container for the uploaded files -->
+                                                                <div id="files" class="files"></div>
+                                                                <br>
+                                                            </div>
                                                         </div>
-                                                        <!-- The container for the uploaded files -->
-                                                        <div id="files" class="files"></div>
-                                                        <br>
-                                                    </div>
-                                                </div>
 
-                                            </form>
+                                                    </form>
+                                                </c:when>
+                                            </c:choose>
+
                                             <table id="tablaestudiante" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
@@ -102,7 +107,14 @@
                                                                         <td>${estudiante.fuenteidUsuario.apellido}</td>
                                                                         <td>${estudiante.programaIdprograma.nombrepro}</td>
                                                                         <td>${estudiante.semestre}</td>
-                                                                        <td><button class="btn btn-xs btn-default todo-options eliminarEstudiante" title="Eliminar" data-value="${estudiante.id}"><i class="fa fa-times"></i></button></td>
+                                                                        <td>
+                                                                            <c:choose>
+                                                                                <c:when test="${proceso.estado != 'Finalizado'}">
+                                                                                    <button class="btn btn-xs btn-default todo-options eliminarEstudiante" title="Eliminar" data-value="${estudiante.id}"><i class="fa fa-times"></i></button>
+                                                                                    </c:when>
+                                                                                </c:choose>
+
+                                                                        </td>
                                                                     </tr>  
 
                                                                 </c:if>
@@ -113,7 +125,12 @@
 
                                                 </tbody>
                                             </table>
-                                            <button class="btn btn-primary" id="agregarEstudiante">Agregar estudiante</button>                
+                                            <c:choose>
+                                                <c:when test="${proceso.estado != 'Finalizado'}">
+                                                    <button class="btn btn-primary" id="agregarEstudiante">Agregar estudiante</button>                
+                                                </c:when>
+                                            </c:choose>
+
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +175,14 @@
                                                                     <td>${docente.fuenteidUsuario.apellido}</td>
                                                                     <td>${docente.programaIdprograma.nombrepro}</td>
                                                                     <td>${docente.tipoContrato}</td>
-                                                                    <td><button class="btn btn-xs btn-default todo-options eliminarDocente" title="Eliminar" data-value="${docente.docenteid}"><i class="fa fa-times"></i></button></td>
+                                                                    <td>
+                                                                        <c:choose>
+                                                                            <c:when test="${proceso.estado != 'Finalizado'}">
+                                                                                <button class="btn btn-xs btn-default todo-options eliminarDocente" title="Eliminar" data-value="${docente.docenteid}"><i class="fa fa-times"></i></button>
+                                                                                </c:when>
+                                                                            </c:choose>
+
+                                                                    </td>
                                                                 </tr>  
 
                                                             </c:if>
@@ -168,7 +192,12 @@
 
                                             </tbody>
                                         </table>
-                                        <button class="btn btn-primary" id="agregarDocente">Agregar docente</button>
+                                        <c:choose>
+                                            <c:when test="${proceso.estado != 'Finalizado'}">
+                                                <button class="btn btn-primary" id="agregarDocente">Agregar docente</button>
+                                            </c:when>
+                                        </c:choose>
+
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +238,14 @@
                                                                     <td>${representante.fuenteidUsuario.nombre}</td>
                                                                     <td>${representante.fuenteidUsuario.apellido}</td>
                                                                     <td>${representante.cargo}</td>
-                                                                    <td><button class="btn btn-xs btn-default todo-options eliminarRepresentante" title="Eliminar" data-value="${representante.idRepresentanteEscenario}"><i class="fa fa-times"></i></button></td>
+                                                                    <td>
+                                                                        <c:choose>
+                                                                            <c:when test="${proceso.estado != 'Finalizado'}">
+                                                                                <button class="btn btn-xs btn-default todo-options eliminarRepresentante" title="Eliminar" data-value="${representante.idRepresentanteEscenario}"><i class="fa fa-times"></i></button>
+                                                                                </c:when>
+                                                                            </c:choose>
+
+                                                                    </td>
                                                                 </tr>  
                                                             </c:if>
                                                         </c:forEach>
@@ -217,7 +253,12 @@
                                                 </c:choose>
                                             </tbody>
                                         </table>
-                                        <button class="btn btn-primary" id="agregarRepresentante">Agregar representante</button>
+                                        <c:choose>
+                                            <c:when test="${proceso.estado != 'Finalizado'}">
+                                                <button class="btn btn-primary" id="agregarRepresentante">Agregar representante</button>
+                                            </c:when>
+                                        </c:choose>
+
                                     </div>
                                 </div>
                             </div>

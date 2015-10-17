@@ -21,6 +21,14 @@ $(function() {
             var url3 = "/docenciaservicio/Controlador?action=";
             url3 = url3.concat(cual[0].substring(1), "&", cual[1]);
             urlx = url3;
+        } else if (hash.indexOf("#finalizarProceso") !== -1) {
+            console.log("llegamos!!");
+            $('#modalFP').modal();
+            var cual = hash.split("&");
+            hash = cual[0];
+            var url3 = "/docenciaservicio/Controlador?action=";
+            url3 = url3.concat(cual[0].substring(1), "&", cual[1]);
+            urlx = url3;
         } else {
             url3 = hash.replace('#', "Controlador?action=");
             $("div.page-content").empty();
@@ -50,6 +58,25 @@ $(function() {
                 } else {
                     $("#modalCc1").modal('hide');
                     $('#modalCp2').modal();
+                    location = "#listarProcesos";
+                }
+
+            } //fin success
+        }); //fin del $.ajax
+    });
+    $('#modalFPb1').click(function() {
+        $("div.page-content").empty();
+        $.ajax({
+            type: "POST",
+            url: urlx,
+            success: function(data)
+            {
+                if (data == 1) {
+                    $("#modalFP").modal('hide');
+                    location = "#listarProcesos";
+                } else {
+                    $("#modalFP").modal('hide');
+                    $('#modalFP2').modal();
                     location = "#listarProcesos";
                 }
 

@@ -15,6 +15,7 @@ import com.docenciaservicio.sessionbeans.CriterioFacade;
 import com.docenciaservicio.sessionbeans.DocumentalFacade;
 import com.docenciaservicio.sessionbeans.RespuestasFacade;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +43,7 @@ public class DetalleCriterio implements Action {
         sesion.setAttribute("documental", null);
 
 
-        //RECUPERAMOS EL INDICADOR
+        //RECUPERAMOS EL CRITERIO
         String idCriterio = request.getParameter("id");
         Criterio in = criterioFacade.find(idCriterio);
         Proceso p = (Proceso) sesion.getAttribute("Proceso");
@@ -117,17 +118,21 @@ public class DetalleCriterio implements Action {
 
 
                 //contamos cuantos 5,4,3,2,1,0 se respondieron sin importar las encuestas
-                List<Object[]> results = respuestasFacade.findResultadosxPreguntaxEncuestaxProcesoxValor1(p, pregunta);
+                BigDecimal valor5 = (BigDecimal) respuestasFacade.findResultadosxPreguntaxEncuestaxProcesoxValor5(p, pregunta, 5);
+                BigDecimal valor4 = (BigDecimal) respuestasFacade.findResultadosxPreguntaxEncuestaxProcesoxValor5(p, pregunta, 4);
+                BigDecimal valor3 = (BigDecimal) respuestasFacade.findResultadosxPreguntaxEncuestaxProcesoxValor5(p, pregunta, 3);
+                BigDecimal valor2 = (BigDecimal) respuestasFacade.findResultadosxPreguntaxEncuestaxProcesoxValor5(p, pregunta, 2);
+                BigDecimal valor1 = (BigDecimal) respuestasFacade.findResultadosxPreguntaxEncuestaxProcesoxValor5(p, pregunta, 1);
+                BigDecimal valor0 = (BigDecimal) respuestasFacade.findResultadosxPreguntaxEncuestaxProcesoxValor5(p, pregunta, 0);
+                ceros[l] = valor0.intValue();
+                cincos[l] = valor5.intValue();
+                cuatros[l] = valor4.intValue();
+                tres[l] = valor3.intValue();
+                dos[l] = valor2.intValue();
+                unos[l] = valor1.intValue();
 
-                for (Object[] result : results) {
-                    System.out.println(""+result);
-                    ceros[l] = ((result[5]) != null ? ((Number) result[5]).intValue() : 0);
-                    cincos[l] = ((result[4]) != null ? ((Number) result[4]).intValue() : 0);
-                    cuatros[l] = ((result[3]) != null ? ((Number) result[3]).intValue() : 0);
-                    tres[l] = ((result[2]) != null ? ((Number) result[2]).intValue() : 0);
-                    dos[l] = ((result[1]) != null ? ((Number) result[1]).intValue() : 0);
-                    unos[l] = ((result[0]) != null ? ((Number) result[0]).intValue() : 0);
-                }
+
+               
             }
 
             //enviamos los datos relevantes
@@ -149,7 +154,7 @@ public class DetalleCriterio implements Action {
 
 
 
-        return "/WEB-INF/vista/proceso/informe/detalleIndicador.jsp";
+        return "/WEB-INF/vista/proceso/informe/detalleCriterio.jsp";
     }
 
     private CriterioFacade lookupCriterioFacadeBean() {
