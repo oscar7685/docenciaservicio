@@ -3,11 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="page-heading">            
     <h1>Procesos</h1>
-    <div class="options">
-        <div class="btn-toolbar">
-            <a href="#" class="btn btn-default"><i class="fa fa-fw fa-cog"></i></a>
-        </div>
-    </div>
 </div>
 <ol class="breadcrumb">
 
@@ -37,7 +32,7 @@
                                         <th>Fecha Inicio</th>
                                         <th>Fecha Final</th>
                                         <th>Estado</th>
-                                        <th>acci&oacute;n</th>
+                                        <th>Acci&oacute;n</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -303,7 +303,7 @@
                                             <th>Grado de cumplimiento</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style="color: #ffffff;">
                                         <tr style="background-color: #89A54E;">
                                             <td>
                                                 4.5 a 5.0

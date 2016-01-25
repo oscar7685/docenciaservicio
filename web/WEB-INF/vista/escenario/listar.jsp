@@ -1,18 +1,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="page-heading">            
-    <h1>Data Tables</h1>
-    <div class="options">
-        <div class="btn-toolbar">
-            <a href="#" class="btn btn-default"><i class="fa fa-fw fa-cog"></i></a>
-        </div>
-    </div>
+    <h1>Escenarios</h1>
 </div>
 <ol class="breadcrumb">
 
-    <li><a href="index.html">Home</a></li>
-    <li><a href="#">Advanced Tables</a></li>
-    <li class="active"><a href="tables-data.html">Data Tables</a></li>
+    <li><a href="#">Escenarios</a></li>
+    <li class="active"><a href="#">listar</a></li>
 
 </ol>
 
@@ -22,7 +16,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>Data Tables</h2>
+                    <h2>Escenarios</h2>
                     <div class="panel-ctrls">
                     </div>
                 </div>
@@ -33,11 +27,11 @@
                                 <thead>
                                     <tr>
                                         <th>Id escenario</th>
-                                        <th>NOmbre</th>
-                                        <th>direccion</th>
-                                        <th>telefono</th>
-                                        <th>nit</th>
-                                        <th>acci&oacute;n</th>
+                                        <th>Nombre</th>
+                                        <th>Direcci&oacute;n</th>
+                                        <th>Tel&eacute;fono</th>
+                                        <th>Nit</th>
+                                        <th>Acci&oacute;n</th>
                                     </tr>
                                 </thead>
                                 <tbody>

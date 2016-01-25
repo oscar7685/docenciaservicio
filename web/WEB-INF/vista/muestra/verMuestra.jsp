@@ -6,12 +6,14 @@
 
 <div class="page-heading">            
     <h1>Muestra</h1>
-    <div class="options">
-        <div class="btn-toolbar">
-            <a href="#" class="btn btn-default"><i class="fa fa-fw fa-cog"></i></a>
-        </div>
-    </div>
 </div>
+<ol class="breadcrumb">
+
+    <li><a href="#">Proceso</a></li>
+    <li><a href="#">listar</a></li>
+    <li class="active"><a href="#">ver muestra</a></li>
+
+</ol>
 <div class="container-fluid">
 
     <div class="row">
@@ -19,8 +21,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2>Muestra</h2>
-                    <div class="panel-ctrls">
-                    </div>
                 </div>
 
                 <div class="panel-body">
@@ -37,27 +37,38 @@
                                                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                              </div>-->
 
-                                            <li style="list-style: none;"><a target="_blank" class="btn btn-lg btn-primary-alt btn-label" href="DescargarFormato"><i class="fa fa-download"></i> Descargar formato</a></li>
+
                                             <br/>
                                             <c:choose>
                                                 <c:when test="${proceso.estado != 'Finalizado'}">
                                                     <form action="Formulario" class="form row-border" enctype='multipart/form-data'>
 
                                                         <div class="form-group">
-                                                            <label class="col-sm-10 control-label">Ingrese el archivo con la poblacion estudiantil asociada al escenario ${proceso.escenarioidEscenario.nombre}</label>
+                                                            <label class="col-sm-10 control-label">Ingrese el archivo excel con la poblaci&oacute;n estudiantil asociada al escenario ${proceso.escenarioidEscenario.nombre}.</label>
+                                                            <label class="col-sm-10 control-label">Solamente se aceptan archivos con el formato brindado.</label>
                                                             <div class="col-sm-10">
-                                                                <span class="btn btn-success fileinput-button">
-                                                                    <i class="glyphicon glyphicon-plus"></i>
-                                                                    <span>Seleccionar archivo...</span>
-                                                                    <!-- The file input field used as target for the file upload widget -->
-                                                                    <input id="fileupload" type="file" name="files[]" multiple>
-                                                                </span>
+                                                                <div class="col-sm-4">
+                                                                    <li style="list-style: none;"><a target="_blank" class="btn btn-lg btn-primary-alt btn-label" href="DescargarFormato"><i class="fa fa-download"></i> Descargar formato</a></li>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <span class="btn btn-success fileinput-button">      
+                                                                        <i class="glyphicon glyphicon-plus"></i>
+                                                                        <span>Seleccionar archivo...</span>
+                                                                        <input id="fileupload" type="file" name="files[]" multiple>
+                                                                    </span>
+                                                                </div>
+                                                                <!-- The file input field used as target for the file upload widget -->
+
+                                                                <br>
                                                                 <br>
                                                                 <br>
                                                                 <!-- The global progress bar -->
-                                                                <div id="progress" class="progress">
-                                                                    <div class="progress-bar progress-bar-success"></div>
+                                                                <div class="col-sm-12">
+                                                                    <div id="progress" class="progress">
+                                                                        <div class="progress-bar progress-bar-success"></div>
+                                                                    </div>
                                                                 </div>
+
                                                                 <!-- The container for the uploaded files -->
                                                                 <div id="files" class="files"></div>
                                                                 <br>
@@ -77,7 +88,7 @@
                                                         <th>Apellidos</th>
                                                         <th>Programa</th>
                                                         <th>Semestre</th>
-                                                        <th>acci&oacute;n</th>
+                                                        <th>Acci&oacute;n</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="bodytablaestudiante">
@@ -559,18 +570,18 @@
     // See Docs
     window.ParsleyConfig = {
         successClass: 'has-success'
-                , errorClass: 'has-error'
-                , errorElem: '<span></span>'
-                , errorsWrapper: '<span class="help-block"></span>'
-                , errorTemplate: "<div></div>"
-                , classHandler: function(el) {
+        , errorClass: 'has-error'
+        , errorElem: '<span></span>'
+        , errorsWrapper: '<span class="help-block"></span>'
+        , errorTemplate: "<div></div>"
+        , classHandler: function (el) {
             return el.$element.closest(".form-group");
         }
     };
 
     /*jslint unparam: true */
     /*global window, $ */
-    $(function() {
+    $(function () {
         'use strict';
         // Change this to the location of your server-side upload handler:
         var url = 'SubirArchivo';
@@ -578,13 +589,13 @@
             url: url,
             dataType: 'json',
             acceptFileTypes: /(\.|\/)(xlsm)$/i,
-            done: function(e, data) {
+            done: function (e, data) {
                 if (data.result.errores) {
                     $("p#erorres").html(data.result.errores);
                     $("#myModal").modal('show');
                 }
                 else {
-                    $.each(data.result.files, function(index, file) {
+                    $.each(data.result.files, function (index, file) {
                         $('<p/>').text(file.name).appendTo('#files');
                     });
 
@@ -592,7 +603,7 @@
                         type: "POST",
                         url: "Controlador?action=listarMuestraEstudiantes",
                         data: $("#fcrearestudiante").serialize(),
-                        success: function(data)
+                        success: function (data)
                         {
                             $("#bodytablaestudiante").empty();
                             $("#bodytablaestudiante").prepend(data);
@@ -605,10 +616,10 @@
 
 
             },
-            fail: function(e, data) {
+            fail: function (e, data) {
                 //por si hay error
             },
-            progressall: function(e, data) {
+            progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .progress-bar').css('width', progress + '%');
             }
@@ -618,14 +629,14 @@
 
 
 
-        $('#myModal').on('hidden.bs.modal', function(e) {
+        $('#myModal').on('hidden.bs.modal', function (e) {
             $('#progress .progress-bar').css('width', 0 + '%');
         });
-        $("#agregarDocente").click(function() {
+        $("#agregarDocente").click(function () {
             $("#fcreardocente")[0].reset();
             $("#modalAgregarDocente").modal('show');
         });
-        $("#botonAgregarDocente").click(function() {
+        $("#botonAgregarDocente").click(function () {
             $('#fcreardocente').parsley().validate();
             var formInstance = $('#fcreardocente').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -635,7 +646,7 @@
                     type: "POST",
                     url: "Controlador?action=crearDocente2",
                     data: $("#fcreardocente").serialize(),
-                    success: function(data)
+                    success: function (data)
                     {
                         $("#tabladocente").remove();
                         $("#panel-body-docente").prepend(data);
@@ -650,27 +661,27 @@
             }
         });
 
-        $('body').on('click', '.eliminarEstudiante', function() {
+        $('body').on('click', '.eliminarEstudiante', function () {
             eliminar = $(this).attr("data-value").valueOf();
             $("#modalEliminarEstudiante").modal('show');
         });
 
-        $('body').on('click', '.eliminarDocente', function() {
+        $('body').on('click', '.eliminarDocente', function () {
             eliminar = $(this).attr("data-value").valueOf();
             $("#modalEliminarDocente").modal('show');
         });
 
-        $('body').on('click', '.eliminarRepresentante', function() {
+        $('body').on('click', '.eliminarRepresentante', function () {
             eliminar = $(this).attr("data-value").valueOf();
             $("#modalEliminarRepresentante").modal('show');
         });
 
 
-        $("#botonEliminarEstudiante").click(function() {
+        $("#botonEliminarEstudiante").click(function () {
             $.ajax({
                 type: "POST",
                 url: "Controlador?action=eliminarEstudiante&idEstudiante=" + eliminar,
-                success: function(data)
+                success: function (data)
                 {
                     $("#bodytablaestudiante").empty();
                     $("#bodytablaestudiante").prepend(data);
@@ -681,11 +692,11 @@
         });
 
 
-        $("#botonEliminarDocente").click(function() {
+        $("#botonEliminarDocente").click(function () {
             $.ajax({
                 type: "POST",
                 url: "Controlador?action=eliminarDocente&idDocente=" + eliminar,
-                success: function(data)
+                success: function (data)
                 {
                     $("#tabladocente").remove();
                     $("#panel-body-docente").prepend(data);
@@ -697,11 +708,11 @@
 
         });
 
-        $("#botonEliminarRepresentante").click(function() {
+        $("#botonEliminarRepresentante").click(function () {
             $.ajax({
                 type: "POST",
                 url: "Controlador?action=eliminarRepresentante&idRepresentante=" + eliminar,
-                success: function(data)
+                success: function (data)
                 {
                     $("#tablarepresentante").remove();
                     $("#panel-body-representante").prepend(data);
@@ -714,12 +725,12 @@
         });
 
 
-        $("#agregarRepresentante").click(function() {
+        $("#agregarRepresentante").click(function () {
             $("#fcrearrepresentate")[0].reset();
             $("#modalAgregarRepresentante").modal('show');
         });
 
-        $("#botonAgregarRepresentante").click(function() {
+        $("#botonAgregarRepresentante").click(function () {
             $('#fcrearrepresentate').parsley().validate();
             var formInstance = $('#fcrearrepresentate').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -729,7 +740,7 @@
                     type: "POST",
                     url: "Controlador?action=crearRepresentante2",
                     data: $("#fcrearrepresentate").serialize(),
-                    success: function(data)
+                    success: function (data)
                     {
                         $("#tablarepresentante").remove();
                         $("#panel-body-representante").prepend(data);
@@ -744,13 +755,13 @@
             }
         });
 
-        $("#agregarEstudiante").click(function() {
+        $("#agregarEstudiante").click(function () {
             $("#fcrearestudiante")[0].reset();
             $("#modalAgregarEstudiante").modal('show');
 
         });
 
-        $("#botonAgregarEstudiante").click(function() {
+        $("#botonAgregarEstudiante").click(function () {
             $('#fcrearestudiante').parsley().validate();
             var formInstance = $('#fcrearestudiante').parsley();
             // if one of these blocks is not failing do not prevent submission
@@ -760,7 +771,7 @@
                     type: "POST",
                     url: "Controlador?action=crearEstudiante2",
                     data: $("#fcrearestudiante").serialize(),
-                    success: function(data)
+                    success: function (data)
                     {
                         $("#bodytablaestudiante").empty();
                         $("#bodytablaestudiante").prepend(data);

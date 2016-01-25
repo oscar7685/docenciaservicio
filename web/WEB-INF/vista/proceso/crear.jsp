@@ -48,7 +48,7 @@
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <button type="submit" class="btn-primary btn" id="btncrearp">Crear proceso</button>
-                                    <button class="btn-default btn">Cancelar</button>
+                                    <button class="btn-default btn" name="back" onclick="history.back()">Cancelar</button>
                                 </div>
                             </div>
                         </div>
