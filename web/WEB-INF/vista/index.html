@@ -63,13 +63,13 @@
                 </li>
 
 
-                <li class="dropdown">
+                <li class="dropdown" id="dropdown-user">
                     <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
                         <span class="hidden-xs">Alexander Smith</span>
                         <img class="img-circle" src="assets/demo/avatar/avatar_06.png" alt="Dangerfield" />
 
                     </a>
-                    <ul class="dropdown-menu userinfo">
+                    <ul class="dropdown-menu userinfo" id="d100">
                         <li><a href="#"><span class="pull-left">Edit Profile</span> <i class="pull-right fa fa-pencil"></i></a></li>
                         <li><a href="#"><span class="pull-left">Account Settings</span> <i class="pull-right fa fa-cogs"></i></a></li>
                         <li><a href="#"><span class="pull-left">Help</span> <i class="pull-right fa fa-question-circle"></i></a></li>
@@ -165,8 +165,8 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        
-        
+
+
         <div class="modal fade" id="modalFP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -187,8 +187,8 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        
-        
+
+
 
         <div class="modal fade" id="modalCp2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -249,7 +249,7 @@
 
         <script src="assets/plugins/bootbox/bootbox.js"></script>							<!-- Bootbox -->
 
-        <script src="assets/plugins/simpleWeather/jquery.simpleWeather.min.js"></script> <!-- Weather plugin-->
+        <!--<script src="assets/plugins/simpleWeather/jquery.simpleWeather.min.js"></script> <!-- Weather plugin-->
         <script src="js/jquery.hashchange.min.js"></script> <!-- hashchange-->
         <script src="js/mijsadmin.js"></script> <!-- hashchange-->
         <script src="js/highcharts.js"></script>
@@ -267,7 +267,16 @@
         <!--  <script src="assets/demo/demo-index.js"></script> -->									
         <!-- Initialize scripts for this page-->
 
+        <script type="text/javascript">
+            $(function() {
+                $("#dropdown-user").on("click", function(e) {
+                    e.preventDefault();
+                    $(".userinfo").toggle();
+                });
 
+            });
+
+        </script>
 
 
         <!-- End loading page level scripts-->

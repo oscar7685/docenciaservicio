@@ -38,7 +38,7 @@ public class VerMuestra implements Action {
         sesion.setAttribute("proceso", p);
         sesion.setAttribute("estudiantesMuestra", p.getEstudianteList());
         sesion.setAttribute("docentesMuestra", p.getDocenteList());
-        sesion.setAttribute("representanteMuestra", p.getEscenarioidEscenario().getRepresentanteescenarioList());
+        sesion.setAttribute("representanteMuestra", p.getRepresentanteescenarioList());
 
         List encabezadosEstudiantes = encabezadoFacade.findByList2("procesoIdproceso", p, "cuestionarioidCuestionario", cuestionarioFacade.find(Integer.parseInt("1")));
         sesion.setAttribute("encabezadosEstudiantes", encabezadosEstudiantes);

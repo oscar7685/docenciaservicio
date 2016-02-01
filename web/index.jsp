@@ -620,7 +620,7 @@
                                          data-endspeed="300"
                                          data-endeasing="Power1.easeIn"
                                          data-captionhidden="off"
-                                         style="z-index: 6"><iframe src="//player.vimeo.com/video/112799051?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="462" height="260" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                         style="z-index: 6">
                                     </div>
                                 </li>
 
