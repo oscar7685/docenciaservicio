@@ -25232,6 +25232,11 @@ footer.footer-midnightblue .footer-bottom hr {
 footer.footer-inverse {
   background-color: #1b2121;
   color: #5f7676;
+  width: 100%;
+  height: 81px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 footer.footer-inverse h1,
 footer.footer-inverse h2,

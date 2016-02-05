@@ -1995,7 +1995,7 @@ a { color: #2c5aa0; }
   .header h2 { font-size: 22px; }
   .header h3 { font-size: 20px; } }
 
-.footer { font: 28px serif; color: #16502d; text-align: center; padding: 0 50px; }
+.footer { font: 28px serif; color: #16502d; text-align: center; padding: 0 50px; height: 81px; position: absolute;}
 @media only screen and (min-width: 0) and (max-width: 500px) { .footer { font-size: 20px; padding: 0; } }
 
 @media only screen and (min-width: 0) and (max-width: 800px) { .why div.my-grid-form { display: none; }

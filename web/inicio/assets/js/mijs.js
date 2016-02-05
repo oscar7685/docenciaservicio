@@ -5,7 +5,6 @@
 
 
 $(function() {
-    $("#login-form").hide();
     $("#ingresar").click(function() {
         $(".page-content").hide();
         $(".footer-inverse").hide();
@@ -13,9 +12,6 @@ $(function() {
     });
     $("#inicio").click(function() {
         $(".footer-inverse").show();
-        $("#login-form").hide();
-        $(".page-content").show();
-
-
+        $("#login-form").show();
     });
 });

@@ -62,24 +62,20 @@
 
                         <!-- Static navbar -->
                         <div role="navigation"> <!-- class="navbar navbar-default"  -->
-                            <div class="navbar-header">
+                            <!--<div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-header">
                                     <span class="sr-only">Toggle navigation</span>
                                     <i class="fa fa-bars"></i>
                                 </button>
                                 <a class="navbar-brand" href="index.html">Avalon</a>
-                            </div>
+                            </div>-->
                             <nav class="navbar-collapse navbar-collapse-header collapse">
                                 <!-- Right nav -->
                                 <div class="navbar-right yamm">
                                     <ul class="nav navbar-nav smart-menu dd-menu">
-                                        <li><a href="#" id="inicio">Inicio<span class="subline">Bienvenido</span></a></li>
+                                        <!--<li><a href="#" id="inicio">Inicio<span class="subline">Bienvenido</span></a></li>
                                         <li class="dropdown yamm-fw hidden-sm">
-                                            <a href="javascript:;">
-                                                Mega Menu 
-                                                <span class="caret"></span>
-                                                <span class="subline">Categories</span>
-                                            </a>
+                                            
                                             <ul class="dropdown-menu mega-menu">
                                                 <li class="container">
                                                     <div class="row">
@@ -293,7 +289,7 @@
                                                 <li><a href="pages-search.html">Search Results</a></li>
                                                 <!-- <li><a href="#">Clients</a></li>
                                                 <li><a href="#">Careers</a></li>
-                                                <li><a href="pages-aboutus.html">About Us</a></li> -->
+                                                <li><a href="pages-aboutus.html">About Us</a></li> 
                                                 <li><a href="pages-contactus.html">Contact Us</a></li>
                                             </ul>
                                         </li>
@@ -302,7 +298,7 @@
                                                 About Us
                                                 <span class="subline">Company</span>
                                             </a>
-                                        </li>
+                                        </li>-->
                                         <li>
                                             <a href="#" id="ingresar">
                                                 <b>Ingresar</b>
@@ -353,14 +349,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-12">
-                                            <a href="extras-forgotpassword.html" class="pull-left">¿Olvistaste tu clave?</a>
-
-                                        </div>
-                                    </div>
-
-
                                     <div class="panel-footer">
                                         <div class="clearfix">
                                             <button class="btn btn-primary pull-right" type="submit">Login</button>
@@ -374,385 +362,13 @@
                 </div>
             </div>
             <!-- Content block, child page inject content -->
-            <div class="page-content">
-
-
-                <!-- START REVOLUTION SLIDER -->
-
-                <section>
-                    <div class="tp-banner-container fullwidthbanner-container">
-                        <div class="tp-banner fullwidthbanner">
-                            <ul>
-                                <!-- SLIDE  -->
-                                <li data-masterspeed="500" data-saveperformance="on" data-slotamount="7" data-transition="fade">
-                                    <!-- MAIN IMAGE -->
-
-                                    <img src="inicio/assets/demo/revolution-slider/citybg.jpg"  alt="citybg" data-lazyload="inicio/assets/demo/revolution-slider/citybg.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                                    <!-- LAYERS -->
-
-                                    <!-- LAYER NR. 1 -->
-                                    <div class="tp-caption slider-1-heading customin customout start"
-                                         data-x="40"
-                                         data-hoffset="0"
-                                         data-y="50"
-                                         data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-                                         data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                         data-speed="1000"
-                                         data-start="500"
-                                         data-easing="Back.easeInOut"
-                                         data-endspeed="300"><strong>Responsive</strong> Design
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-md midnightblue sfl"
-                                         data-x="40"
-                                         data-y="145"
-                                         data-speed="500"
-                                         data-start="800"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Looks Great On All Devices
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-md primary sft"
-                                         data-x="40"
-                                         data-y="180"
-                                         data-speed="500"
-                                         data-start="1200"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Tested On All Modern Browsers
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-btn-alt primary randomrotate"
-                                         data-x="40"
-                                         data-y="285"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Learn More
-                                    </div>
-
-                                    <div class="caption randomrotate"
-                                         data-x="650"
-                                         data-y="60"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6"><img src="inicio/assets/demo/revolution-slider/slide1-imac.png" style="height: 280px">
-                                    </div>
-
-                                    <div class="caption randomrotate"
-                                         data-x="850"
-                                         data-y="180"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6"><img src="inicio/assets/demo/revolution-slider/slide1-mbp.png" style="height: 160px">
-                                    </div>
-
-                                    <div class="caption randomrotate"
-                                         data-x="590"
-                                         data-y="170"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6"><img src="inicio/assets/demo/revolution-slider/slide1-ipad.png" style="height: 170px">
-                                    </div>
-
-                                    <div class="caption randomrotate"
-                                         data-x="685"
-                                         data-y="245"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6"><img src="inicio/assets/demo/revolution-slider/slide1-iphone.png" style="height: 100px">
-                                    </div>
-                                </li>
-
-                                <li data-masterspeed="500" data-saveperformance="on" data-slotamount="7" data-transition="fade">
-                                    <!-- MAIN IMAGE -->
-
-                                    <img src="inicio/assets/demo/revolution-slider/citybg.jpg"  alt="citybg" data-lazyload="inicio/assets/demo/revolution-slider/citybg.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                                    <!-- LAYERS -->
-
-                                    <!-- LAYER NR. 1 -->
-                                    <div class="tp-caption slider-1-heading customin customout start"
-                                         data-x="40"
-                                         data-hoffset="0"
-                                         data-y="50"
-                                         data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-                                         data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                         data-speed="1000"
-                                         data-start="500"
-                                         data-easing="Back.easeInOut"
-                                         data-endspeed="300">Singular <strong>Framework</strong>
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-md alizarin sfl"
-                                         data-x="40"
-                                         data-y="145"
-                                         data-speed="500"
-                                         data-start="800"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Unlimited Designs &amp; Layouts
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-md warning sft"
-                                         data-x="40"
-                                         data-y="180"
-                                         data-speed="500"
-                                         data-start="1200"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Multipurpose Template
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-btn-alt warning randomrotate"
-                                         data-x="40"
-                                         data-y="285"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Learn More
-                                    </div>
-
-                                    <div class="caption randomrotate"
-                                         data-x="640"
-                                         data-y="70"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6"><img src="inicio/assets/demo/revolution-slider/slide2-mbp.png" style="height: 270px">
-                                    </div>
-                                </li>
-
-                                <li data-masterspeed="500" data-saveperformance="on" data-slotamount="7" data-transition="fade">
-                                    <!-- MAIN IMAGE -->
-
-                                    <img src="inicio/assets/demo/revolution-slider/citybg.jpg"  alt="citybg" data-lazyload="inicio/assets/demo/revolution-slider/citybg.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                                    <!-- LAYERS -->
-
-                                    <!-- LAYER NR. 1 -->
-                                    <div class="tp-caption slider-1-heading customin customout start"
-                                         data-x="40"
-                                         data-hoffset="0"
-                                         data-y="50"
-                                         data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-                                         data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                         data-speed="1000"
-                                         data-start="500"
-                                         data-easing="Back.easeInOut"
-                                         data-endspeed="300"><strong>Huge</strong> Bundle
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-md gray-darker sfl"
-                                         data-x="40"
-                                         data-y="145"
-                                         data-speed="500"
-                                         data-start="800"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Comes with Slider Revolution, $14 Value for <strong>FREE</strong>
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-md inverse sft"
-                                         data-x="40"
-                                         data-y="180"
-                                         data-speed="500"
-                                         data-start="1200"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Over 70 Plugins, all styled for Avalon
-                                    </div>
-
-                                    <div class="tp-caption avalon-demo-btn-alt inverse randomrotate"
-                                         data-x="40"
-                                         data-y="285"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">Learn More
-                                    </div>
-
-                                    <div class="caption randomrotate"
-                                         data-x="640"
-                                         data-y="70"
-                                         data-speed="500"
-                                         data-start="1900"
-                                         data-easing="Power4.easeOut"
-                                         data-endspeed="300"
-                                         data-endeasing="Power1.easeIn"
-                                         data-captionhidden="off"
-                                         style="z-index: 6">
-                                    </div>
-                                </li>
-
-                            </ul>
-
-                            <div class="tp-bannertimer tp-bottom">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- END REVOLUTION SLIDER -->
-
-
-            </div>
         </div>
         <footer class="footer-inverse">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-3 mb40">
-                        <h3 class="col-title">About</h3>
-                        <p class="mb40">Nunc in risus faucibus, cursus quam sit amet, interdum lacus. Morbi lacus risus, suscipit at scelerisque quis, feugiat id nunc. Nullam aliquam mi purus, ut luctus justo malesua.</p>
-                        <h3 class="col-title">Follow Us</h3>
-                        <ul class="social-networks">
-                            <li><a href="#" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="btn btn-social btn-twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="btn btn-social btn-flickr"><i class="fa fa-flickr"></i></a></li>
-                            <li><a href="#" class="btn btn-social btn-youtube"><i class="fa fa-youtube"></i></a></li>
-                            <li><a href="#" class="btn btn-social btn-skype"><i class="fa fa-skype"></i></a></li>
-                            <li><a href="#" class="btn btn-social btn-linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 mb40">
-                        <h3 class="col-title">Recent Posts</h3>
-                        <ul class="recent-posts">
-                            <li>
-                                <a href="#">Eos ut quas erant evertitur sea soluta</a>
-                                <span class="author">by <a href="#">Carmelo Mutchler</a> on Sep 20, 2014</span>
-                            </li>
-                            <li>
-                                <a href="#">Falli sensibus laboramus te</a>
-                                <span class="author">by <a href="#">Dorsey Topham</a> on Sep 15, 2014</span>
-                            </li>
-                            <li>
-                                <a href="#">Alia liber libris eu eos sint nonumy ex eos</a>
-                                <span class="author">by <a href="#">Noma Alban</a> on Sep 12, 2014</span>
-                            </li>
-                            <li>
-                                <a href="#">Vim ea odio meliore denique ne</a>
-                                <span class="author">by <a href="#">Buffy Ruckman</a> on Sep 08, 2014</span>
-                            </li>
-                            <li>
-                                <a href="#">Mea tota tamquam equidem</a>
-                                <span class="author">by <a href="#">Stanford Macdowell</a> on Aug 30, 2014</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 mb40">
-                        <h3 class="col-title">Contact Us</h3>
-                        <ul class="contact-info mb40">
-                            <li>
-                                <i class="fa fa-home"></i>
-                                795 Folsom Ave, Suite 600
-                                <br>
-                                San Francisco, CA 94107
-                            </li>
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                (123) 456-7890
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope-o"></i>
-                                <a href="#">info@website.com</a>
-                            </li>
-                        </ul>
-                        <h3 class="col-title">Subscribe</h3>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Your email">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button"><i class="fa fa-arrow-right"></i></button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 mb40">
-                        <h3 class="col-title">Photo Stream</h3>
-                        <div class="row photo-stream">
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/portfolio_05.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/communication_04.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/communication_05.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                        </div>
-                        <div class="row photo-stream">
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/music_04.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/music_05.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/music_06.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                        </div>
-                        <div class="row photo-stream">
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/portfolio_03.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/portfolio_04.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-xs-4 photo-thumb">
-                                <a href="#"><img src="inicio/assets/demo/stockphoto/portfolio_06.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row footer-bottom">
-                    <hr>
+
                     <div class="col-xs-6 mb20">
                         <p>Universidad de Cartagena © 2015.</p>
-                    </div>
-                    <div class="col-xs-6 mb20">
-                        <ul class="links">
-                            <li><a href="#">Terms</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Help</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
