@@ -128,7 +128,7 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <button class="btn" id="guardar" data-content="Guarda la encuesta sin salir de ella, de esta manera usted podr&aacute; seguir contestando la encuesta cuando desee." value="1" data-original-title="Guardar encuesta" type="button" data-loading-text="Guardando..." autocomplete="off">Guardar</button>
+                        <!--<button class="btn" id="guardar" data-content="Guarda la encuesta sin salir de ella, de esta manera usted podr&aacute; seguir contestando la encuesta cuando desee." value="1" data-original-title="Guardar encuesta" type="button" data-loading-text="Guardando..." autocomplete="off">Guardar</button>-->
                         <button class="btn btn-primary" data-content="Env&iacute;a la encuesta evaluada. Verifique que todas las preguntas han sido respondidas correctamente. Esta operación no se podrá deshacer."  value="1" data-original-title="Enviar encuesta" type="submit">Enviar</button>
                     </div>
                 </div>
@@ -193,6 +193,7 @@
                     data: $("#fencuesta").serialize(),
                     success: function()
                     {
+                        
                         $("#myModalGracias").modal();
                         $('#myModalGracias').on('hidden.bs.modal', function() {
                             location = "<%=request.getContextPath()%>/#inicio";

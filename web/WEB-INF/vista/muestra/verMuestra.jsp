@@ -47,15 +47,17 @@
                                                             <label class="col-sm-10 control-label">Ingrese el archivo excel con la poblaci&oacute;n estudiantil asociada al escenario ${proceso.escenarioidEscenario.nombre}.</label>
                                                             <label class="col-sm-10 control-label">Solamente se aceptan archivos con el formato brindado.</label>
                                                             <div class="col-sm-10">
-                                                                <div class="col-sm-4">
+                                                                <div class="col-sm-5">
                                                                     <li style="list-style: none;"><a target="_blank" class="btn btn-lg btn-primary-alt btn-label" href="DescargarFormato"><i class="fa fa-download"></i> Descargar formato</a></li>
                                                                 </div>
-                                                                <div class="col-sm-4">
-                                                                    <span class="btn btn-success fileinput-button">      
-                                                                        <i class="glyphicon glyphicon-plus"></i>
-                                                                        <span>Seleccionar archivo...</span>
-                                                                        <input id="fileupload" type="file" name="files[]" multiple>
-                                                                    </span>
+                                                                <div class="col-sm-5">
+                                                                    <li>
+                                                                        <span class="btn btn-success fileinput-button">      
+                                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                                            <span>Seleccionar archivo...</span>
+                                                                            <input id="fileupload" type="file" name="files[]" multiple>
+                                                                        </span>
+                                                                    </li>
                                                                 </div>
                                                                 <!-- The file input field used as target for the file upload widget -->
 

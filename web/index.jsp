@@ -304,7 +304,7 @@
                                                 <b>Ingresar</b>
                                                 <span class="subline">Inicia sesi&oacute;n</span>
                                             </a>
-                                            <!-- <ul class="dropdown-menu">
+                                            <!--<ul class="dropdown-menu">
                                                     <li><a href="portfolio-blocks.html">Portfolio Blocks</a></li>
                                                     <li><a href="portfolio-item1.html">Portfolio Item Option 1</a></li>
                                                     <li><a href="portfolio-item2.html">Portfolio Item Option 2</a></li>
