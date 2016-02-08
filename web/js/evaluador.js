@@ -14,6 +14,7 @@ $(function() {
             url3 = url3.concat(cual[0].substring(1), "&", cual[1], "&", cual[2]);
             urlx = url3;
             $("div.container-fluid").empty();
+            $(".fixedHeader").remove();
             $.ajax({
                 type: "POST",
                 url: url3,
@@ -26,6 +27,7 @@ $(function() {
         } else if (hash === "#inicio") {
             var url3 = "/docenciaservicio/Controlador?action=retornarListadoEncuestas";
             $("div.container-fluid").empty();
+            $(".fixedHeader").remove();
             $.ajax({
                 type: "POST",
                 url: url3,

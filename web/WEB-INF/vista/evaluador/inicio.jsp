@@ -46,14 +46,7 @@
             <ul class="nav navbar-nav toolbar pull-right">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
-                        <span class="hidden-xs">${fuente.nombre} ${fuente.apellido}</span>
-                        <img class="img-circle" src="assets/demo/avatar/avatar_06.png" alt="Dangerfield" />
-
-                    </a>
-                    <ul class="dropdown-menu userinfo">
-                        <li><a href="#CerrarSesion"><span class="pull-left">Cerrar Sesi&oacute;n</span> <i class="pull-right fa fa-sign-out"></i></a></li>
-                    </ul>
+                    <a href="#CerrarSesion"><span class="pull-left">Cerrar Sesi&oacute;n</span> <i class="pull-right fa fa-sign-out"></i></a>
                 </li>
 
             </ul>
