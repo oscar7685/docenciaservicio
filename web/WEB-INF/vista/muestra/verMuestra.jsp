@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="css/jquery.fileupload.css">
 
 <div class="page-heading">            
-    <h1>Muestra</h1>
+    <h1>Muestra</h1> <a href="#listarProcesos"><button class="btn-default btn pull-right">Volver</button></a>
 </div>
 <ol class="breadcrumb">
 
@@ -15,12 +15,12 @@
 
 </ol>
 <div class="container-fluid">
-
+    
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>Muestra</h2>
+                    <h2>Muestra</h2> 
                 </div>
 
                 <div class="panel-body">
@@ -29,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="panel-group panel-default" id="accordionA">
                                 <div class="panel panel-default">
-                                    <a data-toggle="collapse" data-parent="#accordionA" href="#collapseOne"><div class="panel-heading"><h2>Muestra Estudiantes</h2></div></a>
+                                    <!--<a data-toggle="collapse" data-parent="#accordionA" href="#collapseOne">--><div class="panel-heading"><h2>Muestra Estudiantes</h2></div>
                                     <div id="collapseOne" class="collapse in">
                                         <div class="panel-body">
                                             <!-- <div class="alert alert-dismissable alert-warning">
@@ -44,32 +44,30 @@
                                                     <form action="Formulario" class="form row-border" enctype='multipart/form-data'>
 
                                                         <div class="form-group">
-                                                            <label class="col-sm-10 control-label">Ingrese el archivo excel con la poblaci&oacute;n estudiantil asociada al escenario ${proceso.escenarioidEscenario.nombre}.</label>
-                                                            <label class="col-sm-10 control-label">Solamente se aceptan archivos con el formato brindado.</label>
+                                                            <!-- The global progress bar -->
+                                                            <div class="col-sm-12">
+                                                                <div id="progress" class="progress">
+                                                                    <div class="progress-bar progress-bar-success"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5">
+
+                                                                <span class="btn btn-success fileinput-button">      
+                                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                                    <span>Seleccionar archivo...</span>
+                                                                    <input id="fileupload" type="file" name="files[]" multiple>
+                                                                </span>
+
+                                                            </div>
+                                                            <label class="col-sm-10 control-label">Ingrese el archivo excel con la poblaci&oacute;n estudiantil asociada al escenario ${proceso.escenarioidEscenario.nombre}.<br>Solamente se aceptan archivos con el formato brindado.</label>
+
                                                             <div class="col-sm-10">
                                                                 <div class="col-sm-5">
                                                                     <li style="list-style: none;"><a target="_blank" class="btn btn-lg btn-primary-alt btn-label" href="DescargarFormato"><i class="fa fa-download"></i> Descargar formato</a></li>
                                                                 </div>
-                                                                <div class="col-sm-5">
-                                                                    <li>
-                                                                        <span class="btn btn-success fileinput-button">      
-                                                                            <i class="glyphicon glyphicon-plus"></i>
-                                                                            <span>Seleccionar archivo...</span>
-                                                                            <input id="fileupload" type="file" name="files[]" multiple>
-                                                                        </span>
-                                                                    </li>
-                                                                </div>
+                                                                <br>
+                                                                <br>                    
                                                                 <!-- The file input field used as target for the file upload widget -->
-
-                                                                <br>
-                                                                <br>
-                                                                <br>
-                                                                <!-- The global progress bar -->
-                                                                <div class="col-sm-12">
-                                                                    <div id="progress" class="progress">
-                                                                        <div class="progress-bar progress-bar-success"></div>
-                                                                    </div>
-                                                                </div>
 
                                                                 <!-- The container for the uploaded files -->
                                                                 <div id="files" class="files"></div>
@@ -149,7 +147,7 @@
                                 </div>
                             </div>
                             <div class="panel panel-default">
-                                <a data-toggle="collapse" data-parent="#accordionA" href="#collapseTwo"><div class="panel-heading"><h2>Muestra Docentes</h2></div></a>
+                                <!--<a data-toggle="collapse" data-parent="#accordionA" href="#collapseTwo">--><div class="panel-heading"><h2>Muestra Docentes</h2></div>
                                 <div id="collapseTwo" class="collapse in">
                                     <div class="panel-body" id="panel-body-docente">
                                         <table id="tabladocente" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -215,7 +213,7 @@
                                 </div>
                             </div>
                             <div class="panel panel-default">
-                                <a data-toggle="collapse" data-parent="#accordionA" href="#collapseThree"><div class="panel-heading"><h2>Muestra Representantes Escenario</h2></div></a>
+                                <!--<a data-toggle="collapse" data-parent="#accordionA" href="#collapseThree">--><div class="panel-heading"><h2>Muestra Representantes Escenario</h2></div>
                                 <div id="collapseThree" class="collapse in">
                                     <div class="panel-body" id="panel-body-representante">
                                         <table id="tablarepresentante" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -281,7 +279,7 @@
             </div>
         </div>
     </div>
-
+    
 </div> <!-- .container-fluid -->
 
 <!-- Modal -->

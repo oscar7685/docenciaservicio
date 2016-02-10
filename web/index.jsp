@@ -300,9 +300,9 @@
                                             </a>
                                         </li>-->
                                         <li>
-                                            <a href="#" id="ingresar">
-                                                <b>Ingresar</b>
-                                                <span class="subline">Inicia sesi&oacute;n</span>
+                                            <a href="#">
+                                                <b>Universidad de Cartagena</b>
+                                                <span class="subline">Docencia-Servicio</span>
                                             </a>
                                             <!--<ul class="dropdown-menu">
                                                     <li><a href="portfolio-blocks.html">Portfolio Blocks</a></li>
@@ -334,7 +334,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-user"></i>
                                                 </span>
-                                                <input type="text" name='parametroA' class="form-control" placeholder="Email Username" data-parsley-minlength="6" placeholder="At least 6 characters" required>
+                                                <input type="text" name='parametroA' class="form-control" placeholder="Código de ingreso" data-parsley-minlength="6" placeholder="At least 6 characters" required>
                                             </div>
                                         </div>
                                     </div>
@@ -345,13 +345,13 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-key"></i>
                                                 </span>
-                                                <input type="password" name='parametroB' class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                <input type="password" name='parametroB' class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="panel-footer">
                                         <div class="clearfix">
-                                            <button class="btn btn-primary pull-right" type="submit">Login</button>
+                                            <button class="btn btn-primary pull-right" type="submit">Ingresar</button>
                                         </div>
                                     </div>
 

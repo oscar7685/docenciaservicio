@@ -89,7 +89,7 @@
     });
 </script>
 <div class="page-heading">            
-    <h1>Proceso</h1>
+    <h1>Proceso</h1> <a href="#listarProcesos"><button class="btn-default btn pull-right">Volver</button></a>
 </div>
 
 <div class="container-fluid">
@@ -100,7 +100,7 @@
                     <div id="conte" class="span10">
                         <fieldset>
                             <legend>
-                                Estado del proceso
+                                Estado del proceso 
                             </legend>
                             <c:if test="${aux_index2 != 3}">
                                 <div class="span10" style="margin-left: 0px;">

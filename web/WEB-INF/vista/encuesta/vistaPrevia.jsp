@@ -12,6 +12,9 @@
     }
     
 </style>
+<div class="page-heading">            
+    <h1>Encuestas</h1> <a href="#listarCuestionarios"><button class="btn-default btn pull-right">Volver</button></a>
+</div>
 <div class="container-fluid">
     <div class="row" style="background-color: #fff;">
         <div class="col-md-offset-2 col-md-8">

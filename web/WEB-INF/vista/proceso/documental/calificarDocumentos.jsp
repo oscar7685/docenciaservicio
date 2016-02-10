@@ -27,7 +27,7 @@
 
 </style>
 <div class="page-heading">            
-    <h1>Proceso</h1>
+    <h1>Proceso</h1> <a href="#listarProcesos"><button class="btn-default btn pull-right">Volver</button></a>
 </div>
 <div class="container-fluid">
     <div class="row">
