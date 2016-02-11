@@ -58,7 +58,7 @@ public class RetornarListadoEncuestas implements Action {
 
         //cuestionarios para estudiantes    
         List<Estudiante> estudiantes = estudianteFacade.findByList("fuenteidUsuario", f);
-        List<Estudiante> aux = new ArrayList<>();
+        List<Estudiante> aux = new ArrayList<Estudiante>();
         for (Estudiante estudiante : estudiantes) {
             if (estudiante.getProcesoIdproceso().getEstado().equals("En Ejecución")) {
                 List<Encabezado> enc1 = encabezadoFacade.findByList3("procesoIdproceso", estudiante.getProcesoIdproceso(), "cuestionarioidCuestionario", cuestionarioEstudiantes, "fuenteidUsuario", f);
@@ -76,7 +76,7 @@ public class RetornarListadoEncuestas implements Action {
 
         //cuestionarios para docentes    
         List<Docente> docentes = docenteFacade.findByList("fuenteidUsuario", f);
-        List<Docente> aux2 = new ArrayList<>();
+        List<Docente> aux2 = new ArrayList<Docente>();
         for (Docente docente : docentes) {
             if (docente.getProcesoIdproceso().getEstado().equals("En Ejecución")) {
                 List<Encabezado> enc2 = encabezadoFacade.findByList3("procesoIdproceso", docente.getProcesoIdproceso(), "cuestionarioidCuestionario", cuestionarioDocentes, "fuenteidUsuario", f);
@@ -94,7 +94,7 @@ public class RetornarListadoEncuestas implements Action {
 
         //cuestionarios para Representanteescenario    
         List<Representanteescenario> representantes = representanteescenarioFacade.findByList("fuenteidUsuario", f);
-        List<Representanteescenario> aux3 = new ArrayList<>();
+        List<Representanteescenario> aux3 = new ArrayList<Representanteescenario>();
         for (Representanteescenario representante : representantes) {
             if (representante.getProcesoIdproceso().getEstado().equals("En Ejecución")) {
                 List<Encabezado> enc3 = encabezadoFacade.findByList3("procesoIdproceso", representante.getProcesoIdproceso(), "cuestionarioidCuestionario", cuestionarioRepresentantes, "fuenteidUsuario", f);
