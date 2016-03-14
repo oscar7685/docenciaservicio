@@ -14,7 +14,7 @@ $(document).ready(
     //But include in all others.
    $('.nav-tabs').filter(':noparents(.tab-right, .tab-left)').tabdrop();
 
-	prettyPrint(); //Apply Code Prettifier
+	//prettyPrint(); //Apply Code Prettifier
 
 	$('.popovers').popover({container: 'body', trigger: 'hover', placement: 'top'}); //bootstrap's popover
 	$('.tooltips').tooltip(); //bootstrap's tooltip

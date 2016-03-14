@@ -35,8 +35,8 @@
         <link href="inicio/assets/css/micss.css" type="text/css" rel="stylesheet">
 
         <!-- <link href="inicio/assets/inicio/assets/plugins/smartmenus/css/sm-core-css.css" type="text/css" rel="stylesheet"> -->
-        <link href="inicio/assets/plugins/smartmenus/addons/bootstrap/jquery.smartmenus.bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="inicio/assets/plugins/codeprettifier/prettify.css" type="text/css" rel="stylesheet">
+        <!--<link href="inicio/assets/plugins/smartmenus/addons/bootstrap/jquery.smartmenus.bootstrap.css" type="text/css" rel="stylesheet">-->
+        <!--<link href="inicio/assets/plugins/codeprettifier/prettify.css" type="text/css" rel="stylesheet">-->
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
         <!--[if lt IE 9]>
@@ -46,8 +46,8 @@
         <![endif]-->
         <!-- The following CSS are included as plugins and can be removed if unused-->
 
-        <link href="inicio/assets/plugins/revolution-slider/css/settings.css" type="text/css" rel="stylesheet">
-        <link href="inicio/assets/demo/revolution-slider/extralayers.css" type="text/css" rel="stylesheet">
+        <!--<link href="inicio/assets/plugins/revolution-slider/css/settings.css" type="text/css" rel="stylesheet">-->
+        <!--<link href="inicio/assets/demo/revolution-slider/extralayers.css" type="text/css" rel="stylesheet">-->
 
     </head>
 
@@ -384,29 +384,29 @@
 
         <script src="inicio/assets/js/bootstrap.min.js"></script> 								<!-- Load Bootstrap -->
 
-        <script src="inicio/assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script> 	<!-- Slimscroll for custom scrolls -->
-        <script src="inicio/assets/plugins/sparklines/jquery.sparklines.min.js"></script>  		<!-- Sparkline -->
+        <!--<script src="inicio/assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script> 	<!-- Slimscroll for custom scrolls -->
+        <!--<script src="inicio/assets/plugins/sparklines/jquery.sparklines.min.js"></script>  		<!-- Sparkline -->
 
-        <script src="inicio/assets/plugins/smartmenus/jquery.smartmenus.js"></script> 			<!-- Smartmenus -->
-        <script src="inicio/assets/plugins/smartmenus/addons/bootstrap/jquery.smartmenus.bootstrap.js"></script>
+        <!--<script src="inicio/assets/plugins/smartmenus/jquery.smartmenus.js"></script> 			<!-- Smartmenus -->
+        <!--<script src="inicio/assets/plugins/smartmenus/addons/bootstrap/jquery.smartmenus.bootstrap.js"></script>
 
-        <script src="inicio/assets/demo/demo.js"></script> 
+       <!-- <script src="inicio/assets/demo/demo.js"></script> -->
         <script src="inicio/assets/js/application.js"></script> 
 
         <!-- End loading site level scripts -->
 
-        <script src="inicio/assets/plugins/codeprettifier/prettify.js"></script> 				<!-- Code Prettifier  -->
-        <script src="inicio/assets/plugins/bootstrap-switch/bootstrap-switch.js"></script> 		<!-- Swith/Toggle Button -->
-        <script src="inicio/assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js"></script>  <!-- Bootstrap Tabdrop -->
+       <!-- <script src="inicio/assets/plugins/codeprettifier/prettify.js"></script> 				<!-- Code Prettifier  -->
+       <!-- <script src="inicio/assets/plugins/bootstrap-switch/bootstrap-switch.js"></script> 		<!-- Swith/Toggle Button -->
+       <!-- <script src="inicio/assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js"></script>  <!-- Bootstrap Tabdrop -->
 
 
 
-        <script src="inicio/assets/plugins/bootbox/bootbox.js"></script> 										<!-- Bootbox -->
+       <!-- <script src="inicio/assets/plugins/bootbox/bootbox.js"></script> 										<!-- Bootbox -->
 
-        <script src="inicio/assets/plugins/revolution-slider/js/jquery.themepunch.tools.min.js"></script>  		<!-- Slider Revolution -->
-        <script src="inicio/assets/plugins/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+       <!--<script src="inicio/assets/plugins/revolution-slider/js/jquery.themepunch.tools.min.js"></script>  		<!-- Slider Revolution -->
+       <!-- <script src="inicio/assets/plugins/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>-->
 
-        <script src="inicio/assets/demo/demo-index.js"></script> 												<!-- Initialize Demo JS for this page -->
+        <!--<script src="inicio/assets/demo/demo-index.js"></script> 												<!-- Initialize Demo JS for this page -->
         <script src="inicio/assets/js/mijs.js"></script> 												<!-- Initialize Demo JS for this page -->
 
     </body>

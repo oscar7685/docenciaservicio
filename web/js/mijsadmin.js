@@ -22,7 +22,7 @@ $(function() {
             url3 = url3.concat(cual[0].substring(1), "&", cual[1]);
             urlx = url3;
         } else if (hash.indexOf("#finalizarProceso") !== -1) {
-            console.log("llegamos!!");
+            
             $('#modalFP').modal();
             var cual = hash.split("&");
             hash = cual[0];

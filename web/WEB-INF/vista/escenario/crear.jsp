@@ -77,12 +77,13 @@
 
     $(function() {
         $('#btncreare').on('click', function() {
+            console.log("llegue000!!!!!!!!!!!!!!!") ;
             //var current = $(this).data('currentBlock'),
             // next = $(this).data('nextBlock');
             // var validacion = $('#fcrearescenario').parsley().validate();
 
             $('#fcrearescenario').parsley().subscribe('parsley:form:validate', function(formInstance) {
-
+                   console.log("llegue!!!!!!!!!!!!!!!") ;
                 // if one of these blocks is not failing do not prevent submission
                 // we use here group validation with option force (validate even non required fields)
                 if (formInstance.isValid()) {

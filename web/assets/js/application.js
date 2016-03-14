@@ -410,7 +410,7 @@ $(document).ready(function () {
 
 
         // Closes and opens left and rightbar in small or big screens
-        enquire.register("screen and (max-width: 767px)", {
+       /* enquire.register("screen and (max-width: 767px)", {
             match : function() {
                 //small
                 vFSLayout.close('west');
@@ -422,7 +422,7 @@ $(document).ready(function () {
                 vFSLayout.open('east');
             },
             deferSetup : true
-        });
+        });*/
     } catch(e) {
         // Code above is only executed in a page with #layout-fixed.
         // Requires js/jquery.layout.min.js to be loaded.
@@ -537,7 +537,7 @@ $(document).ready(function () {
     // ---------------------------------
     // Faux Off-cavas effect on collapse
     // ---------------------------------
-    enquire.register("screen and (max-width: 767px)", {
+    /*enquire.register("screen and (max-width: 767px)", {
         match : function() {  //smallscreen
             $('body').addClass('sidebar-collapsed');
 
@@ -552,7 +552,7 @@ $(document).ready(function () {
             $('.static-content').css('width','');
             $(window).off('resize', setWidthtoContent);
         }
-    });
+    });*/
     function setWidthtoContent() {
         var w = $('#wrapper').innerWidth();
         $('.static-content').css('width',(w)+'px');
