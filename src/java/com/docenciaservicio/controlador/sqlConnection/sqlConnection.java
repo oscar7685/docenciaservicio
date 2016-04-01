@@ -53,10 +53,10 @@ public class sqlConnection {
     // * @param clave  Clave de la BD MySQL.
     //+
     public void conectarMySQL() {
-        String maquina = "127.0.0.1";
+        String maquina = "192.168.8.2";
         String nombreBD = "docencia?allowMultiQueries=true";
         String usuario = "root";
-        String clave = "123456";
+        String clave = "institucional";
        
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -68,7 +68,7 @@ public class sqlConnection {
             e.printStackTrace();
         }
         try {
-            String url = "jdbc:mysql://" + maquina + ":3306/" + nombreBD;
+            String url = "jdbc:mysql://" + maquina + ":3307/" + nombreBD;
             conexion = (Connection) DriverManager.getConnection(url, usuario, clave);
            // System.out.println("conectado a " + bd);
         } catch (SQLException e) {

@@ -608,7 +608,7 @@ $(document).keyup(function(e) {
 // ------------------------------
 // DOM Loaded
 // ------------------------------
-$(window).bind("load", function() { 
+/*$(window).bind("load", function() { 
     //$('body').scrollSidebar();
     $(window).trigger('resize');
 });
@@ -623,4 +623,4 @@ $(window).resize(function(){
     Utility.autocollapse();
 
     Utility.sidebar_resizing();
-});
+});*/
