@@ -65,7 +65,7 @@ public class SubirArchivo extends HttpServlet {
                     String fileName = actual.getName();
 
 
-                    String str = request.getSession().getServletContext().getRealPath("/file/");
+                    String str = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/com/docenciaservicio/temp/");
                     fileName = "" + fileName;
                     // nos quedamos solo con el nombre y descartamos el path
                     File fichero = new File(str + "\\" + fileName);
@@ -109,6 +109,7 @@ public class SubirArchivo extends HttpServlet {
 
                     } catch (Exception ex) {
                         Logger.getLogger(SubirArchivo.class.getName()).log(Level.SEVERE, null, ex);
+                        writer.write("{error1"+ex.getStackTrace());
                     }
 
 
@@ -121,6 +122,7 @@ public class SubirArchivo extends HttpServlet {
         } catch (FileUploadException ex) {
             Logger.getLogger(SubirArchivo.class
                     .getName()).log(Level.SEVERE, null, ex);
+            writer.write("error2"+ex.getStackTrace());
         }
 
 
